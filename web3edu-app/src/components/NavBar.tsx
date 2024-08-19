@@ -3,8 +3,8 @@ import Image from "next/image";
 
 export default function NavBar() {
     return (
-        <div data-theme="mytheme" className="navbar bg-base justify-between">
-            <div className="navbar-start">
+        <div data-theme="mytheme" className="navbar bg-base justify-between px-5">
+            <div className="navbar-start gap-3">
                 <div className="dropdown">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
                     <svg
@@ -22,21 +22,21 @@ export default function NavBar() {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow text-[#15457b]">
+                        className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base   ">
                         <li><a>Home</a></li>
                         <li><a>Fórum</a></li>
                         <li><a>Artigos</a></li>
-                        <li><a>Thilhas</a></li>
+                        <li><a>Trilhas</a></li>
                     </ul>
                 </div>
-                <Image src={web3EduLogo} alt="" className="h-4/5 w-16" />
-                <a className="text-2xl font-bold">Web3EduBrasil</a>
+                <Image src={web3EduLogo} alt="" className="w-10" />
+                <a className="text-2xl text-secondary font-bold">Web3EduBrasil</a>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 text-[#15457b] text-base font-medium">
+                    <ul className="menu menu-horizontal px-1 text-secondary text-base font-medium">
                         <li><a>Home</a></li>
                         <li><a>Fórum</a></li>
                         <li><a>Artigos</a></li>
-                        <li><a>Thilhas</a></li>
+                        <li><a>Trilhas</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,7 +50,7 @@ export default function NavBar() {
                 </div>
                 <ul
                     tabIndex={0}
-                    className="menu menu-md  dropdown-content bg-gray-100 text-[#15457b] rounded-box z-[1] mt-1 w-52 p-2 shadow-2xl py-2 text-base font-">
+                    className="menu menu-md dropdown-content bg-base text-secondary rounded-box z-[1] mt-1 w-52 p-2 shadow py-2 text-base">
                     <li>    <a>Profile</a></li>
                     <li><a>Settings</a></li>
                     <li><a>Logout</a></li>
