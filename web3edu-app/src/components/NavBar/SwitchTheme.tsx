@@ -1,37 +1,34 @@
 import React from "react";
 
 export default function SwitchTheme() {
-  const [theme, setTheme] = React.useState("mytheme");
+  const [isDark, setIsDark] = React.useState(false);
 
   React.useEffect(() => {
-    document.querySelector("html")!.setAttribute("data-theme", theme);
-  }, [theme]);
-
-  React.useEffect(() => {
-    getTheme();
+    const savedIsDark = JSON.parse(localStorage.getItem("isdark")!);
+    if (savedIsDark === true) {
+      console.log(savedIsDark);
+      setIsDark(JSON.parse(savedIsDark));
+      document.querySelector("html")!.setAttribute("data-theme", "forest");
+    } else {
+      document.querySelector("html")!.setAttribute("data-theme", "mytheme");
+      console.log(savedIsDark);
+    }
   }, []);
 
-  function getTheme() {
-    if (typeof window !== "undefined") {
-      const storedTheme = localStorage.getItem("theme");
-      if (storedTheme !== null) {
-        try {
-          setTheme(JSON.parse(storedTheme));
-          return theme;
-        } catch (error) {
-          console.error(error);
-        }
-      }
+  function toggleTheme() {
+    if (isDark) {
+      setIsDark(false);
+      document.querySelector("html")!.setAttribute("data-theme", "mytheme");
+      localStorage.setItem("isdark", JSON.stringify(false));
+    } else {
+      setIsDark(true);
+      document.querySelector("html")!.setAttribute("data-theme", "forest");
+      localStorage.setItem("isdark", JSON.stringify(true));
     }
   }
 
-  const toggleTheme = () => {
-    setTheme(theme === "mytheme" ? "forest" : "mytheme");
-    localStorage.setItem("theme", JSON.stringify(theme));
-  };
-
   return (
-    <label className="flex cursor-pointer gap-2" onClick={() => toggleTheme()}>
+    <label className="flex cursor-pointer gap-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -48,6 +45,8 @@ export default function SwitchTheme() {
       </svg>
       <input
         type="checkbox"
+        checked={isDark}
+        onChange={toggleTheme}
         value="synthwave"
         className="toggle theme-controller"
       />
