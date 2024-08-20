@@ -15,24 +15,23 @@ const config: Config = {
       },
     },
   },
-  plugins: [
-    require('daisyui'),
-  ],
+  plugins: [require("daisyui")],
   daisyui: {
     themes: [
       {
         mytheme: {
-          "primary": "#21a16b",
-          "secondary": "#1a4476",
-          "accent": "#f0bb20",
-          "neutral": "#1a4476",
+          primary: "#21a16b",
+          secondary: "#1a4476",
+          accent: "#f0bb20",
+          neutral: "#1a4476",
           "base-100": "#ffffff",
-          "info": "#1a4476",
-          "success": "#21a16b",
-          "warning": "#f0bb20",
-          "error": "#ff0000",
+          info: "#1a4476",
+          success: "#21a16b",
+          warning: "#f0bb20",
+          error: "#ff0000",
         },
       },
+      "forest",
     ],
   },
 };
