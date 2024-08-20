@@ -1,4 +1,4 @@
-import KnowLedge from "@/components/knowPage/KnowLedge";
+import KnowLedge from "@/components/KYC/KnowYourCostumer";
 
 export default function Teste() {
   return (
