@@ -16,7 +16,7 @@ export default function Kyc1() {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 mt-2">
           <Image alt="ss" src={web3EduLogo} className="size-12  " />
 
           <div>
@@ -36,7 +36,7 @@ export default function Kyc1() {
             >
               <strong className="font-bold text-secondary">Iniciante</strong>
 
-              <p className="mt-1 text-xs font-medium text-neutral">
+              <p className="mt-1 text-xs font-medium text-gray-500">
                 Você não possui conhecimentos sobre a tecnologia Web3.
               </p>
             </a>
@@ -51,7 +51,7 @@ export default function Kyc1() {
                 Intermediário
               </strong>
 
-              <p className="mt-1 text-xs font-medium text-neutral">
+              <p className="mt-1 text-xs font-medium text-gray-500">
                 Você possui conhecimento básico sobre a Web3.
               </p>
             </a>
@@ -64,7 +64,7 @@ export default function Kyc1() {
             >
               <strong className="font-bold text-secondary ">Avançado</strong>
 
-              <p className="mt-1 text-xs font-medium text-neutral">
+              <p className="mt-1 text-xs font-medium text-gray-500">
                 Você já se considera uma pessoa experiente sobre a tecnologia
                 Web3.
               </p>

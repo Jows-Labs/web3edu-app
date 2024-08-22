@@ -3,6 +3,7 @@ import Kyc2 from "./Kyc2";
 
 function KnowLedge() {
   return (
+    
     <div className="flex items-center justify-center min-h-screen ">
       <Kyc1 />
 

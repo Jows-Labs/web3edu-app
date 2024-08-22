@@ -16,7 +16,7 @@ export default function Kyc2() {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 mt-2">
           <Image alt="ss" src={web3EduLogo} className="size-12  " />
 
           <div>

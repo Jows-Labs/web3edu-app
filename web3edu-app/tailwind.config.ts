@@ -29,6 +29,7 @@ const config: Config = {
           success: "#21a16b",
           warning: "#f0bb20",
           error: "#ff0000",
+          "pal-grey": "#9A9A9A",
         },
       },
       "forest",
