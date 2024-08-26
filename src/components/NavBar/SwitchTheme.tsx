@@ -8,9 +8,11 @@ export default function SwitchTheme() {
     if (savedIsDark === true) {
       console.log(savedIsDark);
       setIsDark(JSON.parse(savedIsDark));
-      document.querySelector("html")!.setAttribute("data-theme", "forest");
+      document
+        .querySelector("html")!
+        .setAttribute("data-theme", "web3edu-dark");
     } else {
-      document.querySelector("html")!.setAttribute("data-theme", "mytheme");
+      document.querySelector("html")!.setAttribute("data-theme", "web3edu");
       console.log(savedIsDark);
     }
   }, []);
@@ -18,11 +20,13 @@ export default function SwitchTheme() {
   function toggleTheme() {
     if (isDark) {
       setIsDark(false);
-      document.querySelector("html")!.setAttribute("data-theme", "mytheme");
+      document.querySelector("html")!.setAttribute("data-theme", "web3edu");
       localStorage.setItem("isdark", JSON.stringify(false));
     } else {
       setIsDark(true);
-      document.querySelector("html")!.setAttribute("data-theme", "forest");
+      document
+        .querySelector("html")!
+        .setAttribute("data-theme", "web3edu-dark");
       localStorage.setItem("isdark", JSON.stringify(true));
     }
   }

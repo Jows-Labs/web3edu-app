@@ -5,13 +5,13 @@ import React from "react";
 
 export default function NavBar() {
   return (
-    <div className="navbar bg-base-100 justify-between px-5">
+    <div className="navbar bg-base-100 justify-between px-5 z-10 fixed">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-[#15457b]"
+              className="h-5 w-5 text-base-content"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -26,7 +26,7 @@ export default function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base   "
+            className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content"
           >
             <li>
               <a>Home</a>
@@ -43,9 +43,9 @@ export default function NavBar() {
           </ul>
         </div>
         <Image src={web3EduLogo} alt="" className="w-10" />
-        <a className="text-2xl text-secondary font-bold">Web3EduBrasil</a>
+        <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-secondary text-base font-medium">
+          <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">
             <li>
               <a>Home</a>
             </li>
@@ -76,7 +76,7 @@ export default function NavBar() {
         </div>
         <ul
           tabIndex={0}
-          className="menu menu-md dropdown-content bg-base text-secondary rounded-box z-[1] mt-1 w-52 p-2 shadow py-2 text-base"
+          className="menu menu-md dropdown-content bg-base rounded-box z-[1] mt-1 w-52 p-2 shadow py-2 text-base-content"
         >
           <li>
             {" "}
