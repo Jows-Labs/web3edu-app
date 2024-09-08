@@ -1,9 +1,9 @@
-import web3EduLogo from "../../images/Web3EduBrasil_logo.png";
-import MainFunctions from "./mainFunctions";
 import Image from "next/image";
-import UserDocIcon from "../../images/user-doc-icon.svg";
-import ForumIcon from "../../images/forum-icon.svg";
-import TrailIcon from "../../images/trail-icon.svg";
+import MainFunctions from "./mainFunctions";
+import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
+import UserDocIcon from '../../assets/icons/user-doc-icon.svg';
+import ForumIcon from "../../assets/icons/forum-icon.svg";
+import TrailIcon from "../../assets/icons/trail-icon.svg";
 import TrailCard from "./trails";
 
 const MainContent = () => {

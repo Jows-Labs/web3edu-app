@@ -1,4 +1,4 @@
-import web3EduLogo from "../../images/Web3EduBrasil_logo.png";
+import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
 
 const Header = () => {
