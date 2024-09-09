@@ -1,14 +1,14 @@
 import Image from "next/image";
 import MainFunctions from "./mainFunctions";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
-import UserDocIcon from '../../assets/icons/user-doc-icon.svg';
+import UserDocIcon from "../../assets/icons/user-doc-icon.svg";
 import ForumIcon from "../../assets/icons/forum-icon.svg";
 import TrailIcon from "../../assets/icons/trail-icon.svg";
 import TrailCard from "./trails";
 
 const MainContent = () => {
   return (
-    <div className="h-full w-full pt-[10vh] flex flex-col justify-center items-center">
+    <div className="h-full w-full flex flex-col justify-center items-center">
       <div className="flex h-5/6 justify-center items-center">
         <section className="flex flex-col text-center py-20 px-20 w-3/5 text-black h-full z-0 overflow-auto justify-center items-center relative">
           <h1 className="text-5xl font-bold text-justify">
@@ -24,7 +24,7 @@ const MainContent = () => {
           <Image src={web3EduLogo} alt="" className="w-60" />
         </div>
       </div>
-      <div className="overflow-x-hidden w-full">
+      <div className="w-full">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320 ">
           <path
             fill="#fcedb2"
@@ -34,7 +34,7 @@ const MainContent = () => {
         </svg>
         <div className="h-[60vh] bg-[#fcedb2] flex justify-center items-center flex-col">
           <p className="text-4xl font-bold text-black">Principais Funções</p>
-          <div className="h-4/5 flex justify-evenly items-center w-screen px-10">
+          <div className="h-4/5 flex justify-evenly items-center w-full">
             <MainFunctions
               functionName={"Sistema de Recompensas"}
               content={
@@ -80,8 +80,8 @@ const MainContent = () => {
             </p>
           </div>
 
-          <div className="flex w-5/6 border-2 h-1/6 rounded-full p-2 justify-between">
-            <div className="flex w-[30%] bg-[#fcedb2] rounded-full items-center gap-2 justify-center">
+          <div className="flex w-5/6 border-2 h-fit rounded-full p-2 justify-between">
+            <div className="flex w-[30%] h-10 bg-[#fcedb2] rounded-full items-center gap-2 justify-center">
               <Image
                 src={UserDocIcon}
                 alt=""
@@ -89,7 +89,7 @@ const MainContent = () => {
               />
               <p>Tokens</p>
             </div>
-            <div className="flex w-[30%] bg-[#fcedb2] rounded-full items-center gap-2 justify-center">
+            <div className="flex w-[30%] h-10 bg-[#fcedb2] rounded-full items-center gap-2 justify-center">
               <Image
                 src={ForumIcon}
                 alt=""
@@ -97,7 +97,7 @@ const MainContent = () => {
               />
               <p>Fórum</p>
             </div>
-            <div className="flex w-[30%] bg-[#fcedb2] rounded-full items-center gap-2 justify-center">
+            <div className="flex w-[30%] h-10 bg-[#fcedb2] rounded-full items-center gap-2 justify-center">
               <Image
                 src={TrailIcon}
                 alt=""
