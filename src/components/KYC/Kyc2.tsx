@@ -3,7 +3,7 @@ import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 
 export default function Kyc2() {
   return (
-    <div className="flex flex-col min-h-screen w-2/5 ">
+    <div className="flex flex-col w-2/5 ">
       <article className="rounded-box border border-gray-700 bg-base-100 p-4">
         <div>
           <h2 className="sr-only">Steps</h2>

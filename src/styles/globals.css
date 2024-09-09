@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.navbar {
+  height: 10vh !important;
+}

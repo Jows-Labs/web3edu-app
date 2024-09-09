@@ -5,7 +5,7 @@ import React from "react";
 
 export default function NavBar() {
   return (
-    <div className="navbar bg-base-100 justify-between px-5 z-10 fixed">
+    <div className="navbar bg-base-100 justify-between">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
