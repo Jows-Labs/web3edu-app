@@ -32,7 +32,7 @@ const MainContent = () => {
             d="M0,64L60,58.7C120,53,240,43,360,53.3C480,64,600,96,720,133.3C840,171,960,213,1080,197.3C1200,181,1320,107,1380,69.3L1440,32L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"
           ></path>
         </svg>
-        <div className="h-[60vh] bg-[#fcedb2] flex justify-center items-center flex-col">
+        <div className="h-[60vh] bg-[#fcedb2] flex justify-center items-center flex-col w-full">
           <p className="text-4xl font-bold text-black">Principais Funções</p>
           <div className="h-4/5 flex justify-evenly items-center w-full">
             <MainFunctions
