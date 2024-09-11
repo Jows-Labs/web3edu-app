@@ -1,4 +1,5 @@
 "use client";
+
 import {
   ADAPTER_EVENTS,
   CHAIN_NAMESPACES,
@@ -12,6 +13,9 @@ import {
   OpenloginAdapter,
   OpenloginLoginParams,
 } from "@web3auth/openlogin-adapter";
+import { initializeApp } from "firebase/app";
+import { getAuth, GoogleAuthProvider, signInWithPopup, UserCredential } from "firebase/auth";
+import { firebaseConfig } from "../../firebase/config";
 import { createContext, useContext, useEffect, useState } from "react";
 import { web3authConfig } from "./web3auth.config";
 import { signInWithGoogle } from "../auth"; // Importe a função de login
@@ -63,7 +67,7 @@ const walletPlugin = new WalletServicesPlugin({
   },
 });
 
-export const useWeb3Auth = () => {
+export default function useWeb3Auth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoggingIn, setIsLogginIn] = useState(false);
   const [provider, setProvider] = useState<IProvider | null>(null);
@@ -93,10 +97,24 @@ export const useWeb3Auth = () => {
     init();
   }, []);
 
+  const signInWithGoogle = async (): Promise<UserCredential> => {
+    try {
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const googleProvider = new GoogleAuthProvider();
+      const res = await signInWithPopup(auth, googleProvider);
+      return res // Retorna o ID token diretamente
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
+
   const login = async () => {
     try {
       setIsLogginIn(true);
-      const idToken = await signInWithGoogle(); // Obtenha o ID token do Firebase
+      const loginRes = await signInWithGoogle();
+      const idToken = await loginRes.user.getIdToken(true);
 
       const web3authProvider = await web3auth.connectTo(
         WALLET_ADAPTERS.OPENLOGIN,
@@ -118,7 +136,6 @@ export const useWeb3Auth = () => {
         setAccounts(address);
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
-        // push to page depending on the condition of the user, isFirstLogin ? kyc/ : home/
       }
     } catch (error) {
       console.error(error);
@@ -144,4 +161,4 @@ export const useWeb3Auth = () => {
     userInfo,
     userAccount,
   };
-};
+}
