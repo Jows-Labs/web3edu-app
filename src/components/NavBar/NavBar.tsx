@@ -2,8 +2,11 @@ import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
 import SwitchTheme from "./SwitchTheme";
 import React from "react";
+import { useWeb3Auth } from "@/lib/web3auth/web3auth";
 
 export default function NavBar() {
+  const { login, isLoggedIn } = useWeb3Auth();
+
   return (
     <div className="navbar bg-base-100 justify-between">
       <div className="navbar-start gap-3">
@@ -42,7 +45,12 @@ export default function NavBar() {
             </li>
           </ul>
         </div>
-        <Image src={web3EduLogo} alt="" className="w-10" />
+        <Image
+          src={web3EduLogo}
+          alt=""
+          className="w-10"
+          onClick={handleLoginClick}
+        />
         <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">

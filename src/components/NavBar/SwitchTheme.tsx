@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function SwitchTheme() {
-  const [isDark, setIsDark] = React.useState(false);
+  const [isDark, setIsDark] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const savedIsDark = JSON.parse(localStorage.getItem("isdark")!);
     if (savedIsDark === true) {
       console.log(savedIsDark);
