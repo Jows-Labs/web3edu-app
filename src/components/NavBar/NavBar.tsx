@@ -1,14 +1,13 @@
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
 import SwitchTheme from "./SwitchTheme";
-import useWeb3Auth from "@/lib/web3auth/web3auth"; 
+// import useWeb3Auth from "@/lib/web3auth/web3auth";
 
-const web3auth = useWeb3Auth();
+// const web3auth = useWeb3Auth();
 export default function NavBar() {
-
-  const handlelogin = async () => {
-    await web3auth.login()
-  };
+  // const handlelogin = async () => {
+  //   await web3auth.login()
+  // };
 
   return (
     <div className="navbar bg-base-100 justify-between">
@@ -48,12 +47,7 @@ export default function NavBar() {
             </li>
           </ul>
         </div>
-        <Image
-          src={web3EduLogo}
-          alt=""
-          className="w-10"
-          onClick={handlelogin}
-        />
+        <Image src={web3EduLogo} alt="" className="w-10" />
         <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">
