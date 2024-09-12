@@ -10,7 +10,7 @@ export default function NavBar() {
   const [user, setUser] = useState(false);
 
   return (
-    <div className="navbar bg-base-100 justify-between px-10">
+    <div className="navbar bg-base-100 justify-between sm:px-10">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
