@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import NavBar from "@/components/NavBar/NavBar";
 import { AppSkeleton } from "@/components/ui/AppSkeleton";
 import type { Metadata } from "next";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -55,9 +56,10 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex flex-col h-full">
-          <NavBar />
-
-          <AppSkeleton>{children}</AppSkeleton>
+          <Providers>
+            <NavBar />
+            <AppSkeleton>{children}</AppSkeleton>
+          </Providers>
         </div>
       </body>
     </html>
