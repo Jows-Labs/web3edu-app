@@ -1,9 +1,12 @@
+'use client';
+
 import "../styles/globals.css";
+import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
 import { AppSkeleton } from "@/components/ui/AppSkeleton";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = {
+/* export const metadata: Metadata = {
   title: "Web3EduBrasil",
   description:
     "Web3EduBrasil é uma plataforma de ensino descentralizada que facilita o aprendizados de tecnologias web3.",
@@ -43,7 +46,7 @@ export const metadata: Metadata = {
     "web3edu",
     "web3edubrasil",
   ],
-};
+}; */
 
 export default function RootLayout({
   children,
@@ -55,9 +58,10 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex flex-col h-full">
-          <NavBar />
-
-          <AppSkeleton>{children}</AppSkeleton>
+          <Web3AuthProvider>
+            <NavBar />
+            <AppSkeleton>{children}</AppSkeleton>
+          </Web3AuthProvider>
         </div>
       </body>
     </html>

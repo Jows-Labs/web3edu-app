@@ -14,11 +14,15 @@ import {
   OpenloginLoginParams,
 } from "@web3auth/openlogin-adapter";
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup, UserCredential } from "firebase/auth";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  UserCredential,
+} from "firebase/auth";
 import { firebaseConfig } from "../../firebase/config";
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { web3authConfig } from "./web3auth.config";
-import { signInWithGoogle } from "../auth"; // Importe a função de login
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
 
@@ -69,7 +73,7 @@ const walletPlugin = new WalletServicesPlugin({
 
 export default function useWeb3Auth() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isLoggingIn, setIsLogginIn] = useState(false);
+  const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [userInfo, setUserInfo] =
     useState<Partial<OpenloginLoginParams> | null>(null);
@@ -87,7 +91,6 @@ export default function useWeb3Auth() {
 
         if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
           setIsLoggedIn(true);
-          // push to page depending on the condition of the user, isFirstLogin ? kyc/ : home/
         }
       } catch (error) {
         console.error(error);
@@ -103,7 +106,7 @@ export default function useWeb3Auth() {
       const auth = getAuth(app);
       const googleProvider = new GoogleAuthProvider();
       const res = await signInWithPopup(auth, googleProvider);
-      return res // Retorna o ID token diretamente
+      return res; // Retorna o ID token diretamente
     } catch (err) {
       console.error(err);
       throw err;
@@ -112,7 +115,7 @@ export default function useWeb3Auth() {
 
   const login = async () => {
     try {
-      setIsLogginIn(true);
+      setIsLoggingIn(true);
       const loginRes = await signInWithGoogle();
       const idToken = await loginRes.user.getIdToken(true);
 
@@ -128,7 +131,7 @@ export default function useWeb3Auth() {
       );
 
       if (web3authProvider) {
-        setIsLogginIn(false);
+        setIsLoggingIn(false);
         setIsLoggedIn(true);
         setProvider(web3authProvider);
         const web3 = new Web3(provider as any);
@@ -147,9 +150,13 @@ export default function useWeb3Auth() {
   };
 
   const logout = async () => {
-    await web3auth.logout();
-    setProvider(null);
-    setIsLoggedIn(false);
+    try {
+      await web3auth.logout();
+      setProvider(null);
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return {
