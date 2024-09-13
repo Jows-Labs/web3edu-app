@@ -35,7 +35,7 @@ export default function NavBar() {
             className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content"
           >
             <li>
-              <a onClick={login}>Home</a>
+              <a>Home</a>
             </li>
             <li>
               <a>Fórum</a>

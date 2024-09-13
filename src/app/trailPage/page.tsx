@@ -1,5 +1,6 @@
-import { TrailText } from "@/components/trailPage/trailText";
+import { TrailText } from "@/components/TrailPage/TrailContainer";
 
 export default function trailPage() {
   return <TrailText />;
 }
+
