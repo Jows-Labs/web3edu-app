@@ -67,6 +67,6 @@ export default function NavBar() {
         </div>
       </div>
       {user ? <UserMenu /> : <LoginButton />}
-    </div>
+      </div>
   );
 }

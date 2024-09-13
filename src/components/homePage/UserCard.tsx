@@ -1,6 +1,6 @@
 export default function UserCard() {
   return (
-    <div className="bg-base-200 shadow-xl w-full h-2/4 flex flex-row rounded-box sm:h-2/4 col-span-2">
+    <div className="bg-base-200 shadow-xl w-full flex flex-row rounded-box col-span-2 row-span-2">
       <figure className="h-full w-1/3">
         <img
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVqpHJ_4FPld30j0LE15ImlXgD65AjQ16RuA&s"
