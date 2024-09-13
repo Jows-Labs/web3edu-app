@@ -32,10 +32,10 @@ export default function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content"
+            className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content "
           >
             <li>
-              <a onClick={login}>Home</a>
+              <a>Home</a>
             </li>
             <li>
               <a>Fórum</a>
@@ -51,7 +51,7 @@ export default function NavBar() {
         <Image src={web3EduLogo} alt="" className="w-10" />
         <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">
+          <ul className="menu menu-horizontal px-3 text-base-content text-base font-medium bg-base-200 rounded-box">
             <li>
               <a>Home</a>
             </li>
