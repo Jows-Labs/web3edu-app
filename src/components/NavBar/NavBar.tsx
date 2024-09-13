@@ -1,15 +1,17 @@
+"use client";
+
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
+import { useState } from "react";
+import { UserMenu } from "./UserMenu";
+import { LoginButton } from "./LoginButton";
 import SwitchTheme from "./SwitchTheme";
-import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider"; 
-
+        
 export default function NavBar() {
-  const {login} = useWeb3AuthContext();
-
-  
+  const [user, setUser] = useState(false);
 
   return (
-    <div className="navbar bg-base-100 justify-between">
+    <div className="navbar bg-base-100 justify-between sm:px-10">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -46,12 +48,8 @@ export default function NavBar() {
             </li>
           </ul>
         </div>
-        <Image
-          src={web3EduLogo}
-          alt=""
-          className="w-10"
-          onClick={login}
-        />
+        <Image src={web3EduLogo} alt="" className="w-10" />
+
         <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">
@@ -70,38 +68,7 @@ export default function NavBar() {
           </ul>
         </div>
       </div>
-      <div className="dropdown dropdown-end">
-        <div
-          tabIndex={0}
-          role="button"
-          className="btn btn-ghost btn-circle avatar"
-        >
-          <div className="w-10 rounded-full ">
-            <img
-              alt="Tailwind CSS Navbar component"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVqpHJ_4FPld30j0LE15ImlXgD65AjQ16RuA&s"
-            />
-          </div>
-        </div>
-        <ul
-          tabIndex={0}
-          className="menu menu-md dropdown-content bg-base rounded-box z-[1] mt-1 w-52 p-2 shadow py-2 text-base-content"
-        >
-          <li>
-            {" "}
-            <a>Profile</a>
-          </li>
-          <li>
-            <a>Settings</a>
-          </li>
-          <li>
-            <a>Logout</a>
-          </li>
-          <li>
-            <SwitchTheme />
-          </li>
-        </ul>
+      {user ? <UserMenu /> : <LoginButton />}
       </div>
-    </div>
   );
 }

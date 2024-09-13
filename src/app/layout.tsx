@@ -5,6 +5,7 @@ import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
 import { AppSkeleton } from "@/components/ui/AppSkeleton";
 import type { Metadata } from "next";
+import { Providers } from "./providers";
 
 /* export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -58,10 +59,12 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex flex-col h-full">
-          <Web3AuthProvider>
-            <NavBar />
-            <AppSkeleton>{children}</AppSkeleton>
-          </Web3AuthProvider>
+          <Providers>
+            <AppSkeleton>
+              <NavBar />
+              {children}
+            </AppSkeleton>
+          </Providers>
         </div>
       </body>
     </html>
