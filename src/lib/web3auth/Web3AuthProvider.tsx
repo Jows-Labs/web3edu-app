@@ -1,7 +1,8 @@
-'use client';
+"use client";
 
 import React, { createContext, useContext, ReactNode } from "react";
 import useWeb3Auth from "./web3auth";
+import { web3authConfig } from "./web3auth.config";
 
 interface Web3AuthContextProps {
   login: () => Promise<void>;
@@ -46,11 +47,12 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useWeb3AuthContext = () => {
-    const context = useContext(Web3AuthContext);
-    console.log("Context: ", context); // Adicione isso para verificar o contexto
-    if (context === undefined) {
-      throw new Error("useWeb3AuthContext must be used within a Web3AuthProvider");
-    }
-    return context;
-  };
-  
+  const context = useContext(Web3AuthContext);
+  console.log("Context: ", context); // Adicione isso para verificar o contexto
+  if (context === undefined) {
+    throw new Error(
+      "useWeb3AuthContext must be used within a Web3AuthProvider"
+    );
+  }
+  return context;
+};

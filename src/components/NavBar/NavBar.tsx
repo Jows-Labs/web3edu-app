@@ -5,9 +5,12 @@ import Image from "next/image";
 import { useState } from "react";
 import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import SwitchTheme from "./SwitchTheme";
 
 export default function NavBar() {
+  const { login } = useWeb3AuthContext();
+
   const [user, setUser] = useState(false);
 
   return (

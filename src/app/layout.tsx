@@ -58,10 +58,12 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex flex-col h-full">
-          <AppSkeleton>
-            <NavBar />
-            {children}
-          </AppSkeleton>
+          <Web3AuthProvider>
+            <AppSkeleton>
+              <NavBar />
+              {children}
+            </AppSkeleton>
+          </Web3AuthProvider>
         </div>
       </body>
     </html>
