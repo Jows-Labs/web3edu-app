@@ -5,7 +5,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
-
+import SwitchTheme from "./SwitchTheme";
+        
 export default function NavBar() {
   const [user, setUser] = useState(false);
 
@@ -34,7 +35,7 @@ export default function NavBar() {
             className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content"
           >
             <li>
-              <a>Home</a>
+              <a onClick={login}>Home</a>
             </li>
             <li>
               <a>Fórum</a>
@@ -48,6 +49,7 @@ export default function NavBar() {
           </ul>
         </div>
         <Image src={web3EduLogo} alt="" className="w-10" />
+
         <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">
