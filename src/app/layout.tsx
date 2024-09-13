@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import "../styles/globals.css";
 import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
@@ -58,10 +58,10 @@ export default function RootLayout({
       <head />
       <body>
         <div className="flex flex-col h-full">
-            <AppSkeleton>
-              <NavBar />
-              {children}
-            </AppSkeleton>
+          <AppSkeleton>
+            <NavBar />
+            {children}
+          </AppSkeleton>
         </div>
       </body>
     </html>
