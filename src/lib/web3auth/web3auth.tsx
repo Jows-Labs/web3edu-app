@@ -134,7 +134,6 @@ export default function useWeb3Auth() {
 
   const login = async () => {
     try {
-      debugger;
       if (!web3auth) {
         console.log("web3auth initialised yet");
         return;
