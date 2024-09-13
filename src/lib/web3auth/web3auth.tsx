@@ -20,11 +20,31 @@ import {
   signInWithPopup,
   UserCredential,
 } from "firebase/auth";
-import { firebaseConfig } from "../../firebase/config";
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { web3authConfig } from "./web3auth.config";
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
+
+
+const firebaseConfig = {
+  
+};
+
+const chainConfig = {
+  chainNamespace: CHAIN_NAMESPACES.EIP155,
+  chainId: "0xaa36a7",
+  rpcTarget: "https://rpc.ankr.com/eth_sepolia",
+  displayName: "Ethereum Sepolia",
+  blockExplorerUrl: "https://sepolia.etherscan.io/",
+  ticker: "ETH",
+  tickerName: "Ethereum",
+};
+
+const web3authConfig = {
+  clientId:
+    "BKT4xfkIAQ8aIFm-f2mh_HgXQt0NpVJJRL1ivU2JUK7lNXY6uHVahZRbKsOWz6Eo1e8h3LxT7LNenJj2ArpVXTA",
+  web3AuthNetwork: "sapphire_devnet",
+  chainConfig,
+};
 
 const privateKeyProvider = new EthereumPrivateKeyProvider({
   config: { chainConfig: web3authConfig.chainConfig },
@@ -99,7 +119,6 @@ export default function useWeb3Auth() {
 
     init();
   }, []);
-
   const signInWithGoogle = async (): Promise<UserCredential> => {
     try {
       const app = initializeApp(firebaseConfig);
@@ -115,6 +134,10 @@ export default function useWeb3Auth() {
 
   const login = async () => {
     try {
+      if (!web3auth) {
+        console.log("web3auth initialised yet");
+        return;
+      }
       setIsLoggingIn(true);
       const loginRes = await signInWithGoogle();
       const idToken = await loginRes.user.getIdToken(true);
@@ -139,6 +162,7 @@ export default function useWeb3Auth() {
         setAccounts(address);
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
+        console.log(userInfo)
       }
     } catch (error) {
       console.error(error);

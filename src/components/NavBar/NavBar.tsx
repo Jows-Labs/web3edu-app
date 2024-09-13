@@ -5,13 +5,11 @@ import Image from "next/image";
 import { useState } from "react";
 import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
-import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import SwitchTheme from "./SwitchTheme";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 
 export default function NavBar() {
-  const { login } = useWeb3AuthContext();
-
-  const [user, setUser] = useState(false);
+  const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
 
   return (
     <div className="navbar bg-base-100 justify-between sm:px-10">
@@ -41,10 +39,10 @@ export default function NavBar() {
               <a>Home</a>
             </li>
             <li>
-              <a>Fórum</a>
+              <a onClick={WalletUi}>Fórum</a>
             </li>
             <li>
-              <a>Artigos</a>
+              <a onClick={logout}>Artigos</a>
             </li>
             <li>
               <a>Trilhas</a>
@@ -56,13 +54,13 @@ export default function NavBar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-3 text-base-content text-base font-medium bg-base-200 rounded-box">
             <li>
-              <a>Home</a>
+              <a onClick={login}>Home</a>
             </li>
             <li>
-              <a>Fórum</a>
+              <a onClick={WalletUi}>Fórum</a>
             </li>
             <li>
-              <a>Artigos</a>
+              <a onClick={logout}>Artigos</a>
             </li>
             <li>
               <a>Trilhas</a>
@@ -70,7 +68,7 @@ export default function NavBar() {
           </ul>
         </div>
       </div>
-      {user ? <UserMenu /> : <LoginButton />}
+      {isLoggedIn ? <UserMenu /> : <LoginButton />}
     </div>
   );
 }

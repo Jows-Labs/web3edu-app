@@ -4,7 +4,7 @@ import { CHAIN_NAMESPACES } from "@web3auth/base";
 //talvez trocar para mainnet
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: SEPOLIA_CHAIN_ID,
+  chainId: "0xaa36a7",
   rpcTarget: "https://rpc.ankr.com/eth_sepolia",
   displayName: "Ethereum Sepolia",
   blockExplorerUrl: "https://sepolia.etherscan.io/",
