@@ -4,7 +4,7 @@ import SwitchTheme from "./SwitchTheme";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider"; 
 
 export default function NavBar() {
-  const {login} = useWeb3AuthContext();
+  const {login, WalletUi, logout} = useWeb3AuthContext();
 
   
 
@@ -36,10 +36,10 @@ export default function NavBar() {
               <a onClick={login}>Home</a>
             </li>
             <li>
-              <a>Fórum</a>
+              <a onClick={WalletUi}>Fórum</a>
             </li>
             <li>
-              <a>Artigos</a>
+              <a onClick={logout}>Artigos</a>
             </li>
             <li>
               <a>Trilhas</a>
@@ -56,13 +56,13 @@ export default function NavBar() {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 text-base-content text-base font-medium">
             <li>
-              <a>Home</a>
+              <a onClick={login}>Home</a>
             </li>
             <li>
-              <a>Fórum</a>
+              <a onClick={WalletUi}>Fórum</a>
             </li>
             <li>
-              <a>Artigos</a>
+              <a onClick={logout}>Artigos</a>
             </li>
             <li>
               <a>Trilhas</a>
