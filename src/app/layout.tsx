@@ -57,8 +57,10 @@ export default function RootLayout({
       <body>
         <div className="flex flex-col h-full">
           <Providers>
-            <NavBar />
-            <AppSkeleton>{children}</AppSkeleton>
+            <AppSkeleton>
+              <NavBar />
+              {children}
+            </AppSkeleton>
           </Providers>
         </div>
       </body>
