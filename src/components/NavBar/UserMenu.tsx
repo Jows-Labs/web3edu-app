@@ -1,5 +1,3 @@
-import SwitchTheme from "./SwitchTheme";
-
 export const UserMenu = () => {
   return (
     <div className="dropdown dropdown-end">
@@ -28,9 +26,6 @@ export const UserMenu = () => {
         </li>
         <li>
           <a>Logout</a>
-        </li>
-        <li>
-          <SwitchTheme />
         </li>
       </ul>
     </div>

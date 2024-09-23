@@ -5,14 +5,13 @@ import Image from "next/image";
 import { useState } from "react";
 import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
-import SwitchTheme from "./SwitchTheme";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 
-export default function NavBar() {
+export default function NavBar({}) {
   const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="navbar bg-base-100 justify-between sm:px-10">
+    <div className="navbar bg-neutralbg justify-between sm:px-10">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +32,7 @@ export default function NavBar() {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content "
+            className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content "
           >
             <li>
               <a>Home</a>
@@ -50,9 +49,9 @@ export default function NavBar() {
           </ul>
         </div>
         <Image src={web3EduLogo} alt="" className="w-10" />
-        <a className="text-2xl text-base-content font-bold">Web3EduBrasil</a>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-3 text-base-content text-base font-medium bg-base-200 rounded-box">
+        <a className="text-2xl text-neutral font-bold">Web3EduBrasil</a>
+        <div className="navbar-center hidden lg:flex bg-[#F0F0F0] rounded-box">
+          <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-base rounded-box">
             <li>
               <a onClick={login}>Home</a>
             </li>

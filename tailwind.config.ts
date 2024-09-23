@@ -7,6 +7,33 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      cyellow: "#F6D87E",
+
+      dyellow: "#F0BB20",
+
+      cblue: "#41648D",
+
+      blue: "#1A4476",
+
+      dblue: "#123053",
+
+      ddblue: "#102948",
+
+      cgreen: "#7EC8A0",
+
+      green: "#7EC8A0",
+
+      dgreen: "#21A16B",
+
+      ddgreen: "#17714B",
+
+      dddgreen: "146241",
+
+      neutralbg: "#FFFFFF",
+
+      neutral: "#000000",
+    },
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -17,93 +44,48 @@ const config: Config = {
   },
   plugins: [require("daisyui")],
   darkMode: "selector",
-  daisyui: {
-    themes: [
-      {
-        web3edu: {
-          primary: "#21a16b",
+  themes: {
+    "web3edu-dark": {
+      primary: "#21a16b",
 
-          "primary-content": "#000904",
+      "primary-content": "#000904",
 
-          secondary: "#1a4476",
+      secondary: "#1a4476",
 
-          "secondary-content": "#ced7e3",
+      "secondary-content": "#ced7e3",
 
-          accent: "#f0bb20",
+      accent: "#f0bb20",
 
-          "accent-content": "#140d00",
+      "accent-content": "#140d00",
 
-          neutral: "#1a4476",
+      neutral: "#1a4476",
 
-          "neutral-content": "#ced7e3",
+      "neutral-content": "#ced7e3",
 
-          "base-100": "#ffffff",
+      "base-100": "#000000",
 
-          "base-200": "#f8f4f4",
+      "base-200": "#282424",
 
-          "base-300": "#dedede",
+      "base-300": "#282424",
 
-          "base-content": "#161616",
+      "base-content": "#bebebe",
 
-          info: "#1a4476",
+      info: "#1a4476",
 
-          "info-content": "#ced7e3",
+      "info-content": "#ced7e3",
 
-          success: "#21a16b",
+      success: "#21a16b",
 
-          "success-content": "#000904",
+      "success-content": "#000904",
 
-          warning: "#f0bb20",
+      warning: "#f0bb20",
 
-          "warning-content": "#140d00",
+      "warning-content": "#140d00",
 
-          error: "#ff0000",
+      error: "#ff0000",
 
-          "error-content": "#160000",
-        },
-        "web3edu-dark": {
-          primary: "#21a16b",
-
-          "primary-content": "#000904",
-
-          secondary: "#1a4476",
-
-          "secondary-content": "#ced7e3",
-
-          accent: "#f0bb20",
-
-          "accent-content": "#140d00",
-
-          neutral: "#1a4476",
-
-          "neutral-content": "#ced7e3",
-
-          "base-100": "#000000",
-
-          "base-200": "#282424",
-
-          "base-300": "#282424",
-
-          "base-content": "#bebebe",
-
-          info: "#1a4476",
-
-          "info-content": "#ced7e3",
-
-          success: "#21a16b",
-
-          "success-content": "#000904",
-
-          warning: "#f0bb20",
-
-          "warning-content": "#140d00",
-
-          error: "#ff0000",
-
-          "error-content": "#160000",
-        },
-      },
-    ],
+      "error-content": "#160000",
+    },
   },
 };
 export default config;

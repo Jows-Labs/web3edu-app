@@ -5,3 +5,12 @@ interface MotionButtonProps<T> {
   Icon?: React.ComponentType<{ className: string }>;
   func: (param: T) => T;
 }
+
+interface Kyc1Props<T> {
+  setLevel: () => T;
+}
+
+interface NavBarProps<T> {
+  switchTheme: () => T;
+  isDark: boolean;
+}
