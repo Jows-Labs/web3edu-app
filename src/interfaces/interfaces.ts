@@ -7,7 +7,8 @@ interface MotionButtonProps<T> {
 }
 
 interface Kyc1Props<T> {
-  setLevel: () => T;
+  setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
+  level?: string;
 }
 
 interface NavBarProps<T> {
