@@ -1,11 +1,12 @@
 import Image from "next/image";
+import React, { useState } from "react";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 
-export default function Kyc1() {
+export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
   return (
-    <div className="flex flex-col w-2/5 ">
-      <article className="rounded-box border border-gray-700 bg-base-100 p-4">
-        <div>
+    <div className="flex-col w-full h-full  ">
+      <article className="flex flex-col w-full h-full ">
+        <div className="">
           <h2 className="sr-only">Steps</h2>
 
           <div>
@@ -16,61 +17,79 @@ export default function Kyc1() {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-4 mt-2">
-          <Image alt="ss" src={web3EduLogo} className="size-12  " />
 
-          <div>
-            <h3 className="text-lg font-medium text-secondary">
-              Em relação a tecnologia Web3, você se considera:{" "}
-            </h3>
+        <div className="flex flex-col items-center self-center mt-2">
+          <div className="flex gap-2 align-center justify-center">
+            <Image
+              alt="ss"
+              src={web3EduLogo}
+              className="w-16 h-12 object-fill "
+            />
 
-            <div className="flow-root"></div>
+            <div className="flex-col self-center flex">
+              <div>
+                <h3 className="text-lg font-medium text-secondary">
+                  Em relação a tecnologia Web3, você se considera:{" "}
+                </h3>
+
+                <div className="flow-root"></div>
+              </div>
+            </div>
           </div>
+
+          <ul className="mt-4 space-y-2 ">
+            <li>
+              <a
+                href="#"
+                className={`block h-full rounded-box border border-gray-700 p-4 hover:border-secondary ${
+                  level === "begginer" ? "bg-primary" : "bg-white"
+                }`}
+                onClick={() => setLevel("begginer")}
+              >
+                <strong className="font-bold text-secondary">Iniciante</strong>
+
+                <p className="mt-1 text-xs font-medium text-gray-500">
+                  Você não possui conhecimentos sobre a tecnologia Web3.
+                </p>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                className={`block h-full rounded-box border border-gray-700 p-4 hover:border-secondary ${
+                  level === "intermediate" ? "bg-primary" : "bg-white"
+                }`}
+                onClick={() => setLevel("intermediate")}
+              >
+                <strong className="font-bold text-secondary">
+                  Intermediário
+                </strong>
+
+                <p className="mt-1 text-xs font-medium text-gray-500">
+                  Você possui conhecimento básico sobre a Web3.
+                </p>
+              </a>
+            </li>
+
+            <li>
+              <a
+                href="#"
+                className={`block h-full rounded-box border border-gray-700 p-4 hover:border-secondary ${
+                  level === "advanced" ? "bg-primary" : "bg-white"
+                }`}
+                onClick={() => setLevel("advanced")}
+              >
+                <strong className="font-bold text-secondary ">Avançado</strong>
+
+                <p className="mt-1 text-xs font-medium text-gray-500">
+                  Você já se considera uma pessoa experiente sobre a tecnologia
+                  Web3.
+                </p>
+              </a>
+            </li>
+          </ul>
         </div>
-
-        <ul className="mt-4 space-y-2">
-          <li>
-            <a
-              href="#"
-              className="block h-full rounded-box border border-gray-700 p-4 hover:border-secondary"
-            >
-              <strong className="font-bold text-secondary">Iniciante</strong>
-
-              <p className="mt-1 text-xs font-medium text-gray-500">
-                Você não possui conhecimentos sobre a tecnologia Web3.
-              </p>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="block h-full rounded-box border border-gray-700 p-4 hover:border-secondary"
-            >
-              <strong className="font-bold text-secondary">
-                Intermediário
-              </strong>
-
-              <p className="mt-1 text-xs font-medium text-gray-500">
-                Você possui conhecimento básico sobre a Web3.
-              </p>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="block h-full rounded-box border border-gray-700 p-4 hover:border-secondary"
-            >
-              <strong className="font-bold text-secondary ">Avançado</strong>
-
-              <p className="mt-1 text-xs font-medium text-gray-500">
-                Você já se considera uma pessoa experiente sobre a tecnologia
-                Web3.
-              </p>
-            </a>
-          </li>
-        </ul>
       </article>
     </div>
   );

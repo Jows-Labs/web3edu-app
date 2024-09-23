@@ -3,8 +3,8 @@ import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 
 export default function Kyc2() {
   return (
-    <div className="flex flex-col w-2/5 ">
-      <article className="rounded-box border border-gray-700 bg-base-100 p-4">
+    <div className=" flex-col w-full h-full hidden  ">
+      <article className="">
         <div>
           <h2 className="sr-only">Steps</h2>
 
@@ -17,7 +17,11 @@ export default function Kyc2() {
           </div>
         </div>
         <div className="flex items-center gap-4 mt-2">
-          <Image alt="ss" src={web3EduLogo} className="size-12  " />
+          <Image
+            alt="ss"
+            src={web3EduLogo}
+            className="w-16 h-12 object-fill "
+          />
 
           <div>
             <h3 className="text-lg font-medium text-secondary">

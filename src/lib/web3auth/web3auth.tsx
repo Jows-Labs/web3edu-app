@@ -24,9 +24,13 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
 
-
 const firebaseConfig = {
-  
+  apiKey: "AIzaSyAbmPEuuDbp_UGw-WN1sIiyYxHKfzdvehc",
+  authDomain: "web3edubrasil-app.firebaseapp.com",
+  projectId: "web3edubrasil-app",
+  storageBucket: "web3edubrasil-app.appspot.com",
+  messagingSenderId: "110456521844",
+  appId: "1:110456521844:web:b66fdbba75c2c68577bd21",
 };
 
 const chainConfig = {
@@ -162,7 +166,7 @@ export default function useWeb3Auth() {
         setAccounts(address);
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
-        console.log(userInfo)
+        console.log(userInfo);
       }
     } catch (error) {
       console.error(error);
