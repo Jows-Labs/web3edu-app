@@ -34,7 +34,13 @@ const config: Config = {
 
       neutral: "#000000",
 
-      "gray-text": "#6B7280",
+      gray: "#6B7280",
+
+      dgray: "#374151",
+
+      cgray: "#E5E7EB",
+
+      white: "#FFFFFF",
     },
     extend: {
       backgroundImage: {
