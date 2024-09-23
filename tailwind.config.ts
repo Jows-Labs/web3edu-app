@@ -33,6 +33,14 @@ const config: Config = {
       neutralbg: "#FFFFFF",
 
       neutral: "#000000",
+
+      purple: "#7e5bef",
+      pink: "#ff49db",
+      orange: "#ff7849",
+      yellow: "#ffc82c",
+      "gray-dark": "#273444",
+      gray: "#8492a6",
+      "gray-light": "#d3dce6",
     },
     extend: {
       backgroundImage: {
