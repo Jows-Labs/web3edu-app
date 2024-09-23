@@ -10,7 +10,7 @@ const MainContent = () => {
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
       <div className="flex h-5/6 justify-center items-center">
-        <section className="flex flex-col text-center py-20 px-20 w-3/5 text-black h-full z-0 overflow-auto justify-center items-center relative">
+        <section className="flex flex-col text-center py-20 px-20 w-3/5 text-black h-full overflow-auto justify-center items-center relative">
           <h1 className="text-5xl font-bold text-justify">
             Transforme Conhecimento em Oportunidades de Crescimento
           </h1>

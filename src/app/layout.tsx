@@ -4,6 +4,8 @@ import "../styles/globals.css";
 import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
 import { AppSkeleton } from "@/components/ui/AppSkeleton";
+import { useState } from "react";
+import { useEffect } from "react";
 import type { Metadata } from "next";
 
 /* export const metadata: Metadata = {
@@ -59,10 +61,10 @@ export default function RootLayout({
       <body>
         <div className="flex flex-col h-full">
           <Web3AuthProvider>
-          <AppSkeleton>
-            <NavBar />
-            {children}
-          </AppSkeleton>
+            <AppSkeleton>
+              <NavBar />
+              {children}
+            </AppSkeleton>
           </Web3AuthProvider>
         </div>
       </body>

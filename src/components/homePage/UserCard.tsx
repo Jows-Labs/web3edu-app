@@ -8,7 +8,7 @@ export default function UserCard() {
           className="h-full w-auto object-cover rounded-l-2xl"
         />
       </figure>
-      <div className="w-4/6 text-base-content p-4">
+      <div className="text-base-content p-4">
         <h2 className="font-bold text-xl">Martin Burger King</h2>
         <p className="font-medium text-lg">São Paulo, Brasil</p>
       </div>
