@@ -1,5 +1,11 @@
-import Section1 from "./section1";
+import Section1 from "./Section1";
+import Section2 from "./Section2";
 
 export default function LandingPage() {
-  return <Section1 />;
+  return (
+    <div className="h-screen w-full">
+      <Section1 />
+      <Section2 />
+    </div>
+  );
 }
