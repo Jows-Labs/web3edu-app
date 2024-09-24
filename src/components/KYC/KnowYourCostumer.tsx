@@ -13,7 +13,7 @@ function KnowLedge() {
 
   const [level, setLevel] = useState<string | undefined>(undefined);
   return (
-    <div className="flex-col flex items-center justify-start border border-gray-700 rounded-box h-[75vh] w-[25vw] p-4  ">
+    <div className="flex-col flex items-center justify-start border border-dgray rounded-box h-[75vh] w-[25vw] p-4  ">
       <KycIntro />
 
       <Kyc1 setLevel={setLevel} level={level} />
@@ -24,7 +24,7 @@ function KnowLedge() {
         label="Avançar"
         type="button"
         func={teste}
-        className="bg-primary w-3/5 text-white"
+        className="bg-cgreen w-3/5 text-white"
       />
     </div>
   );

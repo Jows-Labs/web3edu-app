@@ -5,15 +5,15 @@ import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
   return (
     <div className="flex-col w-full h-full  ">
-      <article className="flex flex-col w-full h-full ">
+      <article className="flex flex-col w-full h-full hidden ">
         <div className="">
           <h2 className="sr-only">Steps</h2>
 
           <div>
-            <p className="text-xs font-medium text-gray-500">1/4 - Perguntas</p>
+            <p className="text-xs font-medium text-gray">1/4 - Perguntas</p>
 
-            <div className="mt-4 overflow-hidden rounded-full bg-gray-200 mb-1">
-              <div className="h-1 w-1/4 rounded-full bg-primary"></div>
+            <div className="mt-4 overflow-hidden rounded-full bg-cgray mb-1">
+              <div className="h-1 w-1/4 rounded-full bg-cgreen"></div>
             </div>
           </div>
         </div>
@@ -28,7 +28,7 @@ export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
 
             <div className="flex-col self-center flex">
               <div>
-                <h3 className="text-lg font-medium text-secondary">
+                <h3 className="text-lg font-medium text-neutral">
                   Em relação a tecnologia Web3, você se considera:{" "}
                 </h3>
 
@@ -41,14 +41,14 @@ export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
             <li>
               <a
                 href="#"
-                className={`block h-full rounded-box border border-gray-700 p-4 hover:border-secondary ${
-                  level === "begginer" ? "bg-primary" : "bg-white"
+                className={`block h-full rounded-box border border-dgray p-4 hover:border-dgreen ${
+                  level === "begginer" ? "bg-cgreen/50" : "bg-white"
                 }`}
                 onClick={() => setLevel("begginer")}
               >
-                <strong className="font-bold text-secondary">Iniciante</strong>
+                <strong className="font-bold text-dblue">Iniciante</strong>
 
-                <p className="mt-1 text-xs font-medium text-gray-500">
+                <p className="mt-1 text-xs font-medium text-gray">
                   Você não possui conhecimentos sobre a tecnologia Web3.
                 </p>
               </a>
@@ -57,16 +57,14 @@ export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
             <li>
               <a
                 href="#"
-                className={`block h-full rounded-box border border-gray-700 p-4 hover:border-secondary ${
-                  level === "intermediate" ? "bg-primary" : "bg-white"
+                className={`block h-full rounded-box border border-dgray p-4 hover:border-dgreen ${
+                  level === "intermediate" ? "bg-cgreen/50" : "bg-white"
                 }`}
                 onClick={() => setLevel("intermediate")}
               >
-                <strong className="font-bold text-secondary">
-                  Intermediário
-                </strong>
+                <strong className="font-bold text-dblue">Intermediário</strong>
 
-                <p className="mt-1 text-xs font-medium text-gray-500">
+                <p className="mt-1 text-xs font-medium text-gray">
                   Você possui conhecimento básico sobre a Web3.
                 </p>
               </a>
@@ -75,14 +73,14 @@ export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
             <li>
               <a
                 href="#"
-                className={`block h-full rounded-box border border-gray-700 p-4 hover:border-secondary ${
-                  level === "advanced" ? "bg-primary" : "bg-white"
+                className={`block h-full rounded-box border border-dgray p-4 hover:border-dgreen ${
+                  level === "advanced" ? "bg-cgreen/50" : "bg-white"
                 }`}
                 onClick={() => setLevel("advanced")}
               >
-                <strong className="font-bold text-secondary ">Avançado</strong>
+                <strong className="font-bold text-dblue ">Avançado</strong>
 
-                <p className="mt-1 text-xs font-medium text-gray-500">
+                <p className="mt-1 text-xs font-medium text-gray">
                   Você já se considera uma pessoa experiente sobre a tecnologia
                   Web3.
                 </p>
