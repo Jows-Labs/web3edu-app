@@ -3,7 +3,7 @@ import NoNftIcon from "../../assets/icons/no-certificate.svg";
 
 export const NftsCard = () => {
   return (
-    <div className="w-full h-full bg-cgray rounded-box col-span-3 flex flex-col px-5 py-3 gap-1">
+    <div className="w-full h-full bg-cgray rounded-box col-span-3 row-span-2 flex flex-col px-5 py-3 gap-1">
       <div className="flex justify-between l font-semibold">
         <p className="text-neutral">NFT's</p>
         <p className="cursor-pointer font-bold text-gray">Veja Mais</p>
