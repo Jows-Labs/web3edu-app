@@ -8,7 +8,7 @@ import Image1 from "../../assets/images/criptoTest.jpg";
 
 export const TrailCards = () => {
   return (
-    <div className="h-full w-full gap-10 flex justify-center items-center">
+    <div className="h-3/5 w-full gap-10 flex justify-center items-center">
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.95 }}

@@ -11,7 +11,7 @@ export default function NavBar({}) {
   const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="navbar bg-neutralbg justify-between sm:px-10">
+    <div className="navbar bg-neutralbg justify-between sm:px-10 ">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
