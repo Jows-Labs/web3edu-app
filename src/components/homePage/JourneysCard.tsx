@@ -1,6 +1,6 @@
 export const JourneysCard = () => {
   return (
-    <div className="w-full h-full bg-base-200 shadow-xl rounded-box col-span-2 row-span-3">
+    <div className="w-full h-full bg-cgray border-[1.5px] border-gray rounded-box col-span-2">
       a
     </div>
   );
