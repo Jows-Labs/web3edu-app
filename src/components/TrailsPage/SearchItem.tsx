@@ -8,7 +8,7 @@ export const SearchItem = () => {
           <input
             type="text"
             className="grow bg-cgrey  text-dgray"
-            placeholder="Search"
+            placeholder="Pesquise a sua Trilha"
           />
 
           <FaSearch className="w-5 h-5 text-gray" />

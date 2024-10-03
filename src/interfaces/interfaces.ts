@@ -10,3 +10,10 @@ interface Kyc1Props<T> {
   setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
   level?: string;
 }
+
+interface TrailsPageProps {
+  image: JSX.Element;
+  icon?: JSX.Element;
+  title: string;
+  description: string;
+}
