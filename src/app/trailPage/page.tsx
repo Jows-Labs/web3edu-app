@@ -1,4 +1,4 @@
-import { TrailCards } from "@/components/TrailPage/TrailContainer";
+import { TrailCards } from "@/components/TrailsPage/TrailContainer";
 
 export default function trailPage() {
   return <TrailCards />;

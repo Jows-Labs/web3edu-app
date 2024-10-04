@@ -12,6 +12,8 @@ const config: Config = {
 
       dyellow: "#F0BB20",
 
+      ccblue: "#F5F7FD",
+
       cblue: "#41648D",
 
       blue: "#1A4476",
@@ -38,7 +40,7 @@ const config: Config = {
 
       dgray: "#374151",
 
-      cgray: "#E5E7EB",
+      cgray: "#F8F6F6",
 
       white: "#FFFFFF",
     },
