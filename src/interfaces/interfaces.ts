@@ -14,3 +14,10 @@ interface Kyc1Props<T> {
 interface TaskUnitsProps {
   text: string;
 }
+
+interface TrailsPageProps {
+  image: JSX.Element;
+  icon?: JSX.Element;
+  title: string;
+  description: string;
+}

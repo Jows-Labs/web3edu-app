@@ -36,7 +36,7 @@ const config: Config = {
 
       neutral: "#000000",
 
-      gray: "#6B7280",
+      gray: "#9A9A9A",
 
       dgray: "#374151",
 

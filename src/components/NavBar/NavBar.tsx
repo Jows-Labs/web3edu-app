@@ -11,7 +11,7 @@ export default function NavBar({}) {
   const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="navbar bg-neutralbg justify-between sm:px-10">
+    <div className="navbar bg-neutralbg justify-between sm:px-10 ">
       <div className="navbar-start gap-3">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,7 +53,7 @@ export default function NavBar({}) {
           <a className="text-2xl text-neutral font-bold">Web3EduBrasil</a>
         </div>
         <div className="navbar-center hidden lg:flex bg-[#F0F0F0] rounded-box h-12 justify-center flex-col">
-          <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-base rounded-box">
+          <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-cgray rounded-box">
             <li>
               <a onClick={login}>Home</a>
             </li>
