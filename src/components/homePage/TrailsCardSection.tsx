@@ -1,29 +1,38 @@
 import { FaBitcoin, FaDollarSign } from "react-icons/fa";
-import { SiHiveBlockchain } from "react-icons/si";
+import { SiHive, SiHiveBlockchain } from "react-icons/si";
 import { TrailCardHome } from "./TrailCardHome";
 
 export const TrailsCardSection = () => {
   const cardData = [
     {
-      icon: <FaBitcoin className="h-1/4 w-auto text-neutral" />,
+      Icon: FaBitcoin,
       text: "Criptomoedas",
+      progress: 30,
     },
     {
-      icon: <SiHiveBlockchain className="h-1/4 w-auto text-neutral" />,
+      Icon: SiHiveBlockchain,
       text: "Blockchain",
+      progress: 20,
     },
     {
-      icon: <FaDollarSign className="h-1/4 w-auto text-neutral" />,
+      Icon: SiHive,
       text: "Smart Contracts",
+      progress: 90,
     },
   ];
 
   return (
     <div className="w-full h-full flex flex-col border-gray rounded-box col-span-3 row-span-3 justify-between">
       {cardData.map((e, index) => {
-        return <TrailCardHome />;
+        return (
+          <TrailCardHome
+            Icon={e.Icon}
+            text={e.text}
+            progress={e.progress}
+            key={index}
+          /> 
+        );
       })}
-    
     </div>
   );
 };
