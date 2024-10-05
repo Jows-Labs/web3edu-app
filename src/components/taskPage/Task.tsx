@@ -9,8 +9,8 @@ function teste() {
 
 export const Task = () => {
   return (
-    <div className="w-full h-full flex flex-col ">
-      <p className="text-dblue font-extrabold text-3xl ">
+    <div className="w-full h-full flex flex-col">
+      <p className="text-dblue font-extrabold text-3xl px-52">
         Criando ferramenta MetaMask
       </p>
       <div className="w-full h-full flex justify-center items-center gap-3">
