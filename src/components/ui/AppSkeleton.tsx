@@ -11,7 +11,7 @@ export const AppSkeleton: React.FC<AppSkeletonProps> = ({
 }) => {
   return (
     <main className="flex w-full flex-col items-center min-h-screen bg-neutralbg">
-      <section className="flex flex-col w-full h-screen items-center justify-start">
+      <section className="flex flex-col w-full h-full items-center justify-start">
         {children}
       </section>
     </main>

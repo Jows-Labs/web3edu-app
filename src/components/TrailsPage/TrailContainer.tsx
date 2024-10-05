@@ -6,7 +6,12 @@ import { CiStar } from "react-icons/ci";
 import { SiBitcoinsv } from "react-icons/si";
 import Image1 from "../../assets/images/criptoTest.jpg";
 
-export const TrailCards = () => {
+export const TrailCards = ({
+  image,
+  title,
+  icon,
+  description,
+}: TrailsPageProps) => {
   return (
     <motion.button
       whileHover={{ scale: 1.02 }}

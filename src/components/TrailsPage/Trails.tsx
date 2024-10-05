@@ -3,7 +3,7 @@ import Image from "next/image";
 import { CiStar } from "react-icons/ci";
 import { SiBitcoinsv } from "react-icons/si";
 import Image1 from "../../assets/images/criptoTest.jpg";
-import { TrailContainer } from "./TrailContainer";
+import { TrailCards } from "./TrailContainer";
 
 export const Trails = () => {
   const trailsCard = [
@@ -48,7 +48,7 @@ export const Trails = () => {
       <div className="h-full w-11/12 gap-7 mb-8 justify-items-center mt-5 flex-row grid-cols-4 grid">
         {trailsCard.map((e) => {
           return (
-            <TrailContainer
+            <TrailCards
               image={e.image}
               title={e.title}
               description={e.description}
