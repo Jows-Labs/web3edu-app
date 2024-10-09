@@ -21,3 +21,9 @@ interface TrailsPageProps {
   title: string;
   description: string;
 }
+
+interface TrailCardHomeProps {
+  Icon?: React.ComponentType<{ className: string }> | string;
+  text: string;
+  progress: number;
+}
