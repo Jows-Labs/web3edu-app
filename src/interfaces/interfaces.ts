@@ -11,6 +11,10 @@ interface Kyc1Props<T> {
   level?: string;
 }
 
+interface TaskUnitsProps {
+  text: string;
+}
+
 interface TrailsPageProps {
   image: JSX.Element;
   icon?: JSX.Element;
