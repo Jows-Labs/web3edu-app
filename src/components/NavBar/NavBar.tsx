@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 
 export default function NavBar({}) {
   const router = useRouter();
-  const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
+  const { isLoggedIn } = useWeb3AuthContext();
 
   return (
     <div className="navbar bg-neutralbg justify-between sm:px-10 ">
