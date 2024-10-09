@@ -12,6 +12,7 @@ interface Web3AuthContextProps {
   isLoggingIn: boolean;
   userInfo: Partial<any> | null;
   userAccount: string[];
+  googleUserInfo: any | null
 }
 
 const Web3AuthContext = createContext<Web3AuthContextProps | undefined>(
@@ -27,6 +28,7 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     isLoggingIn,
     userInfo,
     userAccount,
+    googleUserInfo,
   } = useWeb3Auth();
 
   return (
@@ -39,6 +41,7 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         isLoggingIn,
         userInfo,
         userAccount,
+        googleUserInfo,
       }}
     >
       {children}
