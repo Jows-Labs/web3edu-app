@@ -6,8 +6,10 @@ import { useState } from "react";
 import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { useRouter } from "next/navigation";
 
 export default function NavBar({}) {
+  const router = useRouter();
   const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
 
   return (
@@ -44,7 +46,7 @@ export default function NavBar({}) {
               <a>Artigos</a>
             </li>
             <li>
-              <a href="trailsPage">Trilhas</a>
+            <a onClick={()=>router.push("/trailsPage")}>Trilhas</a>
             </li>
           </ul>
         </div>
@@ -64,7 +66,7 @@ export default function NavBar({}) {
               <a>Artigos</a>
             </li>
             <li>
-              <a href="trailsPage">Trilhas</a>
+              <a onClick={()=>router.push("/trailsPage")}>Trilhas</a>
             </li>
           </ul>
         </div>

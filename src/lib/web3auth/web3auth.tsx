@@ -158,10 +158,11 @@ export default function useWeb3Auth() {
       setIsLoggedIn(true);
       router.push("/homePage");
     };
-
+    
     const onDisconnected = () => {
       setIsLoggedIn(false);
       setProvider(null);
+      router.push("/");
     };
 
     web3auth.on(ADAPTER_EVENTS.CONNECTED, onConnected);
