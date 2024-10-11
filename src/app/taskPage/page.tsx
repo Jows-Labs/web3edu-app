@@ -4,7 +4,6 @@ export default function taskPage() {
   return (
     <>
       <Task />;
-      
     </>
   );
 }
