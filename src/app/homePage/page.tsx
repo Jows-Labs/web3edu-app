@@ -12,11 +12,11 @@ export default function homePage() {
   useEffect(() => {
     if (!isLoggedIn) {
       // Redirecionar de volta para a página de login se não estiver autenticado
-      router.push('/');
+      router.push("/");
     } else {
       // Carregar informações do usuário
-      console.log('User Info:', userInfo);
-      console.log('User Account:', userAccount);
+      console.log("User Info:", userInfo);
+      console.log("User Account:", userAccount);
     }
   }, [isLoggedIn, userInfo, userAccount]);
   return <Home />;

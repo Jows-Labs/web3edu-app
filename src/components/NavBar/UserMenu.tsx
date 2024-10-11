@@ -11,19 +11,26 @@ export const UserMenu = () => {
         tabIndex={0}
         role="button"
         className="btn btn-ghost btn-circle avatar"
-        onClick={WalletUi} 
+        onClick={WalletUi}
       >
         <div className="w-10 rounded-full">
           {isLoggedIn ? (
-            <IoWalletOutline className="w-9 h-9 black content-center" style={{ color: "black" }} />
+            <IoWalletOutline
+              className="w-9 h-9 black content-center"
+              style={{ color: "black" }}
+            />
           ) : null}
         </div>
       </div>
       <div className="dropdown dropdown-end">
-        <div tabIndex={1} role="button" className="btn btn-ghost btn-circle avatar">
+        <div
+          tabIndex={1}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
           <div className="w-10 rounded-full">
             {isLoggedIn ? (
-              <img alt="Tailwind CSS Navbar component" src={googleUserInfo?.photoURL} />
+              <img alt="User Image" src={googleUserInfo?.photoURL} />
             ) : (
               <CgProfile className="w-10 h-10" />
             )}

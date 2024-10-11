@@ -4,6 +4,7 @@ import { CiStar } from "react-icons/ci";
 import { SiBitcoinsv } from "react-icons/si";
 import Image1 from "../../assets/images/criptoTest.jpg";
 import { TrailCards } from "./TrailContainer";
+import { SearchItem } from "./SearchItem";
 
 export const Trails = () => {
   const trailsCard = [
@@ -44,8 +45,10 @@ export const Trails = () => {
     },
   ];
   return (
-    <>
-      <div className="h-full w-11/12 gap-7 mb-8 justify-items-center mt-5 flex-row grid-cols-4 grid">
+    <div className="flex w-full h-full justify-start items-center flex-col overflow-y-scroll px-12 mt-4">
+      <SearchItem />
+
+      <div className="w-full gap-7 mb-8 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {trailsCard.map((e) => {
           return (
             <TrailCards
@@ -57,6 +60,6 @@ export const Trails = () => {
           );
         })}
       </div>
-    </>
+    </div>
   );
 };

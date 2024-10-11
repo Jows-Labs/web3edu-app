@@ -117,14 +117,14 @@ export default function useWeb3Auth() {
         await web3auth.init();
         setProvider(web3auth.provider);
         setWalletServicesPlugin(walletPlugin);
-  
+
         if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
           // O usuário está conectado
           setIsLoggedIn(true);
           const userInfo = await web3auth.getUserInfo();
           setUserInfo(userInfo);
           const web3 = new Web3(web3auth.provider as any); // Aqui você deve ter certeza de que o provider é válido.
-          
+
           const addresses = await web3.eth.getAccounts();
           console.log("Retrieved Ethereum accounts:", addresses);
           if (addresses.length > 0) {
@@ -133,12 +133,14 @@ export default function useWeb3Auth() {
             console.log("No Ethereum accounts found.");
           }
         }
-        
-  
+
         const storedGoogleUserInfo = localStorage.getItem("googleUserInfo");
         if (storedGoogleUserInfo) {
           setGoogleUserInfo(JSON.parse(storedGoogleUserInfo));
-          console.log('Google User Info after redirect:', JSON.parse(storedGoogleUserInfo));
+          console.log(
+            "Google User Info after redirect:",
+            JSON.parse(storedGoogleUserInfo)
+          );
         }
       } catch (error) {
         console.error(error);
@@ -158,7 +160,7 @@ export default function useWeb3Auth() {
       setIsLoggedIn(true);
       router.push("/homePage");
     };
-    
+
     const onDisconnected = () => {
       setIsLoggedIn(false);
       setProvider(null);
@@ -207,30 +209,28 @@ export default function useWeb3Auth() {
           },
         }
       );
-  
+
       if (web3authProvider) {
         setIsLoggingIn(false);
         setIsLoggedIn(true);
         setProvider(web3authProvider);
         const web3 = new Web3(web3authProvider as any);
         const addresses = await web3.eth.getAccounts();
-  
+
         if (addresses.length > 0) {
           setAccounts(addresses);
         } else {
           console.log("No Ethereum accounts found.");
         }
-  
+
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
-  
       }
       router.push("/homePage");
     } catch (error) {
       console.error(error);
     }
   };
-  
 
   const checkAndCreateUserDoc = async (userInfo: any, uid: string) => {
     const db = getFirestore(); // Initialize Firestore
@@ -266,34 +266,32 @@ export default function useWeb3Auth() {
 
   const logout = async () => {
     try {
-        if (provider) {
-            // Adicione uma verificação para o status da conexão
-            if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
-                await web3auth.logout();
-            } else {
-                console.log("Wallet is not connected, skipping Web3Auth logout.");
-            }
+      if (provider) {
+        // Adicione uma verificação para o status da conexão
+        if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
+          await web3auth.logout();
         } else {
-            console.log("No wallet is connected, skipping Web3Auth logout.");
+          console.log("Wallet is not connected, skipping Web3Auth logout.");
         }
+      } else {
+        console.log("No wallet is connected, skipping Web3Auth logout.");
+      }
 
-        // Logout do Firebase Authentication
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        await signOut(auth); // Logout do Firebase
+      // Logout do Firebase Authentication
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      await signOut(auth); // Logout do Firebase
 
-        // Limpando o estado do usuário
-        setProvider(null);
-        setIsLoggedIn(false);
-        setAccounts([]); // Limpa as contas
-        localStorage.removeItem("googleUserInfo");
-        router.push("/");
+      // Limpando o estado do usuário
+      setProvider(null);
+      setIsLoggedIn(false);
+      setAccounts([]); // Limpa as contas
+      localStorage.removeItem("googleUserInfo");
+      router.push("/");
     } catch (error) {
-        console.error("Error during logout:", error);
+      console.error("Error during logout:", error);
     }
-};
-
-
+  };
 
   return {
     logout,
