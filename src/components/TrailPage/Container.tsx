@@ -8,7 +8,7 @@ export const Container = () => {
   );
 
   return (
-    <div className="w-3/5 h-full flex flex-col justify-start items-start text-neutral bg-cgray rounded-box p-10 gap-3 overflow-y-auto">
+    <div className="md:w-3/5 w-full md:h-full h-screen flex flex-col justify-start items-start text-neutral bg-cgray rounded-box p-10 gap-3 overflow-y-auto">
       <div className="flex flex-col w-full h-full justify-center items-center">
         <iframe
           src={videoLink}
@@ -20,7 +20,7 @@ export const Container = () => {
       <p className="font-extrabold text-2xl">
         Título da trilha Web3 Tafareid's House Work
       </p>
-      <p className="fonte-medium">
+      <p className="fonte-medium text-justify">
         Descrição da trilha bla bla bla Descrição da trilha bla bla bla
         Descrição da trilha bla bla bla Descrição da trilha bla bla bla
         Descrição da trilha bla bla bla Descrição da trilha bla bla bla
