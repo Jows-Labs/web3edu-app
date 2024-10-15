@@ -9,6 +9,15 @@ interface MotionButtonProps<T> {
 interface Kyc1Props<T> {
   setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
   level?: string;
+  handleTabClick: (param: string) => T;
+}
+
+interface KycIntroProps<T> {
+  handleTabClick: (param: string) => T;
+}
+
+interface HandleScreenProps {
+  activeTab: string;
 }
 
 interface TaskUnitsProps {
