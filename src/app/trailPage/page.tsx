@@ -1,11 +1,5 @@
-import { Above } from "@/components/TrailPage/Above";
-import { Container } from "@/components/TrailPage/Container";
+import { Trail } from "@/components/TrailPage/Trail";
 
 export default function trailPage() {
-  return (
-    <div className="gap-3 bg-neutralbg flex flex-col justify-center items-center">
-      <Container />
-      <Above />
-    </div>
-  );
+  return <Trail />;
 }
