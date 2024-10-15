@@ -42,6 +42,8 @@ const config: Config = {
 
       cgray: "#F8F6F6",
 
+      ccgray: "#FFFAFA",
+
       white: "#FFFFFF",
     },
     extend: {
