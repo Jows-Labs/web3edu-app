@@ -8,7 +8,7 @@ export const Container = () => {
   );
 
   return (
-    <div className="w-3/5 h-2/4 flex flex-col justify-start items-start text-neutral bg-cgray rounded-box p-10 gap-3 overflow-y-auto">
+    <div className="w-3/5 h-full flex flex-col justify-start items-start text-neutral bg-cgray rounded-box p-10 gap-3 overflow-y-auto">
       <div className="flex flex-col w-full h-full justify-center items-center">
         <iframe
           src={videoLink}

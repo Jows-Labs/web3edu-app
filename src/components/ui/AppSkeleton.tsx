@@ -10,8 +10,10 @@ export const AppSkeleton: React.FC<AppSkeletonProps> = ({
   children: ReactNode;
 }) => {
   return (
-    <main className="flex w-full flex-col items-center min-h-screen sm:h-screen bg-neutralbg justify-start border-4 border-blue overflow-y-scroll sm:overflow-hidden">
-      {children}
+    <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen">
+      <section className="flex flex-col h-full w-full border-4 border-blue">
+        {children}
+      </section>
     </main>
   );
 };

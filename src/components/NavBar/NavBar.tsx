@@ -13,10 +13,10 @@ export default function NavBar({}) {
   const { isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="navbar bg-neutralbg justify-between sm:px-10">
-      <div className="navbar-start gap-3">
+    <div className="flex w-full bg-neutralbg justify-between sm:px-10 h-[4rem] p-[0.5rem]">
+      <div className="flex gap-3 items-center">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} className="lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-base-content"
@@ -50,7 +50,7 @@ export default function NavBar({}) {
             </li>
           </ul>
         </div>
-        <div className="flex flex-row gap-3  pr-2">
+        <div className="flex flex-row gap-3 pr-2">
           <Image src={web3EduLogo} alt="" className="w-10" />
           <a className="text-2xl text-neutral font-bold">Web3EduBrasil</a>
         </div>
