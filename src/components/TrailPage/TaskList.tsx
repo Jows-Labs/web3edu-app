@@ -40,10 +40,10 @@ export const TaskList = () => {
     },
   ];
   return (
-    <div className="w-2/6 h-full bg-cgray rounded-box p-8 overflow-y-auto gap-2 flex flex-col justify-start items-start">
+    <div className="md:w-2/5 w-full h-full bg-cgray rounded-box p-8 overflow-y-auto gap-2 flex flex-col justify-start items-start">
       <>
         {Tasks.map((e) => {
-          return <TaskUnits text={e.description} />;
+          return <TaskUnits text={e.description} key="" />;
         })}
       </>
     </div>

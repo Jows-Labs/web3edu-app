@@ -3,7 +3,6 @@
 import "../styles/globals.css";
 import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
-import { AppSkeleton } from "@/components/ui/AppSkeleton";
 import { useState } from "react";
 import { useEffect } from "react";
 import type { Metadata } from "next";
@@ -56,16 +55,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-br">
-      <head />
-      <body>
-        <AppSkeleton>
-          <Web3AuthProvider>
+    <Web3AuthProvider>
+      <html lang="pt-br">
+        <head />
+        <body>
+          <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen">
             <NavBar />
-            {children}
-          </Web3AuthProvider>
-        </AppSkeleton>
-      </body>
-    </html>
+            <section className="flex flex-col h-[94%] w-full border-4 border-blue">
+              {children}
+            </section>
+          </main>
+        </body>
+      </html>
+    </Web3AuthProvider>
   );
 }

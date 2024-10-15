@@ -13,7 +13,7 @@ export default function NavBar({}) {
   const { isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="flex w-full bg-neutralbg justify-between sm:px-10 h-[4rem] p-[0.5rem]">
+    <div className="flex w-full bg-neutralbg justify-between sm:px-10 h-[6%] p-[0.5rem]">
       <div className="flex gap-3 items-center">
         <div className="dropdown">
           <div tabIndex={0} className="lg:hidden">
