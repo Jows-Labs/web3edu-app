@@ -28,7 +28,13 @@ function KnowLedge() {
           />
         );
       case "Kyc2":
-        return <Kyc2 />;
+        return (
+          <Kyc2
+            handleTabClick={setActiveTab}
+            setLevel={setLevel}
+            level={level}
+          />
+        );
     }
   }
   return (
