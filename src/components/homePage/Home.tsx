@@ -6,7 +6,7 @@ import { TrailsCardSection } from "./TrailsCardSection";
 
 export const Home = () => {
   return (
-    <div className="h-full w-full grid items-center grid-cols-1 grid-rows-5 pb-6 sm:grid-cols-5 sm:px-40 justify-center gap-10">
+    <div className="h-full w-full grid items-center grid-cols-1 lg:grid-rows-5 pb-6 lg:grid-cols-5 lg:px-28 px-12 justify-center gap-10 overflow-y-auto">
       <UserCard />
       <NftsCard />
       <JourneysCard />
