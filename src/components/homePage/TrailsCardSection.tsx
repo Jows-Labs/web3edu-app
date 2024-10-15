@@ -22,7 +22,7 @@ export const TrailsCardSection = () => {
   ];
 
   return (
-    <div className="w-full h-full flex flex-col border-gray rounded-box col-span-3 row-span-3 justify-between">
+    <div className="w-full lg:h-full h-80 flex flex-col border-gray rounded-box lg:col-span-3 lg:row-span-3 justify-between">
       {cardData.map((e, index) => {
         return (
           <TrailCardHome
@@ -30,7 +30,7 @@ export const TrailsCardSection = () => {
             text={e.text}
             progress={e.progress}
             key={index}
-          /> 
+          />
         );
       })}
     </div>
