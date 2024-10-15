@@ -14,7 +14,7 @@ export const SearchItem = () => {
         <label className="input input-bordered flex items-center gap-2  w-2/4 bg-white rounded-box">
           <input
             type="text"
-            className="grow bg-cgrey text-dgray text-sm md:text-md"
+            className="grow bg-cgrey text-dgray text-xs md:text-md"
             placeholder="Pesquise a sua Trilha"
           />
 
@@ -24,7 +24,7 @@ export const SearchItem = () => {
           <div
             tabIndex={0}
             role="button "
-            className="btn m-1 bg-neutralbg rounded-box input-bordered hover:bg-neutralbg"
+            className="btn m-1 bg-neutralbg md:text-md text-xs rounded-box input-bordered hover:bg-neutralbg"
           >
             Filtros
           </div>
