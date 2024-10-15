@@ -6,7 +6,7 @@ import { MdEdit } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MotionButton } from "../ui/Button";
 
-export const UserSection = () => {
+export const UserPassword = () => {
   function teste() {
     console.log("teste");
   }
@@ -88,12 +88,12 @@ export const UserSection = () => {
             />
           </div>
         </label>
-        <div className="flex justify-end w-full">
+        <div className="flex justify-endy">
           <MotionButton
             Icon={FaSave}
             label="Salvar"
             func={() => teste}
-            className="bg-green text-ddblue"
+            className="bg-green w-40 h-9 text-ddblue"
             type="button"
           />
         </div>

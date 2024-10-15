@@ -1,11 +1,16 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
+import { MotionButton } from "../ui/Button";
 
-export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
+export default function Kyc1({
+  setLevel,
+  level,
+  handleTabClick,
+}: Kyc1Props<void>) {
   return (
     <div className="flex-col w-full h-full  ">
-      <article className="flex flex-col w-full h-full hidden ">
+      <article className="flex flex-col w-full h-full  ">
         <div className="">
           <h2 className="sr-only">Steps</h2>
 
@@ -87,6 +92,14 @@ export default function Kyc1({ setLevel, level }: Kyc1Props<void>) {
               </a>
             </li>
           </ul>
+        </div>
+        <div className=" w-full justify-center mt-8 flex">
+          <MotionButton
+            label="Avançar"
+            type="button"
+            func={() => handleTabClick("Kyc2")}
+            className="bg-cgreen w-3/5 text-white"
+          />
         </div>
       </article>
     </div>

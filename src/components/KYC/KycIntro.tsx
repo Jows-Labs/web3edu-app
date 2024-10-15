@@ -1,7 +1,8 @@
 import Image from "next/image";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
+import { MotionButton } from "../ui/Button";
 
-export default function KycIntro() {
+export default function KycIntro({ handleTabClick }: KycIntroProps<void>) {
   return (
     <div className="flex flex-col w-96 h-96 ">
       <article className="">
@@ -16,7 +17,7 @@ export default function KycIntro() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col items-center justify-center flex-center">
+        <div className="flex flex-col items-center mt-16 justify-center flex-center">
           <Image
             alt="ss"
             src={web3EduLogo}
@@ -30,6 +31,14 @@ export default function KycIntro() {
               necessidades
             </h3>
           </div>
+        </div>
+        <div className=" w-full justify-center mt-8 flex">
+          <MotionButton
+            label="Avançar"
+            type="button"
+            func={() => handleTabClick("Kyc1")}
+            className="bg-cgreen w-3/5 text-white"
+          />
         </div>
       </article>
     </div>
