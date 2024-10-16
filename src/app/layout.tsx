@@ -61,7 +61,7 @@ export default function RootLayout({
         <body>
           <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen">
             <NavBar />
-            <section className="flex flex-col h-[94%] w-full border-4 border-blue">
+            <section className="flex flex-col h-[94%] w-full ">
               {children}
             </section>
           </main>
