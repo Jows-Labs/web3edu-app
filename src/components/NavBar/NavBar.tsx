@@ -34,7 +34,7 @@ export default function NavBar({}) {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content "
+            className="menu menu-sm dropdown-content bg-neutralbg rounded-box z-[11] mt-3 w-52 p-2 shadow-lg py-2 text-neutral "
           >
             <li>
               <a href="/homePage">Home</a>

@@ -6,7 +6,7 @@ export const UserMenu = () => {
   const { googleUserInfo, logout, isLoggedIn, WalletUi } = useWeb3AuthContext();
 
   return (
-    <div className="flex-row justify-self-end gap-2">
+    <div className="flex flex-row justify-self-end items-center gap-2">
       <div
         tabIndex={0}
         role="button"
