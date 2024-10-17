@@ -38,7 +38,7 @@ export const Above = () => {
     },
   ];
   return (
-    <div className="w-full h-full flex items-center justify-center gap-10 px-5">
+    <div className="w-full md:h-full h-screen flex items-center justify-center gap-10 px-5">
       <div className="w-full h-full flex justify-center items-start px-3 text-sm rounded-box">
         <div className="text-neutral flex flex-col gap-3 w-full">
           <p className="font-bold text-neutral text-2xl">
