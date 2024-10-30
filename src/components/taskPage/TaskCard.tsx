@@ -8,9 +8,9 @@ function teste() {
 
 export const TaskCard = () => {
   return (
-    <div className="w-3/5 h-full flex flex-col gap-2">
-      <div className="w-full h-full bg-cgray rounded-box flex flex-col justify-start items-start text-neutral overflow-y-auto p-8 font-medium text-medium gap-3">
-        <div className="w-full h-2/5 bg-ccblue rounded-box flex flex-col justify-start items-start p-10 gap-3">
+    <div className="md:w-3/5 w-full h-full flex gap-2 ">
+      <div className="w-full h-full bg-cgray md:rounded-box flex flex-col justify-start items-start text-neutral overflow-y-auto p-8 font-medium text-medium gap-3">
+        <div className="w-full md:h-2/5 bg-ccblue rounded-box flex flex-col justify-start items-start p-10 gap-3">
           <p className="text-cblue">Carteiras em BlockChain</p>
           <p>
             Uma carteira digital de criptomoeda é um mecanismo que permite

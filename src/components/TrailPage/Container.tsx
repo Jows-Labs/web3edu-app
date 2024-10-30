@@ -8,7 +8,7 @@ export const Container = () => {
   );
 
   return (
-    <div className="md:w-3/5 w-full md:h-full h-screen flex flex-col justify-start items-start text-neutral bg-cgray sm:rounded-box p-10 gap-3 overflow-y-auto">
+    <div className="md:w-3/5 w-full md:h-full flex flex-col justify-start items-start text-neutral bg-cgray md:rounded-box p-10 md:gap-3 gap-6 md:overflow-y-auto">
       <div className="flex flex-col w-full h-full justify-center items-center">
         <iframe
           src={videoLink}
@@ -16,7 +16,7 @@ export const Container = () => {
           allowFullScreen
           className="aspect-video w-full h-auto rounded-box"
         />
-      </div>
+      </div> 
       <p className="font-extrabold text-2xl">
         Título da trilha Web3 Tafareid's House Work
       </p>

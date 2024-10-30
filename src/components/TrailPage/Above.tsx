@@ -1,7 +1,6 @@
 "use client";
 
 import { FaCheck } from "react-icons/fa";
-import { TaskUnits } from "../taskPage/TaskUnits";
 
 export const Above = () => {
   const LearnTopics = [
@@ -20,7 +19,7 @@ export const Above = () => {
       description: "Construir web services usando Spring Boot e boas práticas",
     },
     {
-      description: "Acessar banco de dados NoSQL",
+      description: "Acessar banco de dados NoSQL ",
     },
     {
       description: "Criar soluções flexíveis, extensíveis e testáveis",
@@ -38,8 +37,8 @@ export const Above = () => {
     },
   ];
   return (
-    <div className="w-full md:h-full h-screen flex items-center justify-center gap-10 px-5">
-      <div className="w-full h-full flex justify-center items-start px-3 text-sm rounded-box">
+    <div className="w-full md:h-full flex items-center justify-center gap-10 md:px-5">
+      <div className="w-full h-full flex justify-center items-start text-sm rounded-box">
         <div className="text-neutral flex flex-col gap-3 w-full">
           <p className="font-bold text-neutral text-2xl">
             O que você aprenderá
@@ -48,11 +47,9 @@ export const Above = () => {
             <>
               {LearnTopics.map((e) => {
                 return (
-                  <div className="flex gap-2 justify-start items-center w-full h-fit">
-                    <div className="h-5 w-10">
-                      <FaCheck className="w-full h-full" />
-                    </div>
-                    <p>{e.description}</p>
+                  <div className="flex gap-3 items-center w-full">
+                    <FaCheck className="md:h-5 min-w-6 h-auto" />
+                    <p className="w-fit">{e.description}</p>
                   </div>
                 );
               })}
