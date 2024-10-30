@@ -16,7 +16,7 @@ export const TaskList = () => {
     },
     {
       description: "Módulo 6",
-    },
+    }, 
     {
       description: "Módulo 7",
     },
@@ -40,7 +40,7 @@ export const TaskList = () => {
     },
   ];
   return (
-    <div className="md:w-2/5 w-full h-full bg-cgray rounded-box p-8 overflow-y-auto gap-2 flex flex-col justify-start items-start">
+    <div className="md:w-2/5 w-full h-full bg-cgray md:rounded-box p-8 md:overflow-y-auto gap-2 flex flex-col justify-start items-start">
       <>
         {Tasks.map((e) => {
           return <TaskUnits text={e.description} key="" />;
