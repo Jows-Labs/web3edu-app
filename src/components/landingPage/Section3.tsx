@@ -16,7 +16,7 @@ export const Section3 = () => {
     console.log("teste");
   }
   return (
-    <div className="h-[80vh] w-full flex bg-neutralbg p-20 justify-between">
+    <div className="h-fit w-full flex bg-neutralbg p-20 justify-between">
       <div className="flex flex-col w-2/5 h-4/5 justify-between items-center">
         <div className="h-full w-full">
           <div className="w-full flex">
@@ -72,7 +72,7 @@ export const Section3 = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col w-2/4 h-4/5 justify-between items-center">
+      <div className="flex flex-col w-2/4 min-h-full justify-between items-center">
         <iframe
           src={videoLink}
           frameBorder="0"

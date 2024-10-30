@@ -59,9 +59,9 @@ export default function RootLayout({
       <html lang="pt-br">
         <head />
         <body>
-          <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen">
+          <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen overflow-hidden">
             <NavBar />
-            <section className="flex flex-col h-[94%] w-full ">
+            <section className="flex flex-col h-full w-full overflow-y-auto ">
               {children}
             </section>
           </main>
