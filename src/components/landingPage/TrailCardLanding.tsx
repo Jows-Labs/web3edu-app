@@ -27,11 +27,11 @@ export const TrailCardLanding = () => {
     },
   ];
   return (
-    <div className="flex flex-wrap gap-20 justify-center">
+    <div className="flex md:flex-wrap flex-row gap-16 justify-start md:justify-center overflow-x-auto w-full py-8">
       {cardData.map((card, index) => (
         <div
           key={index}
-          className="rounded-box bg-[#F0F0F0] h-36 w-64 flex flex-col p-6 items-start gap-7"
+          className="rounded-box bg-[#F0F0F0] h-36 min-w-64 flex flex-col p-6 items-start gap-7 shadow-xl"
         >
           {card.icon}
           <div className="flex w-full text-blue items-center justify-between">
