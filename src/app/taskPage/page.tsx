@@ -2,8 +2,8 @@ import { Task } from "@/components/taskPage/Task";
 
 export default function taskPage() {
   return (
-    <>
-      <Task />;
-    </>
+    <div className="w-full h-full flex flex-col md:flex-row">
+      <Task />
+    </div>
   );
 }

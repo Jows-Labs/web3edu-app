@@ -1,9 +1,10 @@
 import Image from "next/image";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
+import { MotionButton } from "../ui/Button";
 
-export default function Kyc2() {
+export default function Kyc2({ handleTabClick }: Kyc1Props<void>) {
   return (
-    <div className=" flex-col w-full h-full hidden ">
+    <div className=" flex-col w-full h-full ">
       <article className="">
         <div>
           <h2 className="sr-only">Steps</h2>
@@ -85,6 +86,14 @@ export default function Kyc2() {
             </div>
           </fieldset>
         </ul>
+        <div className=" w-full justify-center flex">
+          <MotionButton
+            label="Avançar"
+            type="button"
+            func={() => handleTabClick("")}
+            className="bg-cgreen w-3/5 text-white"
+          />
+        </div>
       </article>
     </div>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import { FaCheck } from "react-icons/fa";
-import { TaskUnits } from "../taskPage/TaskUnits";
 
 export const Above = () => {
   const LearnTopics = [
@@ -20,7 +19,7 @@ export const Above = () => {
       description: "Construir web services usando Spring Boot e boas práticas",
     },
     {
-      description: "Acessar banco de dados NoSQL",
+      description: "Acessar banco de dados NoSQL ",
     },
     {
       description: "Criar soluções flexíveis, extensíveis e testáveis",
@@ -38,32 +37,25 @@ export const Above = () => {
     },
   ];
   return (
-    <div className="w-full h-[60vh] flex items-center justify-center gap-10 px-5">
-      <div className="w-2/5 h-4/5 flex border border-gray justify-center items-start px-3 text-sm">
+    <div className="w-full md:h-full flex items-center justify-center gap-10 md:px-5">
+      <div className="w-full h-full flex justify-center items-start text-sm rounded-box">
         <div className="text-neutral flex flex-col gap-3 w-full">
           <p className="font-bold text-neutral text-2xl">
             O que você aprenderá
           </p>
-          <div className="gap-2 grid grid-cols-2 w-full h-full justify-start items-start">
+          <div className="gap-2 flex flex-col w-full h-full justify-start items-start">
             <>
               {LearnTopics.map((e) => {
                 return (
-                  <div className="flex gap-2 justify-start items-center w-full h-fit">
-                    <div  className="h-5 w-10">
-                      <FaCheck className="w-full h-full" />
-                    </div>
-                    <p>{e.description}</p>
+                  <div className="flex gap-3 items-center w-full">
+                    <FaCheck className="md:h-5 min-w-6 h-auto" />
+                    <p className="w-fit">{e.description}</p>
                   </div>
                 );
               })}
             </>
           </div>
         </div>
-      </div>
-      <div className="w-1/3 h-4/5 flex justify-center items-center flex-col">
-        <TaskUnits text="Módulo 1" />;
-        <TaskUnits text="Módulo 2" />;
-        <TaskUnits text="Módulo 3" />;
       </div>
     </div>
   );
