@@ -13,7 +13,6 @@ import {
   OpenloginAdapter,
   OpenloginLoginParams,
 } from "@web3auth/openlogin-adapter";
-import { getApp, getApps, initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -26,17 +25,7 @@ import React, { useEffect, useState } from "react";
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
 import { useRouter } from "next/navigation";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  initializeFirestore,
-  memoryLocalCache,
-  setDoc,
-} from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
 import { db, app } from "@/firebase/config";
 
 // Configuração do Web3Auth e da Chain
@@ -52,7 +41,7 @@ const chainConfig = {
 
 const web3authConfig = {
   clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID || "",
-  web3AuthNetwork: process.env.NEXT_PUBLIC_WEB3AUTH_NETWORK || "",
+  web3AuthNetwork: "sapphire_devnet",
   chainConfig,
 };
 
@@ -63,7 +52,7 @@ const openloginAdapter = new OpenloginAdapter({
       jwt: {
         verifier: process.env.NEXT_PUBLIC_WEB3AUTH_VERIFIER || "",
         typeOfLogin: "jwt",
-        clientId: web3authConfig.clientId,
+        clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID || "",
       },
     },
   },
@@ -108,6 +97,8 @@ export default function useWeb3Auth() {
     useState<Partial<OpenloginLoginParams> | null>(null);
   const [googleUserInfo, setGoogleUserInfo] = useState<any | null>(null);
   const [userAccount, setAccounts] = useState<string[]>([]);
+  const [walletServicesPlugin, setWalletServicesPlugin] =
+    useState<WalletServicesPlugin | null>(null);
 
   useEffect(() => {
     const init = async () => {
@@ -115,6 +106,7 @@ export default function useWeb3Auth() {
         await web3auth.addPlugin(walletPlugin);
         await web3auth.init();
         setProvider(web3auth.provider);
+        setWalletServicesPlugin(walletPlugin);
 
         if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
           setIsLoggedIn(true);
@@ -269,11 +261,20 @@ export default function useWeb3Auth() {
     }
   };
 
+  const WalletUi = async () => {
+    try {
+      await walletServicesPlugin?.showWalletUi();
+    } catch (error) {
+      console.error("error while displaying the wallet: ", error);
+    }
+  };
+
   return {
     logout,
     login,
     isLoggedIn,
     isLoggingIn,
+    WalletUi,
     userInfo,
     userAccount,
     googleUserInfo,
