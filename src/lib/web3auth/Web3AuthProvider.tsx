@@ -12,7 +12,7 @@ interface Web3AuthContextProps {
   isLoggingIn: boolean;
   userInfo: Partial<any> | null;
   userAccount: string[];
-  googleUserInfo: any | null
+  googleUserInfo: any | null;
 }
 
 const Web3AuthContext = createContext<Web3AuthContextProps | undefined>(

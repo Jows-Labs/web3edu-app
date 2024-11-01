@@ -6,7 +6,7 @@ import { Section4 } from "./Section4";
 
 export default function LandingPage() {
   return (
-    <div className="h-screen w-full">
+    <div className="w-full">
       <Section1 />
       <Section2 />
       <Section3 />
