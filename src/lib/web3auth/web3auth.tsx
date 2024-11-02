@@ -151,13 +151,12 @@ export default function useWeb3Auth() {
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, async (user) => {
-      // const response = await fetch("/api/teste", {
-      //   method: "GET",
-      // });
-      // console.log(response.body);
+      const response = await fetch("/api/users", {
+        method: "GET",
+      });
+      const data = await response.json();
+      console.log(data);
 
-      // console.log(auth);
-      // console.log("teste console db", db);
       if (user) {
         setIsLoggedIn(true);
 
@@ -168,37 +167,16 @@ export default function useWeb3Auth() {
             displayName: user.displayName,
             createdAt: new Date(),
           };
-          // const response = await fetch("/api/teste", {
-          //   method: "POST",
-          //   body: JSON.stringify(userObj),
-          // });
-          // console.log("aaaaaaaaaaa", response);
-
-          // const objeto = {
-          //   teste: "teste",
-          // };
-          // const testeDocs = await getDocs(collection(db, "teste"));
-          // console.log("testegetdocs", testeDocs);
-          await addDoc(collection(db, "users"), userObj);
+          const response = await fetch("/api/users", {
+            method: "POST",
+            body: JSON.stringify(userObj),
+          });
+          const data = await response.json();
+          console.log(data);
         } catch (error: any) {
           console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
           console.log("erro teste", error);
         }
-        // await setDoc(col, user.uid);
-        // const userDocRef = doc(db, "users", user.uid);
-        // console.log("aqui", userDocRef);
-        // console.log("useruid", user.uid);
-        // const userDocSnap = await getDoc(userDocRef);
-        // console.log("aqui2", userDocSnap);
-
-        // if (!userDocSnap.exists()) {
-        //   await setDoc(userDocRef, {
-        //     uid: user.uid,
-        //     email: user.email,
-        //     displayName: user.displayName,
-        //     createdAt: new Date(),
-        //   });
-        // }
       } else {
         setIsLoggedIn(false);
       }
