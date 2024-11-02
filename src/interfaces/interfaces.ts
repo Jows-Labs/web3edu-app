@@ -25,8 +25,7 @@ interface TaskUnitsProps {
 }
 
 interface TrailsPageProps {
-  image: JSX.Element;
-  icon?: JSX.Element;
+  image: string;
   title: string;
   description: string;
 }

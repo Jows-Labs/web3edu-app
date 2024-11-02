@@ -6,6 +6,7 @@ import NavBar from "@/components/NavBar/NavBar";
 import { useState } from "react";
 import { useEffect } from "react";
 import type { Metadata } from "next";
+import { ContentProvider } from "@/providers/content-context";
 
 /* export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -56,17 +57,19 @@ export default function RootLayout({
 }) {
   return (
     <Web3AuthProvider>
-      <html lang="pt-br">
-        <head />
-        <body>
-          <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen overflow-hidden">
-            <NavBar />
-            <section className="flex flex-col h-full w-full overflow-y-auto ">
-              {children}
-            </section>
-          </main>
-        </body>
-      </html>
+      <ContentProvider>
+        <html lang="pt-br">
+          <head />
+          <body>
+            <main className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen overflow-hidden">
+              <NavBar />
+              <section className="flex flex-col h-full w-full overflow-y-auto ">
+                {children}
+              </section>
+            </main>
+          </body>
+        </html>
+      </ContentProvider>
     </Web3AuthProvider>
   );
 }
