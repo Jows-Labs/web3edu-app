@@ -13,29 +13,22 @@ import {
   OpenloginAdapter,
   OpenloginLoginParams,
 } from "@web3auth/openlogin-adapter";
-import { initializeApp } from "firebase/app";
 import {
   getAuth,
   GoogleAuthProvider,
+  onAuthStateChanged,
   signInWithPopup,
   signOut,
   UserCredential,
 } from "firebase/auth";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
 import { useRouter } from "next/navigation";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { addDoc, collection } from "firebase/firestore";
+import { db, app } from "@/firebase/config";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAweASg4o2u9YaansDheJbeHj-fVMyhO2s",
-  authDomain: "web3edubrasil-app.firebaseapp.com",
-  projectId: "web3edubrasil-app",
-  storageBucket: "web3edubrasil-app.appspot.com",
-  messagingSenderId: "110456521844",
-  appId: "1:110456521844:web:b66fdbba75c2c68577bd21",
-};
-
+// Configuração do Web3Auth e da Chain
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
   chainId: "0xaa36a7",
@@ -47,28 +40,25 @@ const chainConfig = {
 };
 
 const web3authConfig = {
-  clientId:
-    "BKT4xfkIAQ8aIFm-f2mh_HgXQt0NpVJJRL1ivU2JUK7lNXY6uHVahZRbKsOWz6Eo1e8h3LxT7LNenJj2ArpVXTA",
+  clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID || "",
   web3AuthNetwork: "sapphire_devnet",
   chainConfig,
 };
-
-const privateKeyProvider = new EthereumPrivateKeyProvider({
-  config: { chainConfig: web3authConfig.chainConfig },
-});
 
 const openloginAdapter = new OpenloginAdapter({
   adapterSettings: {
     uxMode: "redirect",
     loginConfig: {
       jwt: {
-        verifier: "web3edu-verifier",
+        verifier: process.env.NEXT_PUBLIC_WEB3AUTH_VERIFIER || "",
         typeOfLogin: "jwt",
-        clientId: web3authConfig.clientId,
+        clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID || "",
       },
     },
   },
-  privateKeyProvider,
+  privateKeyProvider: new EthereumPrivateKeyProvider({
+    config: { chainConfig },
+  }),
 });
 
 const web3auth = new Web3AuthNoModal({
@@ -119,86 +109,116 @@ export default function useWeb3Auth() {
         setWalletServicesPlugin(walletPlugin);
 
         if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
-          // O usuário está conectado
           setIsLoggedIn(true);
           const userInfo = await web3auth.getUserInfo();
           setUserInfo(userInfo);
-          const web3 = new Web3(web3auth.provider as any); // Aqui você deve ter certeza de que o provider é válido.
 
+          const web3 = new Web3(web3auth.provider as any);
           const addresses = await web3.eth.getAccounts();
-          console.log("Retrieved Ethereum accounts:", addresses);
-          if (addresses.length > 0) {
-            setAccounts(addresses);
-          } else {
-            console.log("No Ethereum accounts found.");
-          }
+          setAccounts(addresses.length > 0 ? addresses : []);
         }
 
         const storedGoogleUserInfo = localStorage.getItem("googleUserInfo");
-        if (storedGoogleUserInfo) {
+        if (storedGoogleUserInfo)
           setGoogleUserInfo(JSON.parse(storedGoogleUserInfo));
-          console.log(
-            "Google User Info after redirect:",
-            JSON.parse(storedGoogleUserInfo)
-          );
-        }
       } catch (error) {
         console.error(error);
       }
     };
-
     init();
   }, []);
 
   useEffect(() => {
-    if (!web3auth) {
-      console.warn("web3auth is not initialized");
-      return;
-    }
+    if (!web3auth) return;
 
-    const onConnected = () => {
-      setIsLoggedIn(true);
-      router.push("/homePage");
+    const handleConnectionChange = () => {
+      setIsLoggedIn(web3auth.status === ADAPTER_EVENTS.CONNECTED);
+      router.push(
+        web3auth.status === ADAPTER_EVENTS.CONNECTED ? "/homePage" : "/"
+      );
     };
 
-    const onDisconnected = () => {
-      setIsLoggedIn(false);
-      setProvider(null);
-      router.push("/");
-    };
-
-    web3auth.on(ADAPTER_EVENTS.CONNECTED, onConnected);
-    web3auth.on(ADAPTER_EVENTS.DISCONNECTED, onDisconnected);
+    web3auth.on(ADAPTER_EVENTS.CONNECTED, handleConnectionChange);
+    web3auth.on(ADAPTER_EVENTS.DISCONNECTED, handleConnectionChange);
 
     return () => {
-      web3auth.off(ADAPTER_EVENTS.CONNECTED, onConnected);
-      web3auth.off(ADAPTER_EVENTS.DISCONNECTED, onDisconnected);
+      web3auth.off(ADAPTER_EVENTS.CONNECTED, handleConnectionChange);
+      web3auth.off(ADAPTER_EVENTS.DISCONNECTED, handleConnectionChange);
     };
   }, [web3auth]);
 
+  useEffect(() => {
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, async (user) => {
+      // const response = await fetch("/api/teste", {
+      //   method: "GET",
+      // });
+      // console.log(response.body);
+
+      // console.log(auth);
+      // console.log("teste console db", db);
+      if (user) {
+        setIsLoggedIn(true);
+
+        try {
+          const userObj = {
+            uid: user.uid,
+            email: user.email,
+            displayName: user.displayName,
+            createdAt: new Date(),
+          };
+          // const response = await fetch("/api/teste", {
+          //   method: "POST",
+          //   body: JSON.stringify(userObj),
+          // });
+          // console.log("aaaaaaaaaaa", response);
+
+          // const objeto = {
+          //   teste: "teste",
+          // };
+          // const testeDocs = await getDocs(collection(db, "teste"));
+          // console.log("testegetdocs", testeDocs);
+          await addDoc(collection(db, "users"), userObj);
+        } catch (error: any) {
+          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+          console.log("erro teste", error);
+        }
+        // await setDoc(col, user.uid);
+        // const userDocRef = doc(db, "users", user.uid);
+        // console.log("aqui", userDocRef);
+        // console.log("useruid", user.uid);
+        // const userDocSnap = await getDoc(userDocRef);
+        // console.log("aqui2", userDocSnap);
+
+        // if (!userDocSnap.exists()) {
+        //   await setDoc(userDocRef, {
+        //     uid: user.uid,
+        //     email: user.email,
+        //     displayName: user.displayName,
+        //     createdAt: new Date(),
+        //   });
+        // }
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
+
   const signInWithGoogle = async (): Promise<UserCredential> => {
-    try {
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const googleProvider = new GoogleAuthProvider();
-      const res = await signInWithPopup(auth, googleProvider);
-      localStorage.setItem("googleUserInfo", JSON.stringify(res.user));
-      return res; // Retorna o ID token diretamente
-    } catch (err) {
-      console.error(err);
-      throw err;
-    }
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    const res = await signInWithPopup(auth, googleProvider);
+    localStorage.setItem("googleUserInfo", JSON.stringify(res.user));
+    return res;
   };
 
   const login = async () => {
     try {
-      if (!web3auth) {
-        console.log("web3auth not initialized yet");
-        return;
-      }
       setIsLoggingIn(true);
       const loginRes = await signInWithGoogle();
       const idToken = await loginRes.user.getIdToken(true);
+
       const web3authProvider = await web3auth.connectTo(
         WALLET_ADAPTERS.OPENLOGIN,
         {
@@ -211,48 +231,33 @@ export default function useWeb3Auth() {
       );
 
       if (web3authProvider) {
-        setIsLoggingIn(false);
-        setIsLoggedIn(true);
         setProvider(web3authProvider);
         const web3 = new Web3(web3authProvider as any);
         const addresses = await web3.eth.getAccounts();
-
-        if (addresses.length > 0) {
-          setAccounts(addresses);
-        } else {
-          console.log("No Ethereum accounts found.");
-        }
+        setAccounts(addresses.length > 0 ? addresses : []);
 
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
+        router.push("/homePage");
       }
-      router.push("/homePage");
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoggingIn(false);
     }
   };
 
-  const checkAndCreateUserDoc = async (userInfo: any, uid: string) => {
-    const db = getFirestore(); // Initialize Firestore
-    const userRef = doc(db, "users", uid); // Reference to the user's document
-
+  const logout = async () => {
     try {
-      // 1. Check if the document already exists
-      const userDoc = await getDoc(userRef);
-
-      if (!userDoc.exists()) {
-        // 2. If the document doesn't exist, create a new user document
-        await setDoc(userRef, {
-          email: userInfo.email,
-          address: userInfo.address, // Add any other necessary fields
-          createdAt: new Date(),
-        });
-        console.log("New user document created.");
-      } else {
-        console.log("User already exists in Firestore.");
-      }
+      if (web3auth.status === ADAPTER_EVENTS.CONNECTED) await web3auth.logout();
+      await signOut(getAuth(app));
+      setProvider(null);
+      setIsLoggedIn(false);
+      setAccounts([]);
+      localStorage.removeItem("googleUserInfo");
+      router.push("/");
     } catch (error) {
-      console.error("Error checking or creating user document:", error);
+      console.error("Error during logout:", error);
     }
   };
 
@@ -264,41 +269,12 @@ export default function useWeb3Auth() {
     }
   };
 
-  const logout = async () => {
-    try {
-      if (provider) {
-        // Adicione uma verificação para o status da conexão
-        if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
-          await web3auth.logout();
-        } else {
-          console.log("Wallet is not connected, skipping Web3Auth logout.");
-        }
-      } else {
-        console.log("No wallet is connected, skipping Web3Auth logout.");
-      }
-
-      // Logout do Firebase Authentication
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      await signOut(auth); // Logout do Firebase
-
-      // Limpando o estado do usuário
-      setProvider(null);
-      setIsLoggedIn(false);
-      setAccounts([]); // Limpa as contas
-      localStorage.removeItem("googleUserInfo");
-      router.push("/");
-    } catch (error) {
-      console.error("Error during logout:", error);
-    }
-  };
-
   return {
     logout,
     login,
-    WalletUi,
     isLoggedIn,
     isLoggingIn,
+    WalletUi,
     userInfo,
     userAccount,
     googleUserInfo,
