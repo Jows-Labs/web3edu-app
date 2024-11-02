@@ -133,9 +133,9 @@ export default function useWeb3Auth() {
 
     const handleConnectionChange = () => {
       setIsLoggedIn(web3auth.status === ADAPTER_EVENTS.CONNECTED);
-      router.push(
-        web3auth.status === ADAPTER_EVENTS.CONNECTED ? "/homePage" : "/"
-      );
+      if (web3auth.status !== ADAPTER_EVENTS.CONNECTED) {
+        router.push("/");
+      }
     };
 
     web3auth.on(ADAPTER_EVENTS.CONNECTED, handleConnectionChange);
@@ -151,7 +151,7 @@ export default function useWeb3Auth() {
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, async (user) => {
-      const response = await fetch("/api/users", {
+      const response = await fetch("/api/user", {
         method: "GET",
       });
       const data = await response.json();
@@ -167,7 +167,7 @@ export default function useWeb3Auth() {
             displayName: user.displayName,
             createdAt: new Date(),
           };
-          const response = await fetch("/api/users", {
+          const response = await fetch("/api/user", {
             method: "POST",
             body: JSON.stringify(userObj),
           });
@@ -180,7 +180,13 @@ export default function useWeb3Auth() {
       } else {
         setIsLoggedIn(false);
       }
+      // const responseteste = await fetch("/api/trails", {
+      //   method: "GET",
+      // });
+      // const data2 = await responseteste.json();
+      // console.log(data2);
     });
+    
   }, []);
 
   const signInWithGoogle = async (): Promise<UserCredential> => {

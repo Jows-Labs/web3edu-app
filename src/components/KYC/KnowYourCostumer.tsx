@@ -7,9 +7,7 @@ import Kyc2 from "./Kyc2";
 import KycIntro from "./KycIntro";
 
 function KnowLedge() {
-  function teste() {
-    console.log("oi");
-  }
+
 
   const [activeTab, setActiveTab] = useState("KycIntro");
 
