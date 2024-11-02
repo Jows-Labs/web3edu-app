@@ -133,9 +133,9 @@ export default function useWeb3Auth() {
 
     const handleConnectionChange = () => {
       setIsLoggedIn(web3auth.status === ADAPTER_EVENTS.CONNECTED);
-      router.push(
-        web3auth.status === ADAPTER_EVENTS.CONNECTED ? "/homePage" : "/"
-      );
+      if (web3auth.status !== ADAPTER_EVENTS.CONNECTED) {
+        router.push("/");
+      }
     };
 
     web3auth.on(ADAPTER_EVENTS.CONNECTED, handleConnectionChange);
