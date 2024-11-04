@@ -51,7 +51,6 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useWeb3AuthContext = () => {
   const context = useContext(Web3AuthContext);
-  console.log("Context: ", context); // Adicione isso para verificar o contexto
   if (context === undefined) {
     throw new Error(
       "useWeb3AuthContext must be used within a Web3AuthProvider"
