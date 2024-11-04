@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 export const MotionButton = ({
   label,
   type,
+  rightIcon,
   className,
   func,
   Icon,
@@ -20,13 +21,28 @@ export const MotionButton = ({
       type={type}
       onClick={() => func()}
     >
-      {Icon ? (
-        <div className="flex items-center justify-center gap-2">
-          <Icon className="w-4 h-4" />
-          <p className="truncate">{label}</p>
-        </div>
+      {rightIcon ? (
+        <>
+          {Icon ? (
+            <div className="flex items-center justify-center gap-2">
+              <p className="truncate">{label}</p>
+              <Icon className="w-4 h-4" />
+            </div>
+          ) : (
+            <p className="truncate">{label}</p>
+          )}
+        </>
       ) : (
-        <p className="truncate">{label}</p>
+        <>
+          {Icon ? (
+            <div className="flex items-center justify-center gap-2">
+              <Icon className="w-4 h-4" />
+              <p className="truncate">{label}</p>
+            </div>
+          ) : (
+            <p className="truncate">{label}</p>
+          )}
+        </>
       )}
     </motion.button>
   );
