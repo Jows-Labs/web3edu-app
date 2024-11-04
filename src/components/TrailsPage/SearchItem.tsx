@@ -1,6 +1,14 @@
+import { useContent } from "@/providers/content-context";
+import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 export const SearchItem = () => {
+  const { fetchTrailsList, trailsList } = useContent();
+
+  const [bgnnrChecked, setBgnnrChecked] = useState(false);
+  const [intrmChecked, setIntrmChecked] = useState(false);
+  const [advancedChecked, setAdvancedChecked] = useState(false);
+
   const filterCategories = [
     {
       text: "Biruleibe",

@@ -13,23 +13,19 @@ export const TrailCards = ({ image, title, description }: TrailsPageProps) => {
       whileTap={{ scale: 0.95 }}
       className="w-full h-80"
     >
-      <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden">
+      <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
         <img
           src={image}
-          className="h-[40%]"
+          className="min-h-[40%]"
           style={{ objectFit: "cover" }}
           alt=""
         />
         <div className="card-body p-4 h-full">
-          <div className="flex flex-row items-center gap-2 w-full">
-            <h2 className="card-title text-dgray">{title}</h2>
+          <div className="flex flex-row items-center justify-start relative gap-2 w-full">
+            <h2 className="card-title text-dgray w-[90%]">{title}</h2>
+            <CiStar className="min-h-5 min-w-5 text-ddblue top-1 right-0 absolute" />
           </div>
-          <p className="text-left text-dgray flex items-center">
-            {description}
-          </p>
-          <div className="card-actions justify-end">
-            <CiStar className="h-5 w-5 text-ddblue" />
-          </div>
+          <p className="text-left text-dgray flex items-start">{description}</p>
         </div>
       </div>
     </motion.button>

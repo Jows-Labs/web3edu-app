@@ -22,43 +22,6 @@ export const Trails = () => {
     console.log(trailsList);
   }, [trailsList]);
 
-  const trailsCard = [
-    {
-      image: <Image className="object-cover" src={Image1} alt="Shoes" />,
-      title: "Criptomoedas",
-      icon: <SiBitcoinsv className="w-5 h-5 text-dgray" />,
-      description:
-        "Explore o mundo das criptomoedas, desde seus fundamentos até práticas de investimento e segurança",
-    },
-    {
-      image: <Image className="object-cover" src={Image1} alt="Shoes" />,
-      title: "Criptomoedas",
-      icon: <SiBitcoinsv className="w-5 h-5 text-dgray" />,
-      description:
-        "Explore o mundo das criptomoedas, desde seus fundamentos até práticas de investimento e segurança",
-    },
-    {
-      image: <Image className="object-cover" src={Image1} alt="Shoes" />,
-      title: "Criptomoedas",
-      icon: <SiBitcoinsv className="w-5 h-5 text-dgray" />,
-      description:
-        "Explore o mundo das criptomoedas, desde seus fundamentos até práticas de investimento e segurança",
-    },
-    {
-      image: <Image className="object-cover" src={Image1} alt="Shoes" />,
-      title: "Criptomoedas",
-      icon: <SiBitcoinsv className="w-5 h-5 text-dgray" />,
-      description:
-        "Explore o mundo das criptomoedas, desde seus fundamentos até práticas de investimento e segurança",
-    },
-    {
-      image: <Image className="object-cover" src={Image1} alt="Shoes" />,
-      title: "Criptomoedas",
-      icon: <SiBitcoinsv className="w-5 h-5 text-dgray" />,
-      description:
-        "Explore o mundo das criptomoedas, desde seus fundamentos até práticas de investimento e segurança",
-    },
-  ];
   return (
     <div className="flex w-full h-full justify-start items-center flex-col overflow-y-scroll px-12 mt-4">
       <SearchItem />
