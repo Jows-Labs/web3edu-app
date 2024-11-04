@@ -2,17 +2,17 @@
 
 export const RenderTextV = () => {
   return (
-    <div>
-      <div className="w-full md:h-fit bg-ccblue rounded-box flex flex-col justify-start items-start p-10 gap-3">
-        <p className="text-cblue">Carteiras em BlockChain</p>
-        <p>
+    <div className="flex flex-col gap-5">
+      <div className="w-full md:h-fit bg-ccblue rounded-box flex flex-col justify-start items-start p-10 gap-5">
+        <p className="text-cblue md:text-xl text-lg">Carteiras em BlockChain</p>
+        <p className="md:text-lg text-base">
           Uma carteira digital de criptomoeda é um mecanismo que permite
           armazenar criptomoedas e realizar transferências utilizando o
           computador ou celular. Normalmente é um software ou um hardware que
           permite um usuário guardar seus Tokens e NFTs
         </p>
       </div>
-      <p className="text-justify py-5">
+      <p className="text-justify px-5">
         Sua primeira missão para começar a jornada em Web3 é criar uma carteira
         de crypto. Assim como você tem uma conta bancária onde guarda seu
         dinheiro, faz e recebe pagamentos, a sua carteira crypto é por onde você
