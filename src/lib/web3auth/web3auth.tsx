@@ -151,11 +151,11 @@ export default function useWeb3Auth() {
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, async (user) => {
-      const response = await fetch("/api/user", {
-        method: "GET",
-      });
-      const data = await response.json();
-      console.log(data);
+      // const response = await fetch("/api/user", {
+      //   method: "GET",
+      // });
+      // const data = await response.json();
+      // console.log(data);
 
       if (user) {
         setIsLoggedIn(true);
@@ -181,19 +181,19 @@ export default function useWeb3Auth() {
         setIsLoggedIn(false);
       }
 
-      try {
-        const nomeTrilha = {
-          trailId: "CriaçãoSmartContracts"
-        };
-        const response = await fetch("/api/trail", {
-          method: "POST",
-          body: JSON.stringify(nomeTrilha),
-        });
-        const data = await response.json()
-        console.log(data)
-      } catch (error:any) {
-        console.log("error teste", error)
-      }
+      // try {
+      //   const trailName = {
+      //     trailId: "CriaçãoSmartContracts",
+      //   };
+      //   const response = await fetch("/api/trail", {
+      //     method: "POST",
+      //     body: JSON.stringify(trailName),
+      //   });
+      //   const data = await response.json();
+      //   console.log(data);
+      // } catch (error: any) {
+      //   console.log("error teste", error);
+      // }
       // const responseteste = await fetch("/api/trails", {
       //   method: "GET",
       // });

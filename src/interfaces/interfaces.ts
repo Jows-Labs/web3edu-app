@@ -25,6 +25,7 @@ interface TaskUnitsProps {
 }
 
 interface TrailsPageProps {
+  id: string;
   image: string;
   title: string;
   description: string;
@@ -34,4 +35,19 @@ interface TrailCardHomeProps {
   Icon?: React.ComponentType<{ className: string }> | string;
   text: string;
   progress: number;
+}
+
+interface TrailSectionData<T> {
+  contents: Array<T>;
+}
+
+interface Trail {
+  categories: string[];
+  introVideo: string;
+  createdAt: { seconds: number; nanoseconds: number };
+  description: string;
+  estimatedTime: number;
+  name: string;
+  topics: string[];
+  trailId: string;
 }
