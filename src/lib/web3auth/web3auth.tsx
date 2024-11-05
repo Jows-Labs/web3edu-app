@@ -186,7 +186,6 @@ export default function useWeb3Auth() {
       // const data2 = await responseteste.json();
       // console.log(data2);
     });
-    
   }, []);
 
   const signInWithGoogle = async (): Promise<UserCredential> => {
