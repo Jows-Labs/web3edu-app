@@ -180,6 +180,20 @@ export default function useWeb3Auth() {
       } else {
         setIsLoggedIn(false);
       }
+
+      try {
+        const nomeTrilha = {
+          trailId: "CriaçãoSmartContracts"
+        };
+        const response = await fetch("/api/trail", {
+          method: "POST",
+          body: JSON.stringify(nomeTrilha),
+        });
+        const data = await response.json()
+        console.log(data)
+      } catch (error:any) {
+        console.log("error teste", error)
+      }
       // const responseteste = await fetch("/api/trails", {
       //   method: "GET",
       // });
