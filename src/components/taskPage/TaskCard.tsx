@@ -12,7 +12,7 @@ function teste() {
 }
 
 export const TaskCard = () => {
-  const [type, setType] = useState("quiz");
+  const [type, setType] = useState("text");
   return (
     <div className="md:w-3/5 w-full h-full flex gap-5">
       <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col justify-between items-end text-neutral md:overflow-y-auto p-8 font-medium text-medium gap-5">
