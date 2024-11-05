@@ -1,4 +1,4 @@
-import { TaskList } from "../TrailPage/TaskList";
+import { TaskList } from "../learn/TaskList";
 import { TaskCard } from "./TaskCard";
 import { body } from "@/lib/constants/content";
 

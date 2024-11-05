@@ -47,7 +47,14 @@ export const GET = async () => {
     const trails: any = [];
 
     querySnapshot.forEach((trail) => {
-      trails.push(trail.data());
+      trails.push({
+        id: trail.id,
+        banner: trail.data().banner,
+        categories: trail.data().categories,
+        estimatedTime: trail.data().estimatedTime,
+        name: trail.data().name,
+        resumedDescription: trail.data().resumedDescription,
+      });
     });
 
     return new NextResponse(JSON.stringify({ trails }), {
@@ -55,6 +62,6 @@ export const GET = async () => {
     });
   } catch (error: any) {
     console.log(error.message);
-    return new NextResponse("Erro ao buscar trilha", { status: 500 });
+    return new NextResponse("Erro ao buscar trilhas", { status: 500 });
   }
 };

@@ -5,13 +5,25 @@ import Image from "next/image";
 import { CiStar } from "react-icons/ci";
 import { SiBitcoinsv } from "react-icons/si";
 import Image1 from "../../assets/images/criptoTest.jpg";
+import { useContent } from "@/providers/content-context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-export const TrailCards = ({ image, title, description }: TrailsPageProps) => {
+export const TrailCards = ({
+  image,
+  title,
+  description,
+  id,
+}: TrailsPageProps) => {
+  const { fetchTrail } = useContent();
+  const router = useRouter();
+
   return (
     <motion.button
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.95 }}
       className="w-full h-80"
+      onClick={() => router.push(`/learn/${id}`)}
     >
       <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
         <img

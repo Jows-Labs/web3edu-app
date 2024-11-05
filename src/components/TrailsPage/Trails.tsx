@@ -27,9 +27,11 @@ export const Trails = () => {
       <SearchItem />
 
       <div className="w-full gap-7 mb-8 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {trailsList.map((e: any) => {
+        {trailsList.map((e: any, index: any) => {
           return (
             <TrailCards
+              key={index}
+              id={e.id}
               image={e.banner}
               title={e.name}
               description={e.resumedDescription}
