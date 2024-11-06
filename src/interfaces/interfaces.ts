@@ -7,6 +7,12 @@ interface MotionButtonProps<T> {
   func: (param: T) => T;
 }
 
+interface IconButtonProps<T> {
+  func: (param: T) => T;
+  className?: string;
+  Icon: React.ComponentType<{ className: string }>;
+}
+
 interface MotionDiv<T> {
   className?: string;
   func?: (param: T) => T;
