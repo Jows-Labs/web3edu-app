@@ -1,6 +1,7 @@
 "use client";
 
 import { body } from "@/lib/constants/content";
+import { MotionButton } from "../ui/Button";
 
 interface TextTaskProps {
   bannerTitle: string;
@@ -8,6 +9,7 @@ interface TextTaskProps {
   subTitle: string;
   lists: Array<any>;
   image: string;
+  fetchNext: () => Promise<void>;
 }
 
 export const RenderTextV = ({
@@ -16,6 +18,7 @@ export const RenderTextV = ({
   subTitle,
   lists,
   image,
+  fetchNext,
 }: TextTaskProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -55,6 +58,13 @@ export const RenderTextV = ({
               </div>
             ))}
         </div>
+        <MotionButton
+          rightIcon={true}
+          label="Marcar como concluído"
+          type="button"
+          className="bg-green text-neutral w-2/5 h-12 self-end"
+          func={() => fetchNext()}
+        />
       </>
     </div>
   );
