@@ -43,7 +43,6 @@ export const ContentProvider = ({
 
   const handleRewardContainer = async () => {
     setRewardContainerVisibility(!rewardContainerVisibility);
-    console.log("teste");
   };
 
   const fetchTrailsList = async () => {

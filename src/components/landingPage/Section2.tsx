@@ -16,7 +16,7 @@ export default function Section2() {
 
       <div className="bg-cgreen w-full h-fit p-10 flex flex-col justify-center items-center gap-10">
         <p className="text-neutral text-3xl font-bold">Principais Funções</p>
-        <div className="flex justify-start items-center gap-20 py-10 h-fit w-full overflow-x-auto">
+        <div className="flex justify-start md:justify-center items-center gap-20 py-10 h-fit w-full overflow-x-auto">
           <MainFunctions
             functionName={"Sistema de Recompensas"}
             content={

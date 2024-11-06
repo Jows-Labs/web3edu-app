@@ -9,7 +9,7 @@ interface TextTaskProps {
   subTitle: string;
   lists: Array<any>;
   image: string;
-  fetchDone: () => Promise<void>;
+  fetchDone: (param: Boolean) => Promise<void>;
   isLast: Boolean;
 }
 
