@@ -6,8 +6,6 @@ import { TaskList } from "./TaskList";
 import { useContent } from "@/providers/content-context";
 import { Task } from "../Task/Task";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
-import { RewardContainer } from "../RewardContainer/RewardContainer";
-import { queryObjects } from "v8";
 
 export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
   const { googleUserInfo } = useWeb3AuthContext();

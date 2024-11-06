@@ -21,7 +21,12 @@ export const TrailsCardSection = () => {
       {Object.keys(trailsList).length !== 0 ? (
         trailsList.map((e: any, index: any) => {
           return (
-            <TrailCardHome text={e.name} progress={e.percentage} key={index} />
+            <TrailCardHome
+              text={e.name}
+              progress={e.percentage}
+              key={index}
+              trailId={e.id}
+            />
           );
         })
       ) : (

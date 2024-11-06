@@ -1,9 +1,19 @@
-import { useEffect } from "react";
 import { MotionDiv } from "../ui/MotionDiv";
+import { useRouter } from "next/navigation";
 
-export const TrailCardHome = ({ text, progress, Icon }: TrailCardHomeProps) => {
+export const TrailCardHome = ({
+  text,
+  progress,
+  Icon,
+  trailId,
+}: TrailCardHomeProps) => {
+  const router = useRouter();
+
   return (
-    <MotionDiv className="w-full h-[30%] bg-cgray border-[1.5px] border-gray rounded-box flex justify-between items-center px-5 lg:px-10 cursor-pointer">
+    <MotionDiv
+      func={() => router.push(`/learn/${trailId}/trail`)}
+      className="w-full h-[30%] bg-cgray border-[1.5px] border-gray rounded-box flex justify-between items-center px-5 lg:px-10 cursor-pointer"
+    >
       <div className="flex gap-4 items-center text-neutral h-1/4">
         {Icon ? <Icon className="h-full w-auto text-neutral" /> : <></>}
         <p className="text-md font-semibold">{text}</p>
