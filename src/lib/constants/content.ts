@@ -3,7 +3,8 @@ export const body = [
     type: "string",
     gigatitle: "O que é Web3?",
     bannerTitle: "Boas-Vindas",
-    image: "https://imgs.search.brave.com/UaQHMngzPaf6NDaqqptW6WrXYg9Vb7sggU6-ZK1Ivbk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zLmRp/Y2lvLmNvbS5ici9p/bWFnZW0uanBn",
+    image:
+      "https://imgs.search.brave.com/UaQHMngzPaf6NDaqqptW6WrXYg9Vb7sggU6-ZK1Ivbk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zLmRp/Y2lvLmNvbS5ici9p/bWFnZW0uanBn",
     bannerDesc:
       "Olá, e bem-vindo(a) à plataforma de ensino descentralizado da Web3EduBrasil! Estamos aqui para guiar você na jornada sobre Web3 por meio de nossa trilha de aprendizagem. O objetivo dessa trilha é que você, ao final, seja capaz de explicar os fundamentos da Web3, Blockchain e criar sua própria carteira digital. Vamos começar!",
     subTitle: "A Evolução da Internet: Web1, Web2 e Web3:",

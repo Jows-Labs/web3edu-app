@@ -1,13 +1,14 @@
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
     const trailId = req.nextUrl.searchParams.get("trailId");
+    const uid = req.nextUrl.searchParams.get("uid");
 
-    if (!trailId) {
-      return new NextResponse("Parâmetro trailId é obrigatório", {
+    if (!trailId || !uid) {
+      return new NextResponse("Parâmetros trailId e uid são obrigatórios", {
         status: 400,
       });
     }
@@ -17,8 +18,25 @@ export const GET = async (req: NextRequest) => {
 
     const contents = contentsSnapshot.docs.map((contentDoc) => ({
       id: contentDoc.id,
-      ...contentDoc.data(),
+      done: false,
+      title: contentDoc.data().title,
     }));
+
+    const userDocRef = doc(db, "users", uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (userDocSnap.exists()) {
+      const userData = userDocSnap.data();
+
+      contents.forEach((content) => {
+        const isDone = userData?.trails?.some((trail: any) =>
+          trail.doneSections?.includes(content.id)
+        );
+        if (isDone) {
+          content.done = true;
+        }
+      });
+    }
 
     return new NextResponse(JSON.stringify(contents), {
       status: 200,

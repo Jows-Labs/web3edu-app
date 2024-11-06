@@ -3,6 +3,8 @@ import UserCard from "./UserCard";
 import { NftsCard } from "./NftsCard";
 import { JourneysCard } from "./JourneysCard";
 import { TrailsCardSection } from "./TrailsCardSection";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { useEffect } from "react";
 
 export const Home = () => {
   return (

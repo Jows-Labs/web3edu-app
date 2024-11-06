@@ -6,6 +6,18 @@ interface MotionButtonProps<T> {
   Icon?: React.ComponentType<{ className: string }> | string;
   func: (param: T) => T;
 }
+
+interface MotionDiv<T> {
+  className?: string;
+  func?: (param: T) => T;
+  children: React.ReactNode;
+}
+
+interface LearnProps {
+  trailIdRt: any;
+  sectionId: any;
+}
+
 interface Kyc1Props<T> {
   setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
   level?: string;
@@ -22,6 +34,9 @@ interface HandleScreenProps {
 
 interface TaskUnitsProps {
   text: string;
+  id: string;
+  trailId: string;
+  done: Boolean;
 }
 
 interface TrailsPageProps {

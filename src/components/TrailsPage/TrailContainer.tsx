@@ -8,6 +8,7 @@ import Image1 from "../../assets/images/criptoTest.jpg";
 import { useContent } from "@/providers/content-context";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { MotionDiv } from "../ui/MotionDiv";
 
 export const TrailCards = ({
   image,
@@ -19,11 +20,9 @@ export const TrailCards = ({
   const router = useRouter();
 
   return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.95 }}
+    <MotionDiv
       className="w-full h-80"
-      onClick={() => router.push(`/learn/${id}`)}
+      func={() => router.push(`/learn/${id}/trail`)}
     >
       <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
         <img
@@ -40,6 +39,6 @@ export const TrailCards = ({
           <p className="text-left text-dgray flex items-start">{description}</p>
         </div>
       </div>
-    </motion.button>
+    </MotionDiv>
   );
 };
