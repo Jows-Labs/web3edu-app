@@ -9,7 +9,8 @@ interface TextTaskProps {
   subTitle: string;
   lists: Array<any>;
   image: string;
-  fetchNext: () => Promise<void>;
+  fetchDone: (param: Boolean) => Promise<void>;
+  isLast: Boolean;
 }
 
 export const RenderTextV = ({
@@ -18,7 +19,8 @@ export const RenderTextV = ({
   subTitle,
   lists,
   image,
-  fetchNext,
+  fetchDone,
+  isLast,
 }: TextTaskProps) => {
   return (
     <div className="flex flex-col gap-5">
@@ -63,7 +65,7 @@ export const RenderTextV = ({
           label="Marcar como concluído"
           type="button"
           className="bg-green text-neutral w-2/5 h-12 self-end"
-          func={() => fetchNext()}
+          func={() => fetchDone(isLast)}
         />
       </>
     </div>

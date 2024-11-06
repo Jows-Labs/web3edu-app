@@ -31,7 +31,6 @@ export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
       )}
 
       <TaskList trailId={trail?.trailid} uid={googleUserInfo?.uid} />
-      <RewardContainer />
     </div>
   );
 };

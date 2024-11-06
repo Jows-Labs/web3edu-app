@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useParams, useRouter } from "next/navigation";
 import { MotionDiv } from "../ui/MotionDiv";
 import { FaCircleCheck } from "react-icons/fa6";
+import { useEffect } from "react";
 
 export const TaskUnits = ({ text, id, trailId, done }: TaskUnitsProps) => {
   const router = useRouter();

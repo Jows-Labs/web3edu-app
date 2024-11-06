@@ -9,6 +9,8 @@ interface ContentState {
   fetchTrailsList: () => void;
   fetchTrail: (trailIdRt: string) => Object;
   fetchTrailSections: (trailIdRt: string, uid: string) => Object;
+  rewardContainerVisibility: any;
+  handleRewardContainer: () => void;
   fetchSectionContent: (
     trailId: string,
     sectionId: string,
@@ -24,6 +26,8 @@ const ContentContext = createContext<ContentState>({
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchSectionContent: () => ({}),
+  handleRewardContainer: () => {},
+  rewardContainerVisibility: {},
 });
 
 export const ContentProvider = ({
@@ -33,7 +37,13 @@ export const ContentProvider = ({
 }) => {
   const [trailsList, setTrailsList] = useState<any>([]);
   const [trailSections, setTrailSections] = useState<any[]>([]);
+  const [rewardContainerVisibility, setRewardContainerVisibility] =
+    useState(false);
   const [trail, setTrail] = useState<any>({});
+
+  const handleRewardContainer = async () => {
+    setRewardContainerVisibility(!rewardContainerVisibility);
+  };
 
   const fetchTrailsList = async () => {
     try {
@@ -122,6 +132,8 @@ export const ContentProvider = ({
       value={{
         trail,
         fetchTrailsList,
+        handleRewardContainer,
+        rewardContainerVisibility,
         trailsList,
         fetchTrail,
         fetchTrailSections,

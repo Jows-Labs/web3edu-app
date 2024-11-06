@@ -7,13 +7,15 @@ import { MotionDiv } from "../ui/MotionDiv";
 interface QuizSectionProps {
   options: Array<any>;
   question: string;
-  fetchNext: () => Promise<void>;
+  fetchDone: (param: Boolean) => Promise<void>;
+  isLast: Boolean;
 }
 
 export const RenderQuizV = ({
   options,
   question,
-  fetchNext,
+  fetchDone,
+  isLast,
 }: QuizSectionProps) => {
   const [isCorrect, setIsCorrect] = useState(false);
 
@@ -29,9 +31,10 @@ export const RenderQuizV = ({
         <p className="md:text-lg text-base">{question}</p>
       </div>
       <div className="w-full h-fit p-10 grid md:grid-cols-2 grid-cols-1  justify-center gap-5">
-        {options.map((e) => {
+        {options.map((e, index) => {
           return (
             <MotionDiv
+              key={index}
               func={() => {
                 e.correct === true
                   ? setIsCorrect(!isCorrect)
@@ -60,7 +63,7 @@ export const RenderQuizV = ({
             : "border-2 border-ddblue bg-transparent"
         }`}
         func={() => {
-          isCorrect ? fetchNext() : console.log("Resposta errada");
+          isCorrect ? fetchDone(isLast) : console.log("Resposta errada");
         }}
       />
     </>
