@@ -24,8 +24,8 @@ export const TaskList = ({
 
   return (
     <div className="md:w-2/5 w-full h-full bg-cgray md:rounded-box p-8 md:overflow-y-auto gap-2 flex flex-col justify-start items-start">
-      <>
-        {trailSections.map((section: any, index: any) => (
+      {Object.keys(trailSections).length !== 0 ? (
+        trailSections.map((section: any, index: any) => (
           <TaskUnits
             text={section.title}
             id={section.id}
@@ -33,8 +33,16 @@ export const TaskList = ({
             key={index}
             trailId={trailIdRt}
           />
-        ))}
-      </>
+        ))
+      ) : (
+        <>
+          <div className="skeleton h-32 w-full"></div>
+          <div className="skeleton h-32 w-full"></div>
+          <div className="skeleton h-32 w-full"></div>
+          <div className="skeleton h-32 w-full"></div>
+          <div className="skeleton h-32 w-full"></div>
+        </>
+      )}
     </div>
   );
 };

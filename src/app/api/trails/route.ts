@@ -1,52 +1,35 @@
-import {
-  ADAPTER_EVENTS,
-  CHAIN_NAMESPACES,
-  IProvider,
-  WALLET_ADAPTERS,
-  WEB3AUTH_NETWORK,
-} from "@web3auth/base";
-import { EthereumPrivateKeyProvider } from "@web3auth/ethereum-provider";
-import { Web3AuthNoModal } from "@web3auth/no-modal";
-import {
-  OpenloginAdapter,
-  OpenloginLoginParams,
-} from "@web3auth/openlogin-adapter";
-import { getApp, getApps, initializeApp } from "firebase/app";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  onAuthStateChanged,
-  signInWithPopup,
-  signOut,
-  UserCredential,
-} from "firebase/auth";
-import React, { useEffect, useState } from "react";
-import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
-import Web3 from "web3";
-import { useRouter } from "next/navigation";
-import {
-  addDoc,
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-  initializeFirestore,
-  memoryLocalCache,
-  setDoc,
-} from "firebase/firestore";
-
+import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
+    const uid = req.nextUrl.searchParams.get("uid");
+
+    if (!uid) {
+      return new NextResponse("UID do usuário é obrigatório", { status: 400 });
+    }
+
+    const userDocRef = doc(db, "users", uid);
+    const userDocSnap = await getDoc(userDocRef);
+
+    if (!userDocSnap.exists()) {
+      return new NextResponse("Usuário não encontrado", { status: 404 });
+    }
+
+    const userTrails = userDocSnap.data()?.trails || [];
+
     const docsRef = collection(db, "trails");
     const querySnapshot = await getDocs(docsRef);
 
     const trails: any = [];
 
     querySnapshot.forEach((trail) => {
+      const userTrail = userTrails.find(
+        (userTrail: any) => userTrail.trailId === trail.id
+      );
+      const percentage = userTrail?.percentage || 0;
+
       trails.push({
         id: trail.id,
         banner: trail.data().banner,
@@ -54,6 +37,7 @@ export const GET = async () => {
         estimatedTime: trail.data().estimatedTime,
         name: trail.data().name,
         resumedDescription: trail.data().resumedDescription,
+        percentage: percentage,
       });
     });
 

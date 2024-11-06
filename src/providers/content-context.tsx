@@ -6,7 +6,7 @@ interface ContentState {
   trailsList: any;
   trail: any;
   trailSections: any;
-  fetchTrailsList: () => void;
+  fetchTrailsList: (uid: string) => void;
   fetchTrail: (trailIdRt: string) => Object;
   fetchTrailSections: (trailIdRt: string, uid: string) => Object;
   rewardContainerVisibility: any;
@@ -45,9 +45,9 @@ export const ContentProvider = ({
     setRewardContainerVisibility(!rewardContainerVisibility);
   };
 
-  const fetchTrailsList = async () => {
+  const fetchTrailsList = async (uid: string) => {
     try {
-      const response = await fetch("/api/trails", {
+      const response = await fetch(`/api/trails?uid=${uid}`, {
         method: "GET",
       });
       const data = await response.json();

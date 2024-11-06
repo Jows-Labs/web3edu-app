@@ -10,7 +10,7 @@ export const TaskUnits = ({ text, id, trailId, done }: TaskUnitsProps) => {
 
   return (
     <MotionDiv
-      className={`w-full min-h-20 h-20 rounded-lg flex items-center justify-between bg-ccgray rounded-box shadow-lg px-6 text-neutral font-bold cursor-pointer transition-[border] duration-1000  ${
+      className={`w-full min-h-20 h-20 rounded-lg flex gap-4 outline-none items-center justify-between bg-ccgray rounded-box shadow-lg px-6 text-neutral font-bold cursor-pointer transition-[border] duration-1000  ${
         done === true
           ? "border-green border shadow-green"
           : sectionId === id
@@ -24,7 +24,7 @@ export const TaskUnits = ({ text, id, trailId, done }: TaskUnitsProps) => {
       func={() => router.push(`/learn/${trailId}/${id}`)}
     >
       <p>{text}</p>
-      {done === true && <FaCircleCheck className="h-6 w-auto text-green" />}
+      {done === true && <FaCircleCheck className="h-auto min-w-6 text-green" />}
     </MotionDiv>
   );
 };

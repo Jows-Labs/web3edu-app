@@ -36,7 +36,9 @@ export const TrailCards = ({
             <h2 className="card-title text-dgray w-[90%]">{title}</h2>
             <CiStar className="min-h-5 min-w-5 text-ddblue top-1 right-0 absolute" />
           </div>
-          <p className="text-left text-dgray flex items-start">{description}</p>
+          <p className="text-justify text-sm text-dgray flex items-start">
+            {description}
+          </p>
         </div>
       </div>
     </MotionDiv>
