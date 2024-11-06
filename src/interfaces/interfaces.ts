@@ -56,6 +56,7 @@ interface TrailCardHomeProps {
   Icon?: React.ComponentType<{ className: string }> | string;
   text: string;
   progress: number;
+  trailId: string;
 }
 
 interface TrailSectionData<T> {

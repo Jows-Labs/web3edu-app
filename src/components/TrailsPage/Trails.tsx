@@ -9,14 +9,17 @@ import { TrailCards } from "./TrailContainer";
 import { SearchItem } from "./SearchItem";
 import { useContent } from "@/providers/content-context";
 import { useEffect } from "react";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 
 export const Trails = () => {
   const { fetchTrailsList, trailsList } = useContent();
+  const { googleUserInfo } = useWeb3AuthContext();
+
   useEffect(() => {
-    if (trailsList.length <= 0) {
-      fetchTrailsList();
+    if (trailsList.length <= 0 && Object.keys(googleUserInfo).length === 0) {
+      fetchTrailsList(googleUserInfo?.uid);
     }
-  });
+  }, [googleUserInfo]);
 
   useEffect(() => {
     console.log(trailsList);

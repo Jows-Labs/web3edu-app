@@ -25,6 +25,7 @@
     "react-iframe": "^1.8.5",
     "react-imask": "^7.6.1",
     "sharp": "^0.33.5",
+    "react-toastify": "^10.0.6",
     "swr": "^2.2.5",
     "viem": "^2.21.6",
     "web3": "^4.12.1"
