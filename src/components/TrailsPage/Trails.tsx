@@ -16,7 +16,7 @@ export const Trails = () => {
   const { googleUserInfo } = useWeb3AuthContext();
 
   useEffect(() => {
-    if (trailsList.length <= 0 && Object.keys(googleUserInfo).length === 0) {
+    if (trailsList.length <= 0 && googleUserInfo !== null) {
       fetchTrailsList(googleUserInfo?.uid);
     }
   }, [googleUserInfo]);
