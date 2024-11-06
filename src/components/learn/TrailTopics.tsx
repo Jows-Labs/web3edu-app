@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect } from "react";
 import { FaCheck } from "react-icons/fa";
 
@@ -13,9 +11,9 @@ export const TrailTopics = ({ topics }: { topics: Array<string> }) => {
           </p>
           <div className="gap-2 flex flex-col w-full h-full justify-start items-start">
             <>
-              {topics?.map((e) => {
+              {topics?.map((e, index) => {
                 return (
-                  <div className="flex gap-3 items-center w-full">
+                  <div key={index} className="flex gap-3 items-center w-full">
                     <FaCheck className="md:h-5 min-w-6 h-auto" />
                     <p className="w-fit">{e}</p>
                   </div>

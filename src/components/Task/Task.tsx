@@ -1,4 +1,4 @@
-import { use, useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { TaskList } from "../learn/TaskList";
 import { body } from "@/lib/constants/content";
 import { MotionButton } from "../ui/Button";
@@ -20,24 +20,22 @@ export const Task = ({
   const router = useRouter();
 
   const [type, setType] = useState("text");
-  const { fetchSectionContent, fetchTrailSections, handleRewardContainer } =
-    useContent();
+  const { fetchSectionContent, fetchTrailSections, handleRewardContainer } = useContent();
   const [section, setSection] = useState<any>({});
   const { googleUserInfo } = useWeb3AuthContext();
 
-  if (!googleUserInfo || !trailId) {
-    return <div>Carregando...</div>;
-  }
-
-  const fetchData = async () => {
-    const sectionData = await fetchSectionContent(
-      trailId,
-      sectionId,
-      googleUserInfo?.uid
-    );
+  // Função fetchData definida como useCallback para memorizar a função
+  const fetchData = useCallback(async () => {
+    const sectionData = await fetchSectionContent(trailId, sectionId, googleUserInfo?.uid);
     setSection(sectionData);
     console.log(sectionData);
-  };
+  }, [trailId, sectionId, googleUserInfo, fetchSectionContent]);
+
+  useEffect(() => {
+    if (googleUserInfo && trailId && Object.keys(section).length === 0) {
+      fetchData();
+    }
+  }, [googleUserInfo, trailId, section, fetchData]);
 
   const fetchDone = async (isLast: Boolean) => {
     try {
@@ -54,7 +52,7 @@ export const Task = ({
       });
       if (response.ok) {
         fetchTrailSections(trailId, googleUserInfo?.uid);
-        if (isLast === true) {
+        if (isLast) {
           handleRewardContainer();
         }
       }
@@ -65,11 +63,10 @@ export const Task = ({
     }
   };
 
-  useEffect(() => {
-    if (Object.keys(section).length === 0) {
-      fetchData();
-    }
-  }, [trailId, fetchSectionContent]);
+  if (!googleUserInfo || !trailId) {
+    return <div>Carregando...</div>;
+  }
+
   return (
     <div className="md:w-3/5 w-full h-full flex flex-col gap-3">
       <p className="text-blue font-extrabold md:text-3xl text-2xl md:text-start text-center h-[6%] px-2">

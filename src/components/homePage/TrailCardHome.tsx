@@ -9,7 +9,7 @@ export const TrailCardHome = ({ text, progress, Icon }: TrailCardHomeProps) => {
       {progress ? (
         <div
           className="radial-progress text-ddblue"
-          style={{ "--value": `${progress}`, "--size": "4rem" }}
+          style={{ "--value": `${progress}`, "--size": "4rem" } as React.CSSProperties}
           role="progressbar"
         >
           {progress}%
