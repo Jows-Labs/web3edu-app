@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MotionButton } from "../ui/Button";
 
 interface VideoTaskProps {
   fetchNext: () => Promise<void>;

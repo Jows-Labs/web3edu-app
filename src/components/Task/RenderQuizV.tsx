@@ -33,7 +33,9 @@ export const RenderQuizV = ({
           return (
             <MotionDiv
               func={() => {
-                e.correct === true ? setIsCorrect(!isCorrect) : null;
+                e.correct === true
+                  ? setIsCorrect(!isCorrect)
+                  : setIsCorrect(false);
               }}
               className={`w-full h-24 justify-center border border-dgray flex flex-col p-5 shadow-lg rounded-box cursor-pointer ${
                 isCorrect === true && e.correct === true
@@ -53,7 +55,9 @@ export const RenderQuizV = ({
         label={isCorrect ? "Marcar como concluído" : "Aguardando resposta"}
         type="button"
         className={`text-neutral w-2/5 h-12 self-end ${
-          isCorrect === true ? "bg-green" : "bg-cyellow"
+          isCorrect === true
+            ? "bg-green"
+            : "border-2 border-ddblue bg-transparent"
         }`}
         func={() => {
           isCorrect ? fetchNext() : console.log("Resposta errada");
