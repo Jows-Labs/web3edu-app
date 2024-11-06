@@ -19,6 +19,7 @@ export const TrailCardHome = ({
         <p className="text-md font-semibold">{text}</p>
       </div>
 
+
       <div
         className="radial-progress text-ddblue"
         style={
