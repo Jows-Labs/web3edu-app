@@ -4,26 +4,32 @@ import { useEffect, useState } from "react";
 import { TrailContainer } from "./TrailContainer";
 import { TaskList } from "./TaskList";
 import { useContent } from "@/providers/content-context";
+import { Task } from "../Task/Task";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 
-export const Learn = ({ trailId }: { trailId: string }) => {
-  const { fetchTrail } = useContent();
-  const [trail, setTrail] = useState<any>({});
+export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
+  const { googleUserInfo } = useWeb3AuthContext();
 
-  const fetchData = async () => {
-    const trailData = await fetchTrail(trailId);
-    console.log(trailData);
-    setTrail(trailData);
-  };
+  const { fetchTrail, trail } = useContent();
 
   useEffect(() => {
     if (Object.keys(trail).length === 0) {
-      fetchData();
+      fetchTrail(trailIdRt);
     }
-  }, [trailId, fetchTrail]);
+  }, [trail, trailIdRt]);
+
+  if (!googleUserInfo || !trailIdRt || Object.keys(trail).length === 0) {
+    return <div>Carregando...</div>;
+  }
   return (
     <div className="md:h-full w-full justify-center items-center flex flex-col md:flex-row sm:px-10 sm:pb-6 md:gap-10 ">
-      <TrailContainer trail={trail} />
-      <TaskList trailId={trailId} />
+      {sectionId === "trail" ? (
+        <TrailContainer trail={trail} />
+      ) : (
+        <Task sectionId={sectionId} trailId={trail?.trailId} />
+      )}
+
+      <TaskList trailId={trail?.trailid} uid={googleUserInfo?.uid} />
     </div>
   );
 };

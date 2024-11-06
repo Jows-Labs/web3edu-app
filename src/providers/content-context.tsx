@@ -4,16 +4,26 @@ import React, { createContext, useState, useContext } from "react";
 
 interface ContentState {
   trailsList: any;
+  trail: any;
+  trailSections: any;
   fetchTrailsList: () => void;
-  fetchTrail: (trailId: string) => Object;
-  fetchTrailSections: (trailId: string) => Object;
+  fetchTrail: (trailIdRt: string) => Object;
+  fetchTrailSections: (trailIdRt: string, uid: string) => Object;
+  fetchSectionContent: (
+    trailId: string,
+    sectionId: string,
+    uid: string
+  ) => Object;
 }
 
 const ContentContext = createContext<ContentState>({
+  trail: {},
   trailsList: [],
+  trailSections: [],
   fetchTrailsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
+  fetchSectionContent: () => ({}),
 });
 
 export const ContentProvider = ({
@@ -22,6 +32,8 @@ export const ContentProvider = ({
   children: React.ReactNode;
 }) => {
   const [trailsList, setTrailsList] = useState<any>([]);
+  const [trailSections, setTrailSections] = useState<any[]>([]);
+  const [trail, setTrail] = useState<any>({});
 
   const fetchTrailsList = async () => {
     try {
@@ -29,16 +41,15 @@ export const ContentProvider = ({
         method: "GET",
       });
       const data = await response.json();
-      console.log(data);
       setTrailsList(data.trails);
     } catch (error: any) {
       console.log(error);
     }
   };
 
-  const fetchTrail = async (trailId: string) => {
+  const fetchTrail = async (trailIdRt: string) => {
     try {
-      const response = await fetch(`/api/trail?trailId=${trailId}`, {
+      const response = await fetch(`/api/trail?trailId=${trailIdRt}`, {
         method: "GET",
       });
 
@@ -49,18 +60,21 @@ export const ContentProvider = ({
       }
 
       const data = await response.json();
-      return data;
+      setTrail(data);
     } catch (error: any) {
       console.error("Erro na requisição fetchTrail:", error);
       throw error;
     }
   };
 
-  const fetchTrailSections = async (trailId: string) => {
+  const fetchTrailSections = async (trailIdRt: string, uid: string) => {
     try {
-      const response = await fetch(`/api/trail/contents?trailId=${trailId}`, {
-        method: "GET",
-      });
+      const response = await fetch(
+        `/api/trail/contents?trailId=${trailIdRt}&uid=${uid}`,
+        {
+          method: "GET",
+        }
+      );
       if (!response.ok) {
         const errorData = await response.json();
         const errorMessage =
@@ -69,15 +83,51 @@ export const ContentProvider = ({
       }
 
       const data = await response.json();
-      return data;
+      setTrailSections(data);
     } catch (error: any) {
       console.error("Erro na requisição fetchTrailSections:", error);
       throw error;
     }
   };
+
+  const fetchSectionContent = async (
+    trailId: string,
+    sectionId: string,
+    uid: string
+  ) => {
+    try {
+      const response = await fetch(
+        `/api/trail/contents/section?trailId=${trailId}&sectionId=${sectionId}&uid=${uid}`,
+        {
+          method: "GET",
+        }
+      );
+      if (!response.ok) {
+        const errorData = await response.json();
+        const errorMessage =
+          errorData.message || "Erro ao buscar conteudo da secao";
+        throw new Error(errorMessage);
+      }
+
+      const data = await response.json();
+      return data;
+    } catch (error: any) {
+      console.error("Erro na requisição fetchSectionContent:", error);
+      throw error;
+    }
+  };
+
   return (
     <ContentContext.Provider
-      value={{ fetchTrailsList, trailsList, fetchTrail, fetchTrailSections }}
+      value={{
+        trail,
+        fetchTrailsList,
+        trailsList,
+        fetchTrail,
+        fetchTrailSections,
+        fetchSectionContent,
+        trailSections,
+      }}
     >
       {children}
     </ContentContext.Provider>

@@ -1,4 +1,7 @@
-import { Task } from "@/components/taskPage/Task";
+"use client";
+
+import { Task } from "@/components/Task/Task";
+import { useParams } from "next/navigation";
 
 export default function taskPage() {
   return (
