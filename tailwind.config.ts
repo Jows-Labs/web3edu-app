@@ -45,6 +45,8 @@ const config: Config = {
       ccgray: "#FFFAFA",
 
       white: "#FFFFFF",
+
+      black: "#000000",
     },
     extend: {
       backgroundImage: {
