@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { MotionButton } from "../ui/Button";
 import { MotionDiv } from "../ui/MotionDiv";
+import { Bounce, toast } from "react-toastify";
 
 interface QuizSectionProps {
   options: Array<any>;
@@ -17,11 +18,45 @@ export const RenderQuizV = ({
   fetchDone,
   isLast,
 }: QuizSectionProps) => {
+  const [selectedOpt, setSelectedOpt] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
 
   useEffect(() => {
-    console.log(isCorrect);
-  }, [isCorrect]);
+    console.log(selectedOpt);
+  }, [selectedOpt]);
+
+  function HandleSubmit() {
+    if (isCorrect) {
+      fetchDone(isLast);
+    } else {
+      if (options[selectedOpt].correct === true) {
+        setIsCorrect(true);
+        toast.success("Resposta correta!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      } else {
+        toast.error("Resposta Incorreta!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+      }
+    }
+  }
   return (
     <>
       <div className="w-full md:h-fit bg-ccblue rounded-box flex flex-col justify-start items-start p-10 gap-5">
@@ -36,17 +71,17 @@ export const RenderQuizV = ({
             <MotionDiv
               key={index}
               func={() => {
-                e.correct === true
-                  ? setIsCorrect(!isCorrect)
-                  : setIsCorrect(false);
+                setSelectedOpt(index);
               }}
-              className={`w-full h-24 justify-center border border-dgray flex flex-col p-5 shadow-lg rounded-box cursor-pointer ${
+              className={`w-full h-24 justify-center bg-white flex flex-col p-5 shadow-lg rounded-box cursor-pointer ${
                 isCorrect === true && e.correct === true
-                  ? "bg-green"
-                  : "bg-neutralbg"
+                  ? "bg-green border-2 border-green shadow-green shadow"
+                  : selectedOpt === index
+                  ? "border-2"
+                  : ""
               }`}
             >
-              <p className="text-dblue md:text-xl text-base w-full text-center h-fit">
+              <p className="text-dblue md:text-lg text-base w-full text-center h-fit">
                 {e.option}
               </p>
             </MotionDiv>
@@ -55,15 +90,13 @@ export const RenderQuizV = ({
       </div>
       <MotionButton
         rightIcon={true}
-        label={isCorrect ? "Marcar como concluído" : "Aguardando resposta"}
+        label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
         type="button"
         className={`text-neutral w-2/5 h-12 self-end ${
-          isCorrect === true
-            ? "bg-green"
-            : "border-2 border-ddblue bg-transparent"
+          isCorrect ? "bg-green" : "bg-transparent border border-2"
         }`}
         func={() => {
-          isCorrect ? fetchDone(isLast) : console.log("Resposta errada");
+          HandleSubmit();
         }}
       />
     </>

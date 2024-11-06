@@ -6,24 +6,39 @@ import { RxCross2 } from "react-icons/rx";
 import { useEffect, useState } from "react";
 import { IconButton } from "../ui/IconButton";
 import { useContent } from "@/providers/content-context";
+import { Bounce, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Router } from "next/router";
+import { useRouter } from "next/navigation";
 
 export const RewardContainer = () => {
+  const router = useRouter();
+
   const { handleRewardContainer, rewardContainerVisibility } = useContent();
   const { googleUserInfo } = useWeb3AuthContext();
 
   const texts = [
     {
-      nome: `${googleUserInfo?.displayName}! 😄`,
-      texto0: "Oi,",
+      texto0: `Olá, ${googleUserInfo?.displayName}!`,
       text1:
-        "Queremos te agradecer de coração por se dedicar ao máximo durante essa jornada! Sabemos que você se esforçou assistindo aos vídeos, lendo artigos e mergulhando em cada curso. E ainda mandou muito bem no quiz final! 🎉👏",
-      text2:
-        "Todo o seu empenho e dedicação não passaram despercebidos. E, para celebrar essa conquista, você receberá um token NFT como recompensa! 💎✨ Esse token simboliza tudo o que você aprendeu e o seu compromisso em cada etapa dessa trilha.",
+        "Todo o seu empenho e dedicação não passaram despercebidos. E, para celebrar essa conquista, você receberá um token NFT como recompensa! Esse token simboliza tudo o que você aprendeu e o seu compromisso em cada etapa dessa trilha.",
     },
   ];
 
   function teste() {
-    console.log("teste");
+    toast.success("NFT Enviado com Sucesso!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+    router.push(`/trailsPage`);
+    handleRewardContainer();
   }
 
   useEffect(() => {
@@ -35,14 +50,12 @@ export const RewardContainer = () => {
         rewardContainerVisibility ? "visible" : "invisible"
       }`}
     >
-      <div className="md:w-96 w-full h-fit flex flex-col rounded-box p-5 gap-3 bg-cgray shadow-lg font-semibold items-start cursor-default">
+      <div className="md:w-96 w-full h-fit flex flex-col rounded-box py-5 px-6 gap-4 bg-cgray shadow-lg font-semibold items-start cursor-default">
         {texts.map((e, index) => {
           return (
-            <div className="flex flex-col" key={index}>
+            <div className="flex flex-col gap-4" key={index}>
               <div className="flex justify-between w-full items-center">
-                <p>
-                  {e.texto0} {e.nome}
-                </p>
+                <p>{e.texto0}</p>
                 <IconButton
                   Icon={RxCross2}
                   func={() => handleRewardContainer()}
@@ -50,7 +63,6 @@ export const RewardContainer = () => {
                 />
               </div>
               <p>{e.text1}</p>
-              <p>{e.text2}</p>
             </div>
           );
         })}
@@ -58,8 +70,8 @@ export const RewardContainer = () => {
           rightIcon={true}
           label="Resgatar Agora!"
           type="button"
-          className="bg-green text-neutral w-full h-12 self-end font-semibold text-xl"
-          func={teste}
+          className="bg-green text-neutral w-full h-12 self-end font-semibold text-md"
+          func={() => teste()}
         />
       </div>
     </div>
