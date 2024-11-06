@@ -6,6 +6,7 @@ import { TaskList } from "./TaskList";
 import { useContent } from "@/providers/content-context";
 import { Task } from "../Task/Task";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { RewardContainer } from "../RewardContainer/RewardContainer";
 
 export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
   const { googleUserInfo } = useWeb3AuthContext();
@@ -30,6 +31,7 @@ export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
       )}
 
       <TaskList trailId={trail?.trailid} uid={googleUserInfo?.uid} />
+      <RewardContainer />
     </div>
   );
 };
