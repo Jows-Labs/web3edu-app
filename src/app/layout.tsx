@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import type { Metadata } from "next";
 import { ContentProvider } from "@/providers/content-context";
+import { RewardContainer } from "@/components/RewardContainer/RewardContainer";
 
 /* export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -66,6 +67,7 @@ export default function RootLayout({
               <section className="flex flex-col h-full w-full overflow-y-auto ">
                 {children}
               </section>
+              <RewardContainer />
             </main>
           </body>
         </html>

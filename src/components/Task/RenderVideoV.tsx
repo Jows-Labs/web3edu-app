@@ -4,10 +4,11 @@ import { useState } from "react";
 import { MotionButton } from "../ui/Button";
 
 interface VideoTaskProps {
-  fetchNext: () => Promise<void>;
+  fetchDone: (param: Boolean) => Promise<void>;
+  isLast: Boolean;
 }
 
-export const RenderVideoV = ({ fetchNext }: VideoTaskProps) => {
+export const RenderVideoV = ({ fetchDone, isLast }: VideoTaskProps) => {
   const [videoLink, setVideoLink] = useState(
     "https://www.youtube.com/embed/MmB9b5njVbA"
   );
@@ -39,7 +40,7 @@ export const RenderVideoV = ({ fetchNext }: VideoTaskProps) => {
         label="Marcar como concluído"
         type="button"
         className="bg-green text-neutral w-2/5 h-12 self-end"
-        func={() => fetchNext()}
+        func={() => fetchDone(isLast)}
       />
     </>
   );

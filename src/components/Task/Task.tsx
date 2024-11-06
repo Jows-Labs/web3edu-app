@@ -20,16 +20,13 @@ export const Task = ({
   const router = useRouter();
 
   const [type, setType] = useState("text");
-  const { fetchSectionContent, fetchTrailSections } = useContent();
+  const { fetchSectionContent, fetchTrailSections, handleRewardContainer } =
+    useContent();
   const [section, setSection] = useState<any>({});
   const { googleUserInfo } = useWeb3AuthContext();
 
   if (!googleUserInfo || !trailId) {
     return <div>Carregando...</div>;
-  }
-
-  function teste() {
-    console.log("teste");
   }
 
   const fetchData = async () => {
@@ -39,9 +36,10 @@ export const Task = ({
       googleUserInfo?.uid
     );
     setSection(sectionData);
+    console.log(sectionData);
   };
 
-  const fetchNext = async () => {
+  const fetchDone = async (isLast: Boolean) => {
     try {
       const response = await fetch("/api/user/section", {
         method: "POST",
@@ -56,6 +54,9 @@ export const Task = ({
       });
       if (response.ok) {
         fetchTrailSections(trailId, googleUserInfo?.uid);
+        if (isLast === true) {
+          handleRewardContainer();
+        }
       }
       const data = await response.json();
       console.log(data);
@@ -83,15 +84,17 @@ export const Task = ({
               subTitle={section.subTitle}
               lists={section.lists}
               image={section.image}
-              fetchNext={fetchNext}
+              fetchDone={fetchDone}
+              isLast={section.isLast}
             />
           ) : section.type === "video" ? (
-            <RenderVideoV fetchNext={fetchNext} />
+            <RenderVideoV fetchDone={fetchDone} isLast={section.isLast} />
           ) : section.type === "quiz" ? (
             <RenderQuizV
               options={section.options}
               question={section.question}
-              fetchNext={fetchNext}
+              fetchDone={fetchDone}
+              isLast={section.isLast}
             />
           ) : (
             <>Loading...</>
