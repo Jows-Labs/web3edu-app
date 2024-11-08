@@ -16,12 +16,11 @@ export const TrailCards = ({
   description,
   id,
 }: TrailsPageProps) => {
-  const { fetchTrail } = useContent();
   const router = useRouter();
 
   return (
     <MotionDiv
-      className="w-full h-80"
+      className="w-full h-80 max-w-80"
       func={() => router.push(`/learn/${id}/trail`)}
     >
       <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
@@ -31,7 +30,7 @@ export const TrailCards = ({
           style={{ objectFit: "cover" }}
           alt=""
         />
-        <div className="card-body p-4 h-full">
+        <div className="card-body p-4 min-h-[60%]">
           <div className="flex flex-row items-center justify-start relative gap-2 w-full">
             <h2 className="card-title text-dgray w-[90%]">{title}</h2>
             <CiStar className="min-h-5 min-w-5 text-ddblue top-1 right-0 absolute" />

@@ -29,7 +29,7 @@ export const Trails = () => {
     <div className="flex w-full h-full justify-start items-center flex-col overflow-y-scroll px-12 mt-4">
       <SearchItem />
 
-      <div className="w-full gap-7 mb-8 mt-5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="w-full gap-7 mb-8 mt-5 flex flex-wrap">
         {trailsList.map((e: any, index: any) => {
           return (
             <TrailCards

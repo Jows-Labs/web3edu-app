@@ -17,7 +17,7 @@ export const Section3 = () => {
   }
   return (
     <div className="h-fit w-full flex md:flex-row flex-col bg-neutralbg md:p-20 p-10 md:gap-20 gap-4">
-      <div className="flex flex-col md:w-2/5 w-full h-4/5 justify-between items-center gap-4">
+      <div className="flex flex-col md:w-2/5 w-full min-h-full justify-between items-center gap-4 py-8">
         <div className="h-full w-full">
           <div className="w-full flex md:flex-row flex-col text-3xl">
             <p className="font-bold whitespace-pre-wrap text-neutral">
@@ -33,7 +33,7 @@ export const Section3 = () => {
             Explore a Plataforma
           </p>
           <p className="whitespace-pre-wrap"> </p>
-          <p className="text-gray">
+          <p className="text-gray w-3/4">
             Veja a seguir as nossas principais funções presentes em nosso site.
             <strong> Aprenda</strong> as principais coisas do mundo do Web3!
           </p>
@@ -46,7 +46,7 @@ export const Section3 = () => {
             func={() =>
               setVideoLink("https://www.youtube.com/embed/MmB9b5njVbA")
             }
-            label="Artigos"
+            label="Recompensas"
             Icon={() => (
               <Image src={UserDocIcon} alt="Trail Icon" className="w-4 h-4" />
             )}

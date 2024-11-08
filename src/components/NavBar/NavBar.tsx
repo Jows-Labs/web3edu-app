@@ -7,9 +7,11 @@ import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useRouter } from "next/navigation";
+import { MotionDiv } from "../ui/MotionDiv";
 
 export default function NavBar({}) {
   const router = useRouter();
+
   const { isLoggedIn } = useWeb3AuthContext();
 
   return (
@@ -50,10 +52,13 @@ export default function NavBar({}) {
             </li>
           </ul>
         </div>
-        <div className="flex flex-row gap-3 pr-2">
+        <MotionDiv
+          className="flex flex-row gap-3 pr-2"
+          func={() => router.push("/")}
+        >
           <Image src={web3EduLogo} alt="" className="w-10" />
           <a className="text-2xl text-neutral font-bold">Web3EduBrasil</a>
-        </div>
+        </MotionDiv>
         <div className="navbar-center hidden lg:flex bg-[#F0F0F0] rounded-box h-12 justify-center flex-col">
           <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-cgray rounded-box">
             <li>

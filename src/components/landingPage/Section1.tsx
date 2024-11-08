@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Section1() {
   return (
     <div className="w-full flex flex-col bg-neutralbg">
-      <div className="bg-ddblue w-full flex items-center justify-center gap-4 py-2 px-4 md:py-4">
+      <div className="bg-ddblue w-full flex items-center justify-center gap-4 py-2 px-4 md:py-4 text-white">
         <p>Conecte-se ao Futuro: Jornada na Era das Blockchains</p>
         <p className="underline cursor-pointer">Veja as novidades</p>
       </div>
@@ -17,7 +17,7 @@ export default function Section1() {
             </span>
           </p>
         </div>
-        <Image alt="" src={web3EduLogo} className="h-44 md:h-64 w-auto" />
+        <Image alt="" src={web3EduLogo} className="h-44 md:h-80 w-auto" />
       </div>
     </div>
   );
