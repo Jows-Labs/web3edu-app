@@ -1,14 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import { TaskList } from "../learn/TaskList";
-import { body } from "@/lib/constants/content";
-import { MotionButton } from "../ui/Button";
 import { RenderQuizV } from "./RenderQuizV";
 import { RenderVideoV } from "./RenderVideoV";
-import { RenderTextV } from "./RenderTextV";
-import { FaArrowRight } from "react-icons/fa";
+import RenderTextV from "./RenderTextV";
 import { useContent } from "@/providers/content-context";
+import { serialize } from "next-mdx-remote/serialize";
+
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
-import { useRouter } from "next/navigation";
 
 export const Task = ({
   sectionId,
@@ -17,16 +14,18 @@ export const Task = ({
   sectionId: string;
   trailId: string;
 }) => {
-  const router = useRouter();
-
-  const [type, setType] = useState("text");
-  const { fetchSectionContent, fetchTrailSections, handleRewardContainer } = useContent();
+  const { fetchSectionContent, fetchTrailSections, handleRewardContainer } =
+    useContent();
   const [section, setSection] = useState<any>({});
   const { googleUserInfo } = useWeb3AuthContext();
 
   // Função fetchData definida como useCallback para memorizar a função
   const fetchData = useCallback(async () => {
-    const sectionData = await fetchSectionContent(trailId, sectionId, googleUserInfo?.uid);
+    const sectionData = await fetchSectionContent(
+      trailId,
+      sectionId,
+      googleUserInfo?.uid
+    );
     setSection(sectionData);
     console.log(sectionData);
   }, [trailId, sectionId, googleUserInfo, fetchSectionContent]);
@@ -36,6 +35,10 @@ export const Task = ({
       fetchData();
     }
   }, [googleUserInfo, trailId, section, fetchData]);
+
+  useEffect(() => {
+    console.log(section);
+  }, [section]);
 
   const fetchDone = async (isLast: Boolean) => {
     try {
@@ -75,15 +78,7 @@ export const Task = ({
       <div className="w-full h-[94%] bg-neutralbg flex md:gap-3 flex md:flex-row flex-col">
         <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col justify-between items-end text-neutral md:overflow-y-auto p-8 font-medium text-medium gap-5">
           {section.type === "text" ? (
-            <RenderTextV
-              bannerTitle={section.bannerTitle}
-              bannerDesc={section.bannerDesc}
-              subTitle={section.subTitle}
-              lists={section.lists}
-              image={section.image}
-              fetchDone={fetchDone}
-              isLast={section.isLast}
-            />
+            <RenderTextV content={section.content} />
           ) : section.type === "video" ? (
             <RenderVideoV fetchDone={fetchDone} isLast={section.isLast} />
           ) : section.type === "quiz" ? (

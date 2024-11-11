@@ -1,6 +1,7 @@
 import MainFunctions from "./mainFunctions";
 import ForumIcon from "../../assets/icons/forum-icon.svg";
 import TrailIcon from "../../assets/icons/trail-icon.svg";
+import GiftIcon from "../../assets/icons/gift.svg";
 import { FaGift } from "react-icons/fa6";
 
 export default function Section2() {
@@ -28,7 +29,7 @@ export default function Section2() {
             content={
               "Texto Sistema de Recompensas Texto Sistema de Recompensas Texto Sistema de Recompensas Texto Sistema de Recompensas"
             }
-            image={ForumIcon}
+            image={GiftIcon}
           />
           <MainFunctions
             functionName={"Fórum Colaborativo"}
