@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { RenderQuizV } from "./RenderQuizV";
 import { RenderVideoV } from "./RenderVideoV";
-import RenderTextV from "./RenderTextV";
+import RenderTextV from "./RenderMdx";
 import { useContent } from "@/providers/content-context";
 import { serialize } from "next-mdx-remote/serialize";
 
@@ -78,7 +78,7 @@ export const Task = ({
       <div className="w-full h-[94%] bg-neutralbg flex md:gap-3 flex md:flex-row flex-col">
         <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col justify-between items-end text-neutral md:overflow-y-auto p-8 font-medium text-medium gap-5">
           {section.type === "text" ? (
-            <RenderTextV content={section.content} />
+            <RenderTextV id={section.id} trailId={trailId} />
           ) : section.type === "video" ? (
             <RenderVideoV fetchDone={fetchDone} isLast={section.isLast} />
           ) : section.type === "quiz" ? (
