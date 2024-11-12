@@ -16,17 +16,20 @@ export const Section3 = () => {
     console.log("teste");
   }
   return (
-    <div className="h-[80vh] w-full flex bg-neutralbg p-20 justify-between">
-      <div className="flex flex-col w-2/5 h-4/5 justify-between items-center">
+    <div className="h-fit w-full flex md:flex-row flex-col bg-neutralbg md:p-20 p-10 md:gap-20 gap-4">
+      <div className="flex flex-col md:w-2/5 w-full h-4/5 justify-between items-center gap-4">
         <div className="h-full w-full">
-          <div className="w-full flex">
+          <div className="w-full flex md:flex-row flex-col text-3xl">
             <p className="font-bold whitespace-pre-wrap text-neutral">
-              Acessando o Futuro com a{" "}
+              Acessando o Futuro <br></br>com a
+              <span className="font-bold text-cgreen w-fit">
+                {" "}
+                Web3EduBrasil
+              </span>
             </p>
-            <p className="font-bold text-cgreen"> Web3EduBrasil</p>
           </div>
           <p className="whitespace-pre-wrap"> </p>
-          <p className="font-bold text-4xl text-neutral">
+          <p className="font-bold md:text-4xl text-3xl text-neutral">
             Explore a Plataforma
           </p>
           <p className="whitespace-pre-wrap"> </p>
@@ -72,12 +75,12 @@ export const Section3 = () => {
           />
         </div>
       </div>
-      <div className="flex flex-col w-2/4 h-4/5 justify-between items-center">
+      <div className="flex flex-col md:w-2/4 w-full min-h-full justify-between items-center">
         <iframe
           src={videoLink}
           frameBorder="0"
           allowFullScreen
-          className="aspect-video h-full rounded-box"
+          className="aspect-video md:h-full w-full h-auto rounded-box"
         />
       </div>
     </div>

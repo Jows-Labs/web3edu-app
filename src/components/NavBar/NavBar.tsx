@@ -6,15 +6,17 @@ import { useState } from "react";
 import { UserMenu } from "./UserMenu";
 import { LoginButton } from "./LoginButton";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { useRouter } from "next/navigation";
 
 export default function NavBar({}) {
-  const { login, WalletUi, logout, isLoggedIn } = useWeb3AuthContext();
+  const router = useRouter();
+  const { isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="navbar bg-neutralbg justify-between sm:px-10 ">
-      <div className="navbar-start gap-3">
+    <div className="flex w-full bg-neutralbg justify-between sm:px-10 h-fit p-[0.5rem]">
+      <div className="flex gap-3 items-center">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+          <div tabIndex={0} className="lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5 text-base-content"
@@ -32,39 +34,39 @@ export default function NavBar({}) {
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-neutral rounded-box z-[1] mt-3 w-52 p-2 shadow py-2 text-base-content "
+            className="menu menu-sm dropdown-content bg-neutralbg rounded-box z-[11] mt-3 w-52 p-2 shadow-lg py-2 text-neutral "
           >
             <li>
-              <a>Home</a>
+              <a href="/homePage">Home</a>
             </li>
             <li>
-              <a onClick={WalletUi}>Fórum</a>
+              <a>Fórum</a>
             </li>
             <li>
-              <a onClick={logout}>Artigos</a>
+              <a>Artigos</a>
             </li>
             <li>
-              <a>Trilhas</a>
+              <a onClick={() => router.push("/trailsPage")}>Trilhas</a>
             </li>
           </ul>
         </div>
-        <div className="flex flex-row gap-3  pr-2">
+        <div className="flex flex-row gap-3 pr-2">
           <Image src={web3EduLogo} alt="" className="w-10" />
           <a className="text-2xl text-neutral font-bold">Web3EduBrasil</a>
         </div>
         <div className="navbar-center hidden lg:flex bg-[#F0F0F0] rounded-box h-12 justify-center flex-col">
           <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-cgray rounded-box">
             <li>
-              <a onClick={login}>Home</a>
+              <a href="/homePage">Home</a>
             </li>
             <li>
-              <a onClick={WalletUi}>Fórum</a>
+              <a>Fórum</a>
             </li>
             <li>
-              <a onClick={logout}>Artigos</a>
+              <a>Artigos</a>
             </li>
             <li>
-              <a>Trilhas</a>
+              <a onClick={() => router.push("/trailsPage")}>Trilhas</a>
             </li>
           </ul>
         </div>

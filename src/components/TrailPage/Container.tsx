@@ -1,7 +1,6 @@
 "use client";
 import { useState } from "react";
-import { CgDanger } from "react-icons/cg";
-import { AiOutlineGlobal } from "react-icons/ai";
+import { Above } from "./Above";
 
 export const Container = () => {
   const [videoLink, setVideoLink] = useState(
@@ -9,57 +8,29 @@ export const Container = () => {
   );
 
   return (
-    <div className="h-[60vh] w-full bg-neutral flex py-3 justify-center items-center px-20 gap-10">
-      <div className="w-full h-full justify-start flex flex-col gap-3 ">
-        <div className="breadcrumbs text-sm w-full font-bold text-cblue">
-          <ul>
-            <li>
-              <a>Desenvolvimento</a>
-            </li>
-            <li>
-              <a>Linguagem de Programação</a>
-            </li>
-            <li>Java</li>
-          </ul>
-        </div>
-        <div className="text-white w-full flex flex-col gap-3">
-          <p className="text-4xl font-bold">
-            Java COMPLETO Programação Orientada a Objetos + Projetos
-          </p>
-          <p className="text-lg">
-            Curso mais didático e completo de Java e OO, UML, JDBC, JavaFX,
-            Spring Boot, JPA, Hibernate, MySQL, MongoDB e muito mais
-          </p>
-        </div>
-        <div className="flex items-center gap-1">
-          <div className="badge badge-outline rounded-lg">tafareidtrash</div>
-          <div className="badge badge-outline rounded-lg">
-            niggakonowsnothing
-          </div>
-          <div className="badge badge-outline rounded-lg">someoneisajack</div>
-        </div>
-        <div className="text-white py-10">
-          <div>
-            <p>
-              Criado por <a className="link link-primary">Kiwi</a>
-            </p>
-          </div>
-          <div className="text-white flex items-center gap-1 text-sm">
-            <CgDanger />
-            <p>Última atualização em 06/2024</p>
-            <AiOutlineGlobal />
-            <p> Português</p>
-          </div>
-        </div>
-      </div>
-      <div className="flex flex-col w-2/4 h-full justify-between items-center">
+    <div className="md:w-3/5 w-full md:h-full flex flex-col justify-start items-start text-neutral bg-cgray md:rounded-box p-10 md:gap-3 gap-6 md:overflow-y-auto">
+      <div className="flex flex-col w-full h-full justify-center items-center">
         <iframe
           src={videoLink}
           frameBorder="0"
           allowFullScreen
-          className="aspect-video h-full rounded-box"
+          className="aspect-video w-full h-auto rounded-box"
         />
-      </div>
+      </div> 
+      <p className="font-extrabold text-2xl">
+        Título da trilha Web3 Tafareid's House Work
+      </p>
+      <p className="fonte-medium text-justify">
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla Descrição da trilha bla bla bla
+        Descrição da trilha bla bla bla
+      </p>
+      <Above />
     </div>
   );
 };
