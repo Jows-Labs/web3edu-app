@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TrailCardLanding } from "./TrailCardLanding";
+import { TrailCardsLanding } from "./TrailCardLanding";
 export const Section4 = () => {
   return (
     <div className="w-full h-fit flex bg-neutralbg md:px-20 px-10 py-10 flex-col justify-center items-center ">
@@ -16,7 +16,7 @@ export const Section4 = () => {
         </p>
       </div>
 
-      <TrailCardLanding />
+      <TrailCardsLanding />
     </div>
   );
 };

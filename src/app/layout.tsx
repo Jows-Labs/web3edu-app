@@ -3,9 +3,6 @@
 import "../styles/globals.css";
 import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
-import { useState } from "react";
-import { useEffect } from "react";
-import type { Metadata } from "next";
 import { ContentProvider } from "@/providers/content-context";
 import { ToastContainer } from "react-toastify";
 

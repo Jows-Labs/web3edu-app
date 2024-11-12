@@ -21,10 +21,6 @@ export const RenderQuizV = ({
   const [selectedOpt, setSelectedOpt] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  useEffect(() => {
-    console.log(selectedOpt);
-  }, [selectedOpt]);
-
   function HandleSubmit() {
     if (isCorrect) {
       fetchDone(isLast);

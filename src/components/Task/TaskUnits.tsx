@@ -12,15 +12,11 @@ export const TaskUnits = ({ text, id, trailId, done }: TaskUnitsProps) => {
     <MotionDiv
       className={`w-full min-h-20 h-20 rounded-lg flex gap-4 outline-none items-center justify-between bg-ccgray rounded-box shadow-lg px-6 text-neutral font-bold cursor-pointer transition-[border] duration-1000  ${
         done === true
-          ? "border-green border shadow-green"
+          ? "border-green border "
           : sectionId === id
           ? "border-ddblue border-2"
           : ""
-      } ${
-        done === true && sectionId === id
-          ? "border-green border-2 shadow-green"
-          : ""
-      }`}
+      } ${done === true && sectionId === id ? "border-green border-2" : ""}`}
       func={() => router.push(`/learn/${trailId}/${id}`)}
     >
       <p>{text}</p>
