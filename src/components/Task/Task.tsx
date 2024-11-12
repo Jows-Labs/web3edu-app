@@ -1,8 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { RenderQuizV } from "./Quiz";
-import { RenderVideoV } from "./RenderVideoV";
 import { useContent } from "@/providers/content-context";
-import { serialize } from "next-mdx-remote/serialize";
 
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import MdxSection from "./RenderMdx";
@@ -19,7 +17,6 @@ export const Task = ({
   const [section, setSection] = useState<any>({});
   const { googleUserInfo } = useWeb3AuthContext();
 
-  // Função fetchData definida como useCallback para memorizar a função
   const fetchData = useCallback(async () => {
     const sectionData = await fetchSectionContent(
       trailId,
@@ -67,10 +64,10 @@ export const Task = ({
 
   return (
     <div className="md:w-3/5 w-full h-full flex flex-col gap-2">
-      <p className="text-blue font-extrabold md:text-2xl text-2xl md:text-start text-center flex items-center h-[6%] px-2">
+      <p className="text-blue font-extrabold md:text-2xl text-2xl md:text-start text-left flex items-center md:h-[6%] h-fit px-2">
         {section.title}
       </p>
-      <div className="w-full h-[94%] bg-neutralbg flex md:gap-3 flex md:flex-row flex-col">
+      <div className="w-full md:h-[94%] h-fit bg-neutralbg flex md:gap-3 flex md:flex-row flex-col">
         <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col text-neutral justify-between md:overflow-y-auto p-8 font-medium text-medium gap-5">
           {section.type === "text" ? (
             <MdxSection
