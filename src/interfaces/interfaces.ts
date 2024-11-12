@@ -34,6 +34,16 @@ interface KycIntroProps<T> {
   handleTabClick: (param: string) => T;
 }
 
+interface ObCommu<T> {
+  setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
+  level?: string;
+  handleTabClick: (param: string) => T;
+}
+
+interface ObIntro<T> {
+  handleTabClick: (param: string) => T;
+}
+
 interface HandleScreenProps {
   activeTab: string;
 }

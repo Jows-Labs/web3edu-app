@@ -2,30 +2,30 @@
 
 import { MotionButton } from "../../ui/Button";
 import Image from "next/image";
-import Onboarding1 from "../../../assets/images/Onboarding1.jpg";
+import Onboarding3 from "../../../assets/images/Onboarding3.jpg";
 
 const teste = () => {
   console.log("oie");
 };
 
-export const ObWRContainer = () => {
+export const ObWR2 = () => {
   return (
-    <div className="md:w-3/6 w-full h-full flex flex-col items-center justify-center p-10 gap-10">
+    <div className="md:w-3/6 w-full h-full flex flex-col items-center justify-center p-10 gap-5">
       <progress
         className="progress progress-success w-56"
-        value="20"
+        value="60"
         max="100"
       ></progress>
       <p
         style={{
-          backgroundImage: `url(${Onboarding1.src})`,
+          backgroundImage: `url(${Onboarding3.src})`,
           backgroundSize: "cover",
-          backgroundPosition: "top",
+          backgroundPosition: "center",
         }}
         className="md:w-2/4 w-full md:h-full h-fit  flex items-center justify-center text-4xl font-bold shadow-2xl rounded-box"
       ></p>
       <div className="w-fit h-fit rounded-box bg-cgray flex font-semibold text-xl p-7">
-        <p>Entre na carteira localizada no canto superior direito</p>
+        <p>Vá até a sessão “Em Geral”</p>
       </div>
       <MotionButton
         label="Proximo Passo"

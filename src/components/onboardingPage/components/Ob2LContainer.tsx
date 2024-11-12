@@ -1,6 +1,6 @@
 "use client";
 
-import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
+import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
 import { MotionButton } from "../../ui/Button";
 
@@ -18,9 +18,9 @@ export const Ob2LContainer = () => {
             Particide das nossas comunidades
           </p>
           <p className="text-2xl">
-            Nossa plataforma oferece tanana tanana tanana <br />
-            tanana tanana tanana tananat aananany <br />
-            annyayyann ayananna
+            Junte-se às nossas comunidades Web3 e fique por dentro de tudo!
+            Siga-nos nas redes sociais, compartilhe experiências e aprenda junto
+            com a gente. Não perca as novidades!
           </p>
         </div>
         <MotionButton
