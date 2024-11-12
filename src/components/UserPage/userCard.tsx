@@ -32,7 +32,7 @@ export const UserSection = () => {
         <div className="flex">
           <p className="text-dgray text-2xl font-medium">Dados Pessoais</p>
         </div>
-        <div className="flex-row flex justify-between">
+        <div className="flex-row flex ">
           <div className="flex flex-row justify-center items-center">
             <Image src={UserImage} alt="" className=" w-20 h-20 rounded-full" />
             <div className="flex flex-col items-left ml-4">
@@ -46,7 +46,7 @@ export const UserSection = () => {
             Icon={MdEdit}
             label="Editar Imagem"
             func={() => teste}
-            className="bg-green text-ddblue h-9 items-center w-40"
+            className="bg-green text-ddblue h-9 items-center w-40 ml-8"
             type="button"
           />
         </div>
