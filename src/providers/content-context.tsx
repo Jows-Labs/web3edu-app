@@ -21,7 +21,7 @@ interface ContentState {
 const ContentContext = createContext<ContentState>({
   trail: {},
   trailsList: [],
-  trailSections: [],
+  trailSections: {},
   fetchTrailsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
@@ -94,6 +94,7 @@ export const ContentProvider = ({
 
       const data = await response.json();
       setTrailSections(data);
+      console.log(uid);
     } catch (error: any) {
       console.error("Erro na requisição fetchTrailSections:", error);
       throw error;

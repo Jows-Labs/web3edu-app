@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from "react";
-import { RenderQuizV } from "./RenderQuizV";
+import { RenderQuizV } from "./Quiz";
 import { RenderVideoV } from "./RenderVideoV";
-import RenderTextV from "./RenderMdx";
 import { useContent } from "@/providers/content-context";
 import { serialize } from "next-mdx-remote/serialize";
 
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import MdxSection from "./RenderMdx";
 
 export const Task = ({
   sectionId,
@@ -27,7 +27,6 @@ export const Task = ({
       googleUserInfo?.uid
     );
     setSection(sectionData);
-    console.log(sectionData);
   }, [trailId, sectionId, googleUserInfo, fetchSectionContent]);
 
   useEffect(() => {
@@ -35,10 +34,6 @@ export const Task = ({
       fetchData();
     }
   }, [googleUserInfo, trailId, section, fetchData]);
-
-  useEffect(() => {
-    console.log(section);
-  }, [section]);
 
   const fetchDone = async (isLast: Boolean) => {
     try {
@@ -72,15 +67,18 @@ export const Task = ({
 
   return (
     <div className="md:w-3/5 w-full h-full flex flex-col gap-2">
-      <p className="text-blue font-extrabold md:text-2xl text-2xl md:text-start text-center h-[6%] px-2">
+      <p className="text-blue font-extrabold md:text-2xl text-2xl md:text-start text-center flex items-center h-[6%] px-2">
         {section.title}
       </p>
       <div className="w-full h-[94%] bg-neutralbg flex md:gap-3 flex md:flex-row flex-col">
-        <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col justify-between items-end text-neutral md:overflow-y-auto p-8 font-medium text-medium gap-5">
+        <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col text-neutral justify-between md:overflow-y-auto p-8 font-medium text-medium gap-5">
           {section.type === "text" ? (
-            <RenderTextV id={section.id} trailId={trailId} />
-          ) : section.type === "video" ? (
-            <RenderVideoV fetchDone={fetchDone} isLast={section.isLast} />
+            <MdxSection
+              fetchDone={fetchDone}
+              id={section.id}
+              trailId={trailId}
+              isLast={section.isLast}
+            />
           ) : section.type === "quiz" ? (
             <RenderQuizV
               options={section.options}

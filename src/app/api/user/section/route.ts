@@ -37,12 +37,20 @@ export const POST = async (req: NextRequest) => {
         (trail: any) => trail.trailId === trailId
       );
 
-      let doneSections = [sectionId];
+      let doneSections = [];
       if (existingTrailIndex !== -1) {
-        doneSections = [
-          ...userTrails[existingTrailIndex].doneSections,
-          sectionId,
-        ];
+        // Verifica se a seção já existe em doneSections
+        if (!userTrails[existingTrailIndex].doneSections.includes(sectionId)) {
+          doneSections = [
+            ...userTrails[existingTrailIndex].doneSections,
+            sectionId,
+          ];
+        } else {
+          // Se a seção já existe, mantém o doneSections original
+          doneSections = userTrails[existingTrailIndex].doneSections;
+        }
+      } else {
+        doneSections = [sectionId];
       }
 
       const completedSectionsCount = doneSections.filter((section) =>
