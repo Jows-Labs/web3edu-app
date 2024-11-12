@@ -5,34 +5,42 @@ import Image from "next/image";
 import { CiStar } from "react-icons/ci";
 import { SiBitcoinsv } from "react-icons/si";
 import Image1 from "../../assets/images/criptoTest.jpg";
+import { useContent } from "@/providers/content-context";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { MotionDiv } from "../ui/MotionDiv";
 
 export const TrailCards = ({
   image,
   title,
-  icon,
   description,
+  id,
 }: TrailsPageProps) => {
+  const { fetchTrail } = useContent();
+  const router = useRouter();
+
   return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.95 }}
+    <MotionDiv
       className="w-full h-80"
+      func={() => router.push(`/learn/${id}/trail`)}
     >
-      <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray">
-        <figure>{image}</figure>
+      <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
+        <img
+          src={image}
+          className="min-h-[40%]"
+          style={{ objectFit: "cover" }}
+          alt=""
+        />
         <div className="card-body p-4 h-full">
-          <div className="flex flex-row items-center gap-2 w-full">
-            <h2 className="card-title text-dgray">{title}</h2>
-            {icon}
+          <div className="flex flex-row items-center justify-start relative gap-2 w-full">
+            <h2 className="card-title text-dgray w-[90%]">{title}</h2>
+            <CiStar className="min-h-5 min-w-5 text-ddblue top-1 right-0 absolute" />
           </div>
-          <p className="text-left text-dgray flex items-center">
+          <p className="text-justify text-sm text-dgray flex items-start">
             {description}
           </p>
-          <div className="card-actions justify-end">
-            <CiStar className="h-5 w-5 text-ddblue" />
-          </div>
         </div>
       </div>
-    </motion.button>
+    </MotionDiv>
   );
 };

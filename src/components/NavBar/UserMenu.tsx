@@ -10,17 +10,15 @@ export const UserMenu = () => {
       <div
         tabIndex={0}
         role="button"
-        className="btn btn-ghost btn-circle avatar"
+        className="btn btn-ghost btn-circle avatar flex items-center justify-center"
         onClick={WalletUi}
       >
-        <div className="w-10 rounded-full">
-          {isLoggedIn ? (
-            <IoWalletOutline
-              className="w-9 h-9 black content-center"
-              style={{ color: "black" }}
-            />
-          ) : null}
-        </div>
+        {isLoggedIn ? (
+          <IoWalletOutline
+            className="w-9 h-9 black content-center"
+            style={{ color: "black" }}
+          />
+        ) : null}
       </div>
       <div className="dropdown dropdown-end">
         <div

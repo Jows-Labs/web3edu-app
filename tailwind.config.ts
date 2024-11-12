@@ -45,6 +45,8 @@ const config: Config = {
       ccgray: "#FFFAFA",
 
       white: "#FFFFFF",
+
+      black: "#000000",
     },
     extend: {
       backgroundImage: {
@@ -55,49 +57,9 @@ const config: Config = {
     },
   },
   plugins: [require("daisyui")],
-  darkMode: "selector",
-  themes: {
-    "web3edu-dark": {
-      primary: "#21a16b",
-
-      "primary-content": "#000904",
-
-      secondary: "#1a4476",
-
-      "secondary-content": "#ced7e3",
-
-      accent: "#f0bb20",
-
-      "accent-content": "#140d00",
-
-      neutral: "#1a4476",
-
-      "neutral-content": "#ced7e3",
-
-      "base-100": "#000000",
-
-      "base-200": "#282424",
-
-      "base-300": "#282424",
-
-      "base-content": "#bebebe",
-
-      info: "#1a4476",
-
-      "info-content": "#ced7e3",
-
-      success: "#21a16b",
-
-      "success-content": "#000904",
-
-      warning: "#f0bb20",
-
-      "warning-content": "#140d00",
-
-      error: "#ff0000",
-
-      "error-content": "#160000",
-    },
+  daisyui: {
+    themes: ["light"],
   },
+  darkMode: "selector",
 };
 export default config;
