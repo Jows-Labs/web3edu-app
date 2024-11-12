@@ -8,7 +8,7 @@ const teste = () => {
   console.log("oi");
 };
 
-export const ObIntro = ({ handleTabClick }: KycIntroProps<void>) => {
+export const ObIntro = ({ handleTabClick }: OnboardingProps<void>) => {
   return (
     <div className="w-full h-full flex justify-center items-center p-5">
       <div className="w-full h-full flex flex-col justify-center items-center gap-10 text-center">

@@ -34,9 +34,7 @@ interface KycIntroProps<T> {
   handleTabClick: (param: string) => T;
 }
 
-interface ObCommu<T> {
-  setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
-  level?: string;
+interface OnboardingProps<T> {
   handleTabClick: (param: string) => T;
 }
 

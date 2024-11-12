@@ -1,13 +1,11 @@
 "use client";
 
-import { ObWLContainer } from "./components/ObWLContainer";
-import { ObWRContainer } from "./components/ObWRContainer";
+import { ObWalletContainer } from "./components/ObWalletContainer";
 
-export const ObWalletConfig = () => {
+export const ObWalletConfig = ({ handleTabClick }: OnboardingProps<void>) => {
   return (
     <div className="w-full h-full flex md:flex-row flex-col gap-10">
-      <ObWLContainer />
-      <ObWRContainer />
+      <ObWalletContainer />
     </div>
   );
 };
