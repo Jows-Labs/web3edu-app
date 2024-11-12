@@ -9,19 +9,24 @@ import { useContent } from "@/providers/content-context";
 import { Bounce, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Router } from "next/router";
-import { useRouter } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 
 export const RewardContainer = () => {
   const router = useRouter();
 
-  const { handleRewardContainer, rewardContainerVisibility } = useContent();
-  const { googleUserInfo } = useWeb3AuthContext();
+  const {
+    handleRewardContainer,
+    rewardContainerVisibility,
+    fetchTrailAirDrop,
+    trail,
+  } = useContent();
+  const { googleUserInfo, userAccount } = useWeb3AuthContext();
 
   const texts = [
     {
       texto0: `Olá, ${googleUserInfo?.displayName}!`,
       text1:
-        "Todo o seu empenho e dedicação não passaram despercebidos. E, para celebrar essa conquista, você receberá um token NFT como recompensa! Esse token simboliza tudo o que você aprendeu e o seu compromisso em cada etapa dessa trilha.",
+        "Todo o seu empenho e dedicação não passaram despercebidos. Para celebrar essa conquista, você receberá um token NFT como recompensa! Esse token simboliza tudo o que você aprendeu e o seu compromisso em cada etapa dessa trilha.",
     },
   ];
 
@@ -37,13 +42,20 @@ export const RewardContainer = () => {
       theme: "light",
       transition: Bounce,
     });
-    router.push(`/trailsPage`);
+    fetchTrailAirDrop(
+      "https://ipfs.io/ipfs/QmZMBnu9vShWJdmxciWg2Ji6di3sKMKvq8cDT7X5uSB6AN",
+      googleUserInfo?.uid,
+      googleUserInfo?.displayName,
+      userAccount[0],
+      trail?.trailId,
+      trail?.name
+    );
     handleRewardContainer();
   }
 
   useEffect(() => {
-    console.log(googleUserInfo);
-  }, [googleUserInfo]);
+    console.log(trail);
+  }, [trail]);
   return (
     <div
       className={`w-full min-h-full bg-black/50 flex justify-center items-center text-neutral absolute z-20 top-0 px-5 md:px-0 ${

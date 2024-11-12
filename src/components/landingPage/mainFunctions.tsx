@@ -11,9 +11,9 @@ function MainFunctions({
   image: any;
 }) {
   return (
-    <MotionDiv className="bg-[#F3F3F3] text-black flex w-80 h-40 rounded-3xl flex shadow-xl">
+    <MotionDiv className="bg-[#F3F3F3] text-black flex min-w-80 h-40 rounded-3xl flex shadow-xl">
       <div className="w-2/5 h-full rounded-l-3xl flex justify-center">
-        <Image src={image} alt="" className="w-20 h-auto" />
+        <Image src={image} alt="" className="w-20 h-auto text-ddblue" />
       </div>
       <div className="w-3/5 h-full bg-[#001D3D] rounded-r-3xl flex justify-center items-center text-center">
         <p className="text-white text-2xl">{functionName}</p>

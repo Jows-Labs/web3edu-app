@@ -67,7 +67,7 @@ export default function MdxSection({
             rightIcon={true}
             label="Marcar como concluído"
             type="button"
-            className="bg-green text-neutral w-2/5 min-h-12 self-end"
+            className="bg-green text-neutral w-fit min-h-12 self-end"
             func={() => fetchDone(isLast)}
           />
         </>
