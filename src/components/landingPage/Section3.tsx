@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import UserDocIcon from "../../assets/icons/user-doc-icon.svg";
+import GiftIcon from "../../assets/icons/gift.svg";
 import ForumIcon from "../../assets/icons/forum-icon.svg";
 import TrailIcon from "../../assets/icons/trail-icon.svg";
 import { MotionButton } from "../ui/Button";
@@ -48,7 +48,7 @@ export const Section3 = () => {
             }
             label="Recompensas"
             Icon={() => (
-              <Image src={UserDocIcon} alt="Trail Icon" className="w-4 h-4" />
+              <Image src={GiftIcon} alt="Trail Icon" className="w-4 h-4" />
             )}
           />
           <MotionButton

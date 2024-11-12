@@ -9,6 +9,14 @@ interface ContentState {
   fetchTrailsList: (uid: string) => void;
   fetchTrail: (trailIdRt: string) => Object;
   fetchTrailSections: (trailIdRt: string, uid: string) => Object;
+  fetchTrailAirDrop: (
+    trailIcon: string,
+    uid: string,
+    userName: string,
+    walletAddress: string,
+    trailId: string,
+    trailName: string
+  ) => Object;
   rewardContainerVisibility: any;
   handleRewardContainer: () => void;
   fetchSectionContent: (
@@ -25,6 +33,7 @@ const ContentContext = createContext<ContentState>({
   fetchTrailsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
+  fetchTrailAirDrop: () => ({}),
   fetchSectionContent: () => ({}),
   handleRewardContainer: () => {},
   rewardContainerVisibility: {},
@@ -94,7 +103,6 @@ export const ContentProvider = ({
 
       const data = await response.json();
       setTrailSections(data);
-      console.log(uid);
     } catch (error: any) {
       console.error("Erro na requisição fetchTrailSections:", error);
       throw error;
@@ -128,6 +136,61 @@ export const ContentProvider = ({
     }
   };
 
+  const fetchTrailAirDrop = async (
+    trailIcon: string,
+    uid: string,
+    userName: string,
+    walletAddress: string,
+    trailId: string,
+    trailName: string
+  ) => {
+    try {
+      const response1 = await fetch(
+        "https://api.pinata.cloud/pinning/pinJSONToIPFS",
+        {
+          method: "POST",
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzYjk4ZDFmMi03YzcxLTQzNDAtOTZiMi03OTE4ZjZjY2QxYTQiLCJlbWFpbCI6InBlZHJvY29lbGhvLm5hc2NpbWVudG9AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiRlJBMSJ9LHsiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiTllDMSJ9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImQwNmM2OGJkODlmZjMyOTI3YTJmIiwic2NvcGVkS2V5U2VjcmV0IjoiMzkzOTI3N2FkNWU0NjdjN2I1ZjQ1ZjIzYzAwNDFhN2I5MDE0MzY2N2YxZjIxN2UzNWE0ZDE5YWIwZWY1YzlkZCIsImV4cCI6MTc2MjkxNTA3Mn0.bKLfcn9AJA7ML1m9MIWySw7JmMGRfYAIAGU_c7oxFP4",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            pinataContent: {
+              image: trailIcon,
+              description: `Este certificado é concedido a ${userName} em reconhecimento por completar com sucesso a trilha de aprendizagem ${trailName}`,
+            },
+          }),
+        }
+      );
+
+      const data = await response1.json();
+      const IpfsHash = data.IpfsHash;
+      console.log(IpfsHash);
+
+      if (IpfsHash !== undefined) {
+        const response2 = await fetch("/api/whitelist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            uid: uid,
+            walletAddress: walletAddress,
+            trailId: trailId,
+            ipfsHash: IpfsHash,
+          }),
+        });
+        const data2 = await response2.json();
+        console.log(data2);
+      } else {
+        console.error("Erro: IpfsHash não definido");
+      }
+    } catch (error: any) {
+      console.error("Erro na requisição fetchTrailAirDrop:", error);
+      throw error;
+    }
+  };
+
   return (
     <ContentContext.Provider
       value={{
@@ -137,6 +200,7 @@ export const ContentProvider = ({
         rewardContainerVisibility,
         trailsList,
         fetchTrail,
+        fetchTrailAirDrop,
         fetchTrailSections,
         fetchSectionContent,
         trailSections,
