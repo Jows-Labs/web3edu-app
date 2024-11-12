@@ -5,6 +5,7 @@ import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
 import { ContentProvider } from "@/providers/content-context";
 import { ToastContainer } from "react-toastify";
+import { RewardContainer } from "@/components/RewardContainer/RewardContainer";
 
 /* export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -68,6 +69,7 @@ export default function RootLayout({
               <section className="flex flex-col h-full w-full overflow-y-auto ">
                 {children}
               </section>
+              <RewardContainer />
               <ToastContainer
                 position="top-right"
                 autoClose={5000}
