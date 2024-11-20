@@ -2,13 +2,13 @@ import { useContent } from "@/providers/content-context";
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-export const SearchItem = () => {
-  const { fetchTrailsList, trailsList } = useContent();
-
-  const [bgnnrChecked, setBgnnrChecked] = useState(false);
-  const [intrmChecked, setIntrmChecked] = useState(false);
-  const [advancedChecked, setAdvancedChecked] = useState(false);
-
+export const TrailsPgTop = ({
+  searchTerm,
+  setSearchTerm,
+}: {
+  searchTerm: string;
+  setSearchTerm: any;
+}) => {
   const filterCategories = [
     {
       text: "Biruleibe",
@@ -17,12 +17,17 @@ export const SearchItem = () => {
   ];
 
   return (
-    <>
-      <div className="flex flex-row w-full  items-center content-center justify-center gap-2">
-        <label className="input input-bordered flex items-center gap-2  w-2/4 bg-white rounded-box">
+    <div className="flex w-full items-center md:flex-row flex-col gap-3">
+      <p className="font-bold lg:text-3xl text-2xl text-center text-nowrap md:order-first order-last">
+        Trilhas de aprendizagem
+      </p>
+      <div className="flex flex-row w-full items-center content-center md:justify-center justify-between gap-2">
+        <label className="input input-bordered flex items-center gap-2 lg:w-2/4 w-full bg-white rounded-box">
           <input
             type="text"
             className="grow bg-cgrey text-dgray text-xs md:text-md"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Pesquise a sua Trilha"
           />
 
@@ -57,6 +62,6 @@ export const SearchItem = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
