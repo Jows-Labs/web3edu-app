@@ -6,6 +6,7 @@ import NavBar from "@/components/NavBar/NavBar";
 import { ContentProvider } from "@/providers/content-context";
 import { ToastContainer } from "react-toastify";
 import { RewardContainer } from "@/components/RewardContainer/RewardContainer";
+import { Lexend_Deca } from "next/font/google";
 
 /* export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -49,6 +50,11 @@ import { RewardContainer } from "@/components/RewardContainer/RewardContainer";
   ],
 }; */
 
+const LexendDeca = Lexend_Deca({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export default function RootLayout({
   children,
 }: {
@@ -60,7 +66,7 @@ export default function RootLayout({
         <html lang="pt-br">
           <head />
 
-          <body>
+          <body className={LexendDeca.className}>
             <main
               className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen overflow-hidden "
               data-theme="light"

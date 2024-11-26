@@ -34,6 +34,14 @@ interface KycIntroProps<T> {
   handleTabClick: (param: string) => T;
 }
 
+interface OnboardingProps<T> {
+  handleTabClick: (param: string) => T;
+}
+
+interface ObIntro<T> {
+  handleTabClick: (param: string) => T;
+}
+
 interface HandleScreenProps {
   activeTab: string;
 }
