@@ -7,7 +7,7 @@ export default function Kyc1({
   setLevel,
   level,
   handleTabClick,
-}: KycProps<void>) {
+}: Kyc1Props<void>) {
   return (
     <div className="flex-col flex w-full h-full justify-between">
       <div className="">
@@ -44,8 +44,8 @@ export default function Kyc1({
           <li>
             <a
               href="#"
-              className={`block h-full rounded-box border border-dgray p-4 hover:border-dgreen ${
-                level === "begginer" ? "bg-cgreen/50" : "bg-white"
+              className={`block h-full rounded-box shadow-lg p-4  ${
+                level === "begginer" ? "border border-green" : ""
               }`}
               onClick={() => setLevel("begginer")}
             >
@@ -60,8 +60,8 @@ export default function Kyc1({
           <li>
             <a
               href="#"
-              className={`block h-full rounded-box border border-dgray p-4 hover:border-dgreen ${
-                level === "intermediate" ? "bg-cgreen/50" : "bg-white"
+              className={`block h-full rounded-box shadow-lg p-4 ${
+                level === "intermediate" ? "border border-green" : ""
               }`}
               onClick={() => setLevel("intermediate")}
             >
@@ -76,8 +76,8 @@ export default function Kyc1({
           <li>
             <a
               href="#"
-              className={`block h-full rounded-box border border-dgray p-4 hover:border-dgreen ${
-                level === "advanced" ? "bg-cgreen/50" : "bg-white"
+              className={`block h-full rounded-box shadow-lg p-4 ${
+                level === "advanced" ? "border border-green" : ""
               }`}
               onClick={() => setLevel("advanced")}
             >
@@ -96,7 +96,7 @@ export default function Kyc1({
           label="Avançar"
           type="button"
           func={() => handleTabClick("Kyc2")}
-          className="bg-cgreen w-3/5 text-white"
+          className="bg-cgreen w-3/5 text-neutral font-semibold"
         />
       </div>
     </div>

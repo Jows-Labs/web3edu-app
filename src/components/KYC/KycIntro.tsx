@@ -20,7 +20,7 @@ export default function KycIntro({ handleTabClick }: KycIntroProps<void>) {
         <Image alt="ss" src={web3EduLogo} className="w-52 h-auto object-fill" />
 
         <div>
-          <h3 className="text-lg font-medium text-dblue text-justify">
+          <h3 className="text-lg font-semibold text-dblue text-justify">
             Bem vindo a nossa plataforma, preencha nosso breve questionário para
             ajustar as nossas recomendações com base em seus gostos e
             necessidades
@@ -32,7 +32,7 @@ export default function KycIntro({ handleTabClick }: KycIntroProps<void>) {
           label="Avançar"
           type="button"
           func={() => handleTabClick("Kyc1")}
-          className="bg-cgreen w-3/5 text-white"
+          className="bg-cgreen w-3/5 text-neutral font-semibold"
         />
       </div>
     </div>

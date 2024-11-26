@@ -10,6 +10,7 @@ import { TrailsPgTop } from "./TrailsPgTop";
 import { useContent } from "@/providers/content-context";
 import { useEffect, useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import KnowLedge from "../KYC/KnowYourCostumer";
 
 export const Trails = () => {
   const { fetchTrailsList, trailsList } = useContent();
@@ -56,6 +57,7 @@ export const Trails = () => {
           </div>
         )}
       </div>
+      <KnowLedge />
     </div>
   );
 };

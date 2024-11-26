@@ -7,7 +7,8 @@ export default function Kyc2({
   handleTabClick,
   interests,
   setInterests,
-}: KycProps<void>) {
+  fetchKyc,
+}: Kyc2Props<void>) {
   const handleCheckboxChange = (key: keyof Interests) => {
     if (setInterests) {
       setInterests((prev) => ({
@@ -130,8 +131,8 @@ export default function Kyc2({
         <MotionButton
           label="Enviar"
           type="button"
-          func={() => handleTabClick("")}
-          className="bg-cgreen w-3/5 text-white"
+          func={() => fetchKyc()}
+          className="bg-cgreen w-3/5 text-neutral font-semibold"
         />
       </div>
     </div>

@@ -32,12 +32,17 @@ interface Interests {
   defi: boolean;
 }
 
-interface KycProps<T> {
-  setLevel?: React.Dispatch<React.SetStateAction<string | undefined>>;
-  interests?: Interests;
-  setInterests?: React.Dispatch<React.SetStateAction<Interests>>;
-  level?: string;
+interface Kyc1Props<T> {
+  setLevel: React.Dispatch<React.SetStateAction<string>>;
+  level: string;
   handleTabClick: (param: string) => T;
+}
+
+interface Kyc2Props<T> {
+  interests: Interests;
+  setInterests: React.Dispatch<React.SetStateAction<Interests>>;
+  handleTabClick: (param: string) => T;
+  fetchKyc: () => Promise<void>;
 }
 
 interface KycIntroProps<T> {
