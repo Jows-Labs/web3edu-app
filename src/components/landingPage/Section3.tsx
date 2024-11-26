@@ -9,7 +9,7 @@ import { useState } from "react";
 
 export const Section3 = () => {
   const [videoLink, setVideoLink] = useState(
-    "https://www.youtube.com/embed/MmB9b5njVbA"
+    "https://www.youtube.com/embed/0kIIDNvxqug"
   );
 
   function teste() {
@@ -44,7 +44,7 @@ export const Section3 = () => {
             className="bg-cgreen w-[30%] text-neutral rounded-full"
             type="button"
             func={() =>
-              setVideoLink("https://www.youtube.com/embed/MmB9b5njVbA")
+              setVideoLink("https://www.youtube.com/embed/0kIIDNvxqug")
             }
             label="Recompensas"
             Icon={() => (
