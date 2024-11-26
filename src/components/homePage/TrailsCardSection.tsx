@@ -18,7 +18,7 @@ export const TrailsCardSection = () => {
 
   return (
     <div className="flex flex-col lg:h-full h-80 w-full lg:col-span-3 lg:row-span-3 gap-3">
-      <p className="font-bold text-2xl text-nowrap ">Trilhas de aprendizagem</p>
+      <p className="font-bold text-xl text-nowrap ">Trilhas de aprendizagem</p>
 
       <div className="w-full  h-full flex flex-col border-gray rounded-box justify-between">
         {Object.keys(trailsList).length !== 0 ? (

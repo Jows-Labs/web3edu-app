@@ -19,7 +19,7 @@ export const ObIntro = ({ handleTabClick }: OnboardingProps<void>) => {
         />
         <div className="text-neutral font-semibold flex flex-col justify-center items-center gap-5">
           <p className="md:text-4xl text-3xl text-dblue">
-            Seja bem vindo ao Web3EduBrasil!
+            Seja bem vindo a Web3EduBrasil!
           </p>
           <p className="md:text-2xl text-xl  text-center">
             Antes de começarmos, vamos configurar sua carteira Web3 para que

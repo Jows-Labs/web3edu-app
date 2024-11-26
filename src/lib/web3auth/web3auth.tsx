@@ -166,6 +166,7 @@ export default function useWeb3Auth() {
             uid: user.uid,
             email: user.email,
             displayName: user.displayName,
+            tutorialDone: false,
             createdAt: new Date(),
           };
           const response = await fetch("/api/user", {
@@ -257,6 +258,7 @@ export default function useWeb3Auth() {
     userInfo,
     userAccount,
     userDbInfo,
+    setUserDbInfo,
     googleUserInfo,
   };
 }

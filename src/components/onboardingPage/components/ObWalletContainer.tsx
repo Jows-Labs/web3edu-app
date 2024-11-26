@@ -9,6 +9,9 @@ import Onboarding4 from "../../../assets/images/Onboarding4.jpg";
 import Onboarding5 from "../../../assets/images/Onboarding5.jpg";
 import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
 import { useState } from "react";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { Bounce, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const steps = [
   {
@@ -57,6 +60,42 @@ const steps = [
 ];
 
 export const ObWalletContainer = () => {
+  const { googleUserInfo, setUserDbInfo } = useWeb3AuthContext();
+  const router = useRouter();
+
+  const fetchTutorialDone = async () => {
+    try {
+      const response = await fetch("/api/user/onboarding", {
+        method: "POST",
+        headers: { "Content-Type": "aplication/json" },
+        body: JSON.stringify({
+          uid: googleUserInfo?.uid,
+        }),
+      });
+      if (response.ok) {
+        toast.success("Tutorial completo!", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          transition: Bounce,
+        });
+        router.push(`/homePage`);
+        const response = await fetch(`/api/user?uid=${googleUserInfo?.uid}`, {
+          method: "GET",
+        });
+        const data = await response.json();
+        setUserDbInfo(data.user);
+      }
+    } catch (error: any) {
+      console.error(error);
+    }
+  };
+
   const [currentStep, setCurrentStep] = useState(0);
 
   const handleNextStep = () => {
@@ -108,7 +147,11 @@ export const ObWalletContainer = () => {
               : "Próximo Passo"
           }
           type="button"
-          func={handleNextStep}
+          func={() =>
+            currentStep === steps.length - 1
+              ? fetchTutorialDone()
+              : handleNextStep()
+          }
           className="bg-cgreen w-fit text-lg font-semibold"
         />
       </div>
