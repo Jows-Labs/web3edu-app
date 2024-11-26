@@ -2,23 +2,35 @@ import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
 
-export const GET = async () => {
+export const GET = async (req: NextRequest) => {
   try {
-    const docsRef = collection(db, "users");
-    const querySnapshot = await getDocs(docsRef);
+    const uid = req.nextUrl.searchParams.get("uid");
 
-    const docs: any = [];
+    if (!uid) {
+      throw new Error("Missing required parameter: uid");
+    }
 
-    querySnapshot.forEach((doc) => {
-      docs.push(doc.data());
-    });
+    const userDocRef = doc(db, "users", uid);
+    const docSnap = await getDoc(userDocRef);
 
-    return new NextResponse(JSON.stringify({ docs }), {
-      status: 200,
-    });
+    if (docSnap.exists()) {
+      const userData = docSnap.data();
+      return new NextResponse(JSON.stringify({ user: userData }), {
+        status: 200,
+      });
+    } else {
+      return new NextResponse(JSON.stringify({ message: "User not found" }), {
+        status: 404,
+      });
+    }
   } catch (error: any) {
     console.log(error.message);
-    return new NextResponse("Erro ao buscar documentos", { status: 500 });
+    return new NextResponse(
+      JSON.stringify({ message: "Erro ao buscar documento" }),
+      {
+        status: 500,
+      }
+    );
   }
 };
 

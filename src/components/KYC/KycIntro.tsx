@@ -11,8 +11,8 @@ export default function KycIntro({ handleTabClick }: KycIntroProps<void>) {
         <div>
           <p className="text-xs font-medium text-gray">Introdução</p>
 
-          <div className="mt-4 overflow-hidden rounded-full bg-cgray mb-1">
-            <div className="h-1 bg-cgray"></div>
+          <div className="mt-4 overflow-hidden rounded-full h-1 bg-dgray/20 mb-1">
+            <div className="h-1 bg-transparent"></div>
           </div>
         </div>
       </div>

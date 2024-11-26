@@ -16,7 +16,7 @@ export default function Kyc1({
         <div>
           <p className="text-xs font-medium text-gray">1/2 - Perguntas</p>
 
-          <div className="mt-4 overflow-hidden rounded-full bg-cgray mb-1">
+          <div className="mt-4 overflow-hidden rounded-full h-1 bg-dgray/20 mb-1">
             <div className="h-1 w-2/4 rounded-full bg-cgreen"></div>
           </div>
         </div>
