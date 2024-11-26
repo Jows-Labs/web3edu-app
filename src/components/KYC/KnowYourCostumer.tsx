@@ -9,8 +9,15 @@ import useWeb3Auth from "@/lib/web3auth/web3auth";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { userInfo } from "os";
 import { Bounce, toast } from "react-toastify";
+import { FaXmark } from "react-icons/fa6";
+import { IconButton } from "../ui/IconButton";
 
-function KnowLedge() {
+interface KycContainerProps {
+  setKycOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  kycOpen: boolean;
+}
+
+function KnowLedge({ setKycOpen, kycOpen }: KycContainerProps) {
   const [activeTab, setActiveTab] = useState("KycIntro");
 
   const { googleUserInfo } = useWeb3AuthContext();
@@ -49,15 +56,12 @@ function KnowLedge() {
           theme: "light",
           transition: Bounce,
         });
+        setKycOpen(!kycOpen);
       }
     } catch (error: any) {
       console.error(error);
     }
   };
-
-  useEffect(() => {
-    console.log(interests);
-  }, [interests]);
 
   function Switch({ activeTab }: HandleScreenProps) {
     switch (activeTab) {
@@ -83,8 +87,14 @@ function KnowLedge() {
     }
   }
   return (
-    <div className="z-20 backdrop-blur-[1.5px] absolute top-0 bg-black/50 flex justify-center items-center w-full min-h-full">
-      <div className="flex-col flex items-center bg-cgray justify-between shadow-2xl rounded-box h-[40rem] w-[30rem] py-6 px-8">
+    <div className="z-20 backdrop-blur-[1.5px] absolute inset-0 bg-black/50 flex justify-center items-center w-full min-h-full">
+      <div className="flex-col flex items-center bg-cgray justify-between shadow-2xl rounded-box h-[40rem] w-[30rem] py-6 px-8 relative">
+        <IconButton
+          className="h-8 w-auto absolute top-4 right-7"
+          Icon={FaXmark}
+          func={() => setKycOpen(!kycOpen)}
+        />
+
         {Switch({ activeTab })}
       </div>
     </div>

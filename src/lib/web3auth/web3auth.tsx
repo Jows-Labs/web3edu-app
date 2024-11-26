@@ -96,6 +96,7 @@ export default function useWeb3Auth() {
     useState<Partial<OpenloginLoginParams> | null>(null);
   const [googleUserInfo, setGoogleUserInfo] = useState<any | null>(null);
   const [userAccount, setAccounts] = useState<string[]>([]);
+  const [userDbInfo, setUserDbInfo] = useState({});
   const [walletServicesPlugin, setWalletServicesPlugin] =
     useState<WalletServicesPlugin | null>(null);
 
@@ -150,13 +151,14 @@ export default function useWeb3Auth() {
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, async (user) => {
-      // const response = await fetch("/api/user", {
-      //   method: "GET",
-      // });
-      // const data = await response.json();
-      // console.log(data);
-
       if (user) {
+        const response = await fetch(`/api/user?uid=${user?.uid}`, {
+          method: "GET",
+        });
+        const data = await response.json();
+        setUserDbInfo(data.user);
+        console.log(data);
+
         setIsLoggedIn(true);
 
         try {
@@ -179,25 +181,6 @@ export default function useWeb3Auth() {
       } else {
         setIsLoggedIn(false);
       }
-
-      // try {
-      //   const trailName = {
-      //     trailId: "CriaçãoSmartContracts",
-      //   };
-      //   const response = await fetch("/api/trail", {
-      //     method: "POST",
-      //     body: JSON.stringify(trailName),
-      //   });
-      //   const data = await response.json();
-      //   console.log(data);
-      // } catch (error: any) {
-      //   console.log("error teste", error);
-      // }
-      // const responseteste = await fetch("/api/trails", {
-      //   method: "GET",
-      // });
-      // const data2 = await responseteste.json();
-      // console.log(data2);
     });
   }, []);
 
@@ -273,6 +256,7 @@ export default function useWeb3Auth() {
     WalletUi,
     userInfo,
     userAccount,
+    userDbInfo,
     googleUserInfo,
   };
 }
