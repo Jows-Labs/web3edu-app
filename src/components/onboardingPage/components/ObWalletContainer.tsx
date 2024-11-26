@@ -73,6 +73,11 @@ export const ObWalletContainer = () => {
         }),
       });
       if (response.ok) {
+        const response = await fetch(`/api/user?uid=${googleUserInfo?.uid}`, {
+          method: "GET",
+        });
+        const data = await response.json();
+        setUserDbInfo(data.user);
         toast.success("Tutorial completo!", {
           position: "top-right",
           autoClose: 5000,
@@ -85,11 +90,6 @@ export const ObWalletContainer = () => {
           transition: Bounce,
         });
         router.push(`/homePage`);
-        const response = await fetch(`/api/user?uid=${googleUserInfo?.uid}`, {
-          method: "GET",
-        });
-        const data = await response.json();
-        setUserDbInfo(data.user);
       }
     } catch (error: any) {
       console.error(error);
