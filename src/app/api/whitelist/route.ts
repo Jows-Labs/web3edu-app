@@ -24,8 +24,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
           // Usa a notação de colchetes para criar a chave dinamicamente
           eligible: true,
           ipfsHash: ipfsHash,
-          minted: false,
-          txHash: "",
         },
       });
 
