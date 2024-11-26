@@ -4,43 +4,37 @@ import { MotionButton } from "../ui/Button";
 
 export default function KycIntro({ handleTabClick }: KycIntroProps<void>) {
   return (
-    <div className="flex flex-col w-96 h-96 ">
-      <article className="">
+    <div className="flex flex-col w-full h-full justify-between">
+      <div>
+        <h2 className="sr-only">Steps</h2>
+
         <div>
-          <h2 className="sr-only">Steps</h2>
+          <p className="text-xs font-medium text-gray">Introdução</p>
 
-          <div>
-            <p className="text-xs font-medium text-gray">Introdução</p>
-
-            <div className="mt-4 overflow-hidden rounded-full bg-cgray mb-1">
-              <div className="h-1 bg-cgray"></div>
-            </div>
+          <div className="mt-4 overflow-hidden rounded-full bg-cgray mb-1">
+            <div className="h-1 bg-cgray"></div>
           </div>
         </div>
-        <div className="flex flex-col items-center mt-16 justify-center flex-center">
-          <Image
-            alt="ss"
-            src={web3EduLogo}
-            className="size-28 object-fill pb-3 pt-3"
-          />
+      </div>
+      <div className="flex flex-col items-center justify-center gap-6">
+        <Image alt="ss" src={web3EduLogo} className="w-52 h-auto object-fill" />
 
-          <div>
-            <h3 className="text-lg font-medium text-dblue">
-              Bem vindo a nossa plataforma, iremos te fazer umas perguntas para
-              ajustar as nossas recomendações com base nos seus gostos e
-              necessidades
-            </h3>
-          </div>
+        <div>
+          <h3 className="text-lg font-medium text-dblue text-justify">
+            Bem vindo a nossa plataforma, preencha nosso breve questionário para
+            ajustar as nossas recomendações com base em seus gostos e
+            necessidades
+          </h3>
         </div>
-        <div className=" w-full justify-center mt-8 flex">
-          <MotionButton
-            label="Avançar"
-            type="button"
-            func={() => handleTabClick("Kyc1")}
-            className="bg-cgreen w-3/5 text-white"
-          />
-        </div>
-      </article>
+      </div>
+      <div className=" w-full justify-center mt-8 flex">
+        <MotionButton
+          label="Avançar"
+          type="button"
+          func={() => handleTabClick("Kyc1")}
+          className="bg-cgreen w-3/5 text-white"
+        />
+      </div>
     </div>
   );
 }
