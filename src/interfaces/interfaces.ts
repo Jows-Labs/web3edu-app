@@ -24,8 +24,18 @@ interface LearnProps {
   sectionId: any;
 }
 
-interface Kyc1Props<T> {
-  setLevel: React.Dispatch<React.SetStateAction<string | undefined>>;
+interface Interests {
+  crypto: boolean;
+  blockchain: boolean;
+  rwa: boolean;
+  smartcontracts: boolean;
+  defi: boolean;
+}
+
+interface KycProps<T> {
+  setLevel?: React.Dispatch<React.SetStateAction<string | undefined>>;
+  interests?: Interests;
+  setInterests?: React.Dispatch<React.SetStateAction<Interests>>;
   level?: string;
   handleTabClick: (param: string) => T;
 }
