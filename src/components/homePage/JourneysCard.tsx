@@ -8,7 +8,7 @@ export const JourneysCard = () => {
   const [kycOpen, setKycOpen] = useState(false);
   return (
     <div className="w-full lg:h-full h-72 lg:col-span-2 lg:row-span-3 flex flex-col gap-3 ">
-      <p className="font-bold text-2xl">Jornada do usuário</p>
+      <p className="font-bold text-xl">Jornada do usuário</p>
       <div className="w-full lg:h-full h-full border-[1.5px] border-gray rounded-box flex flex-col overflow-hidden">
         {userDbInfo !== null ? (
           <>
