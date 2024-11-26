@@ -57,7 +57,6 @@ export const Trails = () => {
           </div>
         )}
       </div>
-      <KnowLedge />
     </div>
   );
 };
