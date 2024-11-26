@@ -21,10 +21,6 @@ export const RenderQuizV = ({
   const [selectedOpt, setSelectedOpt] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
 
-  useEffect(() => {
-    console.log(selectedOpt);
-  }, [selectedOpt]);
-
   function HandleSubmit() {
     if (isCorrect) {
       fetchDone(isLast);
@@ -65,7 +61,7 @@ export const RenderQuizV = ({
         </p>
         <p className="md:text-lg text-base">{question}</p>
       </div>
-      <div className="w-full h-fit p-10 grid md:grid-cols-2 grid-cols-1  justify-center gap-5">
+      <div className="w-full h-fit p-10 grid lg:grid-cols-2 grid-cols-1 justify-center gap-5">
         {options.map((e, index) => {
           return (
             <MotionDiv
@@ -92,7 +88,7 @@ export const RenderQuizV = ({
         rightIcon={true}
         label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
         type="button"
-        className={`text-neutral w-2/5 h-12 self-end ${
+        className={`text-neutral w-fit h-12 self-end ${
           isCorrect ? "bg-green" : "bg-transparent border border-2"
         }`}
         func={() => {

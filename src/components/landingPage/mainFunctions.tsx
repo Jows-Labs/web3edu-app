@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { MotionDiv } from "../ui/MotionDiv";
 
 function MainFunctions({
   functionName,
@@ -10,14 +11,14 @@ function MainFunctions({
   image: any;
 }) {
   return (
-    <div className="bg-[#F3F3F3] text-black flex min-w-64 h-36 rounded-3xl flex shadow-xl">
+    <MotionDiv className="bg-[#F3F3F3] text-black flex min-w-80 h-40 rounded-3xl flex shadow-xl">
       <div className="w-2/5 h-full rounded-l-3xl flex justify-center">
-        <Image src={image} alt="" className="w-4/6" />
+        <Image src={image} alt="" className="w-20 h-auto text-ddblue" />
       </div>
-      <div className="w-3/5 h-full bg-[#001D3D] rounded-r-3xl flex justify-center items-center text-center px-4">
-        <p className="text-white">{functionName}</p>
+      <div className="w-3/5 h-full bg-[#001D3D] rounded-r-3xl flex justify-center items-center text-center">
+        <p className="text-white text-2xl">{functionName}</p>
       </div>
-    </div>
+    </MotionDiv>
   );
 }
 

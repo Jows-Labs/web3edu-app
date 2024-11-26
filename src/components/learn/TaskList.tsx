@@ -6,24 +6,18 @@ import { useEffect, useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useParams } from "next/navigation";
 
-export const TaskList = ({
-  trailId,
-  uid,
-}: {
-  trailId: string;
-  uid: string;
-}) => {
+export const TaskList = ({ uid }: { trailId: string; uid: string }) => {
   const { fetchTrailSections, trailSections } = useContent();
   const { trailIdRt }: any = useParams();
 
   useEffect(() => {
-    if (Object.keys(trailSections).length === 0) {
+    if (Object.keys(trailSections).length === 0 && uid !== undefined) {
       fetchTrailSections(trailIdRt, uid);
     }
-  }, [trailId, trailIdRt]);
+  }, [trailIdRt, uid]);
 
   return (
-    <div className="md:w-2/5 w-full h-full bg-cgray md:rounded-box p-8 md:overflow-y-auto gap-2 flex flex-col justify-start items-start">
+    <div className="md:w-3/12 md:min-w-80 w-full h-full bg-cgray md:rounded-box p-8 md:overflow-y-auto gap-2 flex flex-col justify-start items-start">
       {Object.keys(trailSections).length !== 0 ? (
         trailSections.map((section: any, index: any) => (
           <TaskUnits

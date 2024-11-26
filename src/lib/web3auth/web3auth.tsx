@@ -25,8 +25,7 @@ import React, { useEffect, useState } from "react";
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
 import { useRouter } from "next/navigation";
-import { addDoc, collection } from "firebase/firestore";
-import { db, app } from "@/firebase/config";
+import { app } from "@/firebase/config";
 
 // Configuração do Web3Auth e da Chain
 const chainConfig = {

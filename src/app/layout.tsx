@@ -3,11 +3,9 @@
 import "../styles/globals.css";
 import { Web3AuthProvider } from "@/lib/web3auth/Web3AuthProvider";
 import NavBar from "@/components/NavBar/NavBar";
-import { useState } from "react";
-import { useEffect } from "react";
-import type { Metadata } from "next";
 import { ContentProvider } from "@/providers/content-context";
 import { ToastContainer } from "react-toastify";
+import { RewardContainer } from "@/components/RewardContainer/RewardContainer";
 import { Lexend_Deca } from "next/font/google";
 
 /* export const metadata: Metadata = {
@@ -77,6 +75,7 @@ export default function RootLayout({
               <section className="flex flex-col h-full w-full overflow-y-auto ">
                 {children}
               </section>
+              <RewardContainer />
               <ToastContainer
                 position="top-right"
                 autoClose={5000}

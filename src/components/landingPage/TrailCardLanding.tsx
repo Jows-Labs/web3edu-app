@@ -2,8 +2,9 @@ import { CiGlobe } from "react-icons/ci";
 import { FaArrowRight, FaBitcoin, FaDollarSign } from "react-icons/fa";
 import { GrTechnology } from "react-icons/gr";
 import { SiHiveBlockchain } from "react-icons/si";
+import { MotionDiv } from "../ui/MotionDiv";
 
-export const TrailCardLanding = () => {
+export const TrailCardsLanding = () => {
   const cardData = [
     {
       icon: <FaBitcoin className="h-1/4 w-auto text-neutral" />,
@@ -29,7 +30,7 @@ export const TrailCardLanding = () => {
   return (
     <div className="flex md:flex-wrap flex-row gap-16 justify-start md:justify-center overflow-x-auto w-full py-8">
       {cardData.map((card, index) => (
-        <div
+        <MotionDiv
           key={index}
           className="rounded-box bg-[#F0F0F0] h-36 min-w-64 flex flex-col p-6 items-start gap-7 shadow-xl"
         >
@@ -38,7 +39,7 @@ export const TrailCardLanding = () => {
             <p className="font-medium">{card.text}</p>
             <FaArrowRight className="h-full text-gray cursor-pointer" />
           </div>
-        </div>
+        </MotionDiv>
       ))}
     </div>
   );

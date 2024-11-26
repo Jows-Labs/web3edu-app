@@ -1,5 +1,3 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { TrailContainer } from "./TrailContainer";
 import { TaskList } from "./TaskList";
