@@ -53,7 +53,7 @@ export const POST = async (req: NextRequest) => {
         doneSections = [sectionId];
       }
 
-      const completedSectionsCount = doneSections.filter((section) =>
+      const completedSectionsCount = doneSections.filter((section: string) =>
         trailSections.includes(section)
       ).length;
 
