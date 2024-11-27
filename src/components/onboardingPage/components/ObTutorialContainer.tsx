@@ -2,11 +2,12 @@
 
 import { MotionButton } from "../../ui/Button";
 import Image from "next/image";
-import Onboarding1 from "../../../assets/images/WalletTutorial/Onboarding1.jpg";
-import Onboarding2 from "../../../assets/images/WalletTutorial/Onboarding2.jpg";
-import Onboarding3 from "../../../assets/images/WalletTutorial/Onboarding3.jpg";
-import Onboarding4 from "../../../assets/images/WalletTutorial/Onboarding4.jpg";
-import Onboarding5 from "../../../assets/images/WalletTutorial/Onboarding5.jpg";
+import Onboarding1 from "../../../assets/images/tutorial/homepage.png";
+import Onboarding2 from "../../../assets/images/tutorial/kyc.png";
+import Onboarding3 from "../../../assets/images/tutorial/trailspage.png";
+import Onboarding4 from "../../../assets/images/tutorial/trailpage.png";
+import Onboarding5 from "../../../assets/images/tutorial/reward.png";
+import Onboarding6 from "../../../assets/images/tutorial/acesswallet.png";
 import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
 import { useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
@@ -15,51 +16,60 @@ import { useRouter } from "next/navigation";
 
 const steps = [
   {
-    title: "Carteira Web3",
+    title: "Tela Home",
     description:
-      "Nossa plataforma conta com uma carteira web3 integrada única para cada usuário, permitindo que você explore e interaja com a web3 em poucos cliques.",
+      "Nesta tela você encontrará alguns dados de seu perfil, um preview de suas NFT's conquistadas, a jornada de usuário e suas três últimas trilhas de aprendizagem realizadas.",
     image: Onboarding1.src,
-    progress: 20,
-    instruction: "Entre na carteira localizada no canto superior direito",
+    progress: 16.6,
+    instruction: "Acesse através da barra de navegação ao topo da tela",
   },
   {
-    title: "Configure a sua Carteira",
+    title: "Configurar perfil de usuário",
     description:
-      "Esta é a sua carteira! Com ela, você poderá receber NFTs como recompensa ao concluir trilhas de aprendizagem. Antes de começar, vamos configurá-la juntos.",
+      "Complete nosso breve formulário para recomendarmos trilhas de aprendizagem do seu interesse.",
     image: Onboarding2.src,
-    progress: 40,
-    instruction: "Vá até a aba de (Configurações)",
+    progress: 33.3,
+    instruction: `Acesse na tela home em "Jornada do usuário"`,
   },
   {
-    title: "Configure a sua Carteira",
+    title: "Tela de trilhas",
     description:
-      "Esta é a sua carteira! Com ela, você poderá receber NFTs como recompensa ao concluir trilhas de aprendizagem. Antes de começar, vamos configurá-la juntos.",
+      "Nesta tela você encontrará todas as trilhas de aprendizagem, podendo buscá-las por nome ou categoria e acessá-las.",
     image: Onboarding3.src,
-    progress: 60,
-    instruction: "Vá até a sessão (Em Geral)",
+    progress: 50,
+    instruction: "Acesse através da barra de navegação ao topo da tela",
   },
   {
-    title: "Configure a sua Carteira",
+    title: "Trilha de aprendizagem",
     description:
-      "Essas configurações são essenciais para que você possa receber os NFTs de recompensa ao completar nossas trilhas de aprendizagem.",
+      "Aprenda sobre Web3 acessando e completando as tarefas de nossas trilhas!",
     image: Onboarding4.src,
-    progress: 80,
+    progress: 66.6,
     instruction:
-      "Ative a opção 'Redes de Teste' e, em seguida, selecione 'Ethereum Sepolia' como sua rede padrão.",
+      "Acesse através da tela de trilhas ou pelo acesso rápido na tela home",
+  },
+  {
+    title: "Resgate sua recompensa!",
+    description: `Ao concluir uma trilha de aprendizagem, resgate sua NFT clicando em "Resgatar Agora"`,
+    image: Onboarding5.src,
+    progress: 83.3,
+    instruction:
+      "Disponível ao marcar a última tarefa de uma trilha como concluída.",
+    additionalText:
+      "Este tutorial estará sempre disponível na aba Ajuda, caso precise revisitar algum passo ou tirar dúvidas.",
   },
   {
     title: "Tudo Pronto!",
     description:
-      "Ótimo! Agora que as configurações estão concluídas, você está pronto para criar sua conta e começar a explorar nossas trilhas de aprendizagem. Vamos lá?",
-    image: Onboarding5.src,
+      "Ótimo! Você está pronto para começar a explorar nossa plataforma e colecionar NFT's",
+    image: Onboarding6.src,
     progress: 100,
-    instruction: "Sua carteira deve ficar da seguinte maneira:",
-    additionalText:
-      "Este tutorial estará sempre disponível na aba Ajuda, caso precise revisitar algum passo ou tirar dúvidas.",
+    instruction: "Acesse sua NFT clicando em sua carteira",
+    additionalText: `Caso precise revisitar algum passo ou tirar dúvidas, acesse este tutorial na aba "Ajuda" no menu de usuário.`,
   },
 ];
 
-export const ObWalletContainer = () => {
+export const ObTutorialContainer = () => {
   const { googleUserInfo, setUserDbInfo } = useWeb3AuthContext();
   const router = useRouter();
 
@@ -80,7 +90,7 @@ export const ObWalletContainer = () => {
         setUserDbInfo(data.user);
         toast.success("Tutorial completo!", {
           position: "top-right",
-          autoClose: 2500,
+          autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -110,8 +120,8 @@ export const ObWalletContainer = () => {
     steps[currentStep];
 
   return (
-    <div className="flex flex-row">
-      <div className="md:w-3/6 w-full h-full bg-cgray flex p-10">
+    <div className="flex flex-row w-full">
+      <div className="md:w-2/5 w-full h-full bg-cgray flex p-10">
         <div className="w-full h-full flex flex-col gap-10 justify-center items-start">
           <Image alt="Logo" src={web3EduLogo} className="w-28 h-auto" />
           <div className="font-semibold flex flex-col gap-8">
@@ -123,7 +133,7 @@ export const ObWalletContainer = () => {
           </div>
         </div>
       </div>
-      <div className="md:w-3/6 w-full h-full flex flex-col items-center justify-center p-10 gap-10">
+      <div className="md:w-3/5 w-full h-full flex flex-col items-center justify-center p-10 gap-10">
         <progress
           className="progress progress-success w-56"
           value={progress}
@@ -132,10 +142,11 @@ export const ObWalletContainer = () => {
         <div
           style={{
             backgroundImage: `url(${image})`,
-            backgroundSize: "cover",
-            backgroundPosition: "top",
+            backgroundSize: "contain",
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
           }}
-          className="md:w-2/4 w-full md:h-full h-fit flex items-center justify-center text-4xl font-bold shadow-2xl rounded-box"
+          className="w-full md:h-full h-fit flex items-center justify-center text-4xl font-bold shadow-2xl rounded-box"
         ></div>
         <div className="w-fit text-center h-fit rounded-box bg-cgray flex font-semibold text-xl p-7">
           <p>{instruction}</p>
@@ -143,7 +154,7 @@ export const ObWalletContainer = () => {
         <MotionButton
           label={
             currentStep === steps.length - 1
-              ? "Configure sua Carteira"
+              ? "Acessar plataforma"
               : "Próximo Passo"
           }
           type="button"

@@ -5,16 +5,17 @@ import { ObCommu } from "./Obcommu";
 import { ObIntro } from "./ObIntro";
 
 import { ObWalletConfig } from "./ObWalletConfig";
+import { ObTutorial } from "./ObTutorial";
 
 function OnBoard() {
   const [activeTab, setActiveTab] = useState("ObIntro");
-
-  const [level, setLevel] = useState<string | undefined>(undefined);
 
   function Switch({ activeTab }: HandleScreenProps) {
     switch (activeTab) {
       case "ObIntro":
         return <ObIntro handleTabClick={setActiveTab} />;
+      case "ObTutorial":
+        return <ObTutorial handleTabClick={setActiveTab} />;
       case "ObCommu":
         return <ObCommu handleTabClick={setActiveTab} />;
       case "ObWalletConfig":
