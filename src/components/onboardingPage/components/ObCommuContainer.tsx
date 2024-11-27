@@ -11,10 +11,6 @@ import { MotionButton } from "@/components/ui/Button";
 import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
 
-const teste = () => {
-  console.log("oi");
-};
-
 const linkDiscord = () => {
   window.open("https://discord.com/invite/GJk58TPaDx", "_blank");
 };
@@ -63,7 +59,7 @@ export const ObCommuContainers = ({
           <MotionButton
             label="Avançar"
             type="button"
-            func={() => handleTabClick("ObWalletConfig")}
+            func={() => handleTabClick("ObTutorial")}
             className="bg-cgreen w-28 text-neutral font-bold"
           />
         </div>

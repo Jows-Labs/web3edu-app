@@ -22,11 +22,8 @@ export const ObIntro = ({ handleTabClick }: OnboardingProps<void>) => {
             Seja bem vindo a Web3EduBrasil!
           </p>
           <p className="md:text-2xl text-xl  text-center">
-            Antes de começarmos, vamos configurar sua carteira Web3 para que
-            você possa receber <br></br> recompensas e aproveitar todos os
-            recursos da nossa plataforma. Além disso, <br></br>aproveite para
-            explorar nossas comunidades Web3 e conectar-se com <br></br>outros
-            entusiastas do futuro da internet.
+            Antes de começarmos, vamos entender as funcionalidades da plataforma
+            Web3EduBrasil
           </p>
         </div>
         <MotionButton

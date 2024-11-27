@@ -147,19 +147,23 @@ export default function useWeb3Auth() {
     };
   }, [web3auth]);
 
+  const fetchUserDbData = async (uid: string) => {
+    const response = await fetch(`/api/user?uid=${uid}`, {
+      method: "GET",
+    });
+    const data = await response.json();
+    setUserDbInfo(data.user);
+    console.log(data);
+  };
+
   useEffect(() => {
     const auth = getAuth(app);
 
     onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const response = await fetch(`/api/user?uid=${user?.uid}`, {
-          method: "GET",
-        });
-        const data = await response.json();
-        setUserDbInfo(data.user);
-        console.log(data);
-
         setIsLoggedIn(true);
+
+        fetchUserDbData(user.uid);
 
         try {
           const userObj = {
@@ -259,6 +263,7 @@ export default function useWeb3Auth() {
     userAccount,
     userDbInfo,
     setUserDbInfo,
+    fetchUserDbData,
     googleUserInfo,
   };
 }

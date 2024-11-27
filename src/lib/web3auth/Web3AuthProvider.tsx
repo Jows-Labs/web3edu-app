@@ -12,6 +12,7 @@ interface Web3AuthContextProps {
   isLoggingIn: boolean;
   userInfo: Partial<any> | null;
   userDbInfo: any;
+  fetchUserDbData: (uid: string) => void;
   setUserDbInfo: React.Dispatch<React.SetStateAction<boolean>>;
   userAccount: string[];
   googleUserInfo: any | null;
@@ -30,6 +31,7 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     isLoggingIn,
     userInfo,
     userDbInfo,
+    fetchUserDbData,
     setUserDbInfo,
     userAccount,
     googleUserInfo,
@@ -45,6 +47,7 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         isLoggingIn,
         userInfo,
         userDbInfo,
+        fetchUserDbData,
         setUserDbInfo,
         userAccount,
         googleUserInfo,

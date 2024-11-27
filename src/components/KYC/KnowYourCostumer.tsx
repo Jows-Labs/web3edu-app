@@ -20,7 +20,7 @@ interface KycContainerProps {
 function KnowLedge({ setKycOpen, kycOpen }: KycContainerProps) {
   const [activeTab, setActiveTab] = useState("KycIntro");
 
-  const { googleUserInfo } = useWeb3AuthContext();
+  const { googleUserInfo, fetchUserDbData } = useWeb3AuthContext();
 
   const [level, setLevel] = useState<string>("");
   const [interests, setInterests] = useState<Interests>({
@@ -45,6 +45,7 @@ function KnowLedge({ setKycOpen, kycOpen }: KycContainerProps) {
         }),
       });
       if (response.ok) {
+        fetchUserDbData(googleUserInfo?.uid);
         toast.success("Formulário enviado com sucesso!", {
           position: "top-right",
           autoClose: 5000,
