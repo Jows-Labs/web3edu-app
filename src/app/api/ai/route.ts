@@ -1,5 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 
+const systemMessage = `Você é um especialista em revisão de conceitos relacionados a introdução à Web3. Seu papel é avaliar a validade de declarações fornecidas e retornar um objeto JSON no seguinte formato:
+{
+  "valido": <true|false>,
+  "explicacao": "<uma explicação breve e objetiva>"
+}
+Caso a declaração seja válida, defina 'valido: true' e forneça uma breve explicação afirmando que está correta. Caso seja inválida, defina 'valido: false' e explique de forma clara e objetiva o que está incorreto.`;
+
 export const POST = async (req: NextRequest) => {
     try {
         // Extrai os dados da requisição
@@ -15,7 +22,7 @@ export const POST = async (req: NextRequest) => {
                 messages: [
                     {
                         role: "system",
-                        content: `Você é um revisor de conceitos sobre ${escopo}. Retorne true caso o conceito seja válido, ou false com uma breve explicação do que está errado.`,
+                        content: systemMessage,
                     },
                     {
                         role: "user",
