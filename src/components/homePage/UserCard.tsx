@@ -28,7 +28,7 @@ export default function UserCard() {
         <h2 className="font-bold text-xl">{userDbInfo?.displayName}</h2>
         <div className="w-full flex justify-between items-end">
           <p className="font-medium text-lg text-gray">São Paulo, Brasil</p>
-          <div className="flex gap-3">
+          <div className="flex flex-col gap-3 md:flex-row items-start ">
             {userDbInfo?.socialMedia?.linkedin ? (
               <IconButton
                 className="h-8 text-ddblue"
@@ -41,7 +41,7 @@ export default function UserCard() {
             {userDbInfo?.socialMedia?.discord ? (
               <MotionDiv className="flex items-center gap-2 cursor-pointer">
                 <FaDiscord className="h-8 w-8 text-ddblue" />
-                <p className="text-lg">{userDbInfo?.socialMedia?.discord}</p>
+                <p className="md:text-lg">{userDbInfo?.socialMedia?.discord}</p>
               </MotionDiv>
             ) : (
               <></>
