@@ -7,6 +7,11 @@ interface MotionButtonProps<T> {
   func: (param: T) => T;
 }
 
+interface AiAnswerProps {
+  explicacao: string;
+  valido: Boolean;
+}
+
 interface IconButtonProps<T> {
   func: (param: T) => T;
   className?: string;

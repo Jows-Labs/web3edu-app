@@ -7,7 +7,7 @@ interface ContentState {
   trail: any;
   trailSections: any;
   fetchTrailsList: (uid: string) => void;
-  fetchTrail: (trailIdRt: string) => Object;
+  fetchTrail: (trailIdRt: string) => any;
   fetchTrailSections: (trailIdRt: string, uid: string) => Object;
   fetchTrailAirDrop: (
     trailIcon: string,
@@ -19,6 +19,7 @@ interface ContentState {
   ) => Object;
   rewardContainerVisibility: any;
   handleRewardContainer: () => void;
+  fetchAiAnswerCheck: (question: string, prompt: string) => AiAnswerProps;
   fetchSectionContent: (
     trailId: string,
     sectionId: string,
@@ -34,6 +35,7 @@ const ContentContext = createContext<ContentState>({
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
+  fetchAiAnswerCheck: () => ({ explicacao: "", valido: false }),
   fetchSectionContent: () => ({}),
   handleRewardContainer: () => {},
   rewardContainerVisibility: {},
@@ -102,6 +104,9 @@ export const ContentProvider = ({
       }
 
       const data = await response.json();
+      data.sort(
+        (a: { id: any }, b: { id: any }) => Number(a.id) - Number(b.id)
+      );
       setTrailSections(data);
     } catch (error: any) {
       console.error("Erro na requisição fetchTrailSections:", error);
@@ -133,6 +138,26 @@ export const ContentProvider = ({
     } catch (error: any) {
       console.error("Erro na requisição fetchSectionContent:", error);
       throw error;
+    }
+  };
+
+  const fetchAiAnswerCheck = async (question: string, prompt: string) => {
+    try {
+      const response = await fetch("/api/ai", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: question,
+          prompt: prompt,
+        }),
+      });
+      const data = await response.json();
+      const obj = await JSON.parse(data.message.content);
+      return obj;
+    } catch (error: any) {
+      console.error(error);
     }
   };
 
@@ -202,6 +227,7 @@ export const ContentProvider = ({
         fetchTrail,
         fetchTrailAirDrop,
         fetchTrailSections,
+        fetchAiAnswerCheck,
         fetchSectionContent,
         trailSections,
       }}
