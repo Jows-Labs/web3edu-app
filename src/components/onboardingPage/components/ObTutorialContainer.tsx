@@ -120,22 +120,22 @@ export const ObTutorialContainer = () => {
     steps[currentStep];
 
   return (
-    <div className="flex flex-row w-full">
+    <div className="flex md:flex-row flex-col w-full">
       <div className="md:w-2/5 w-full h-full bg-cgray flex p-10">
         <div className="w-full h-full flex flex-col gap-10 justify-center items-start">
           <Image alt="Logo" src={web3EduLogo} className="w-28 h-auto" />
           <div className="font-semibold flex flex-col gap-8">
-            <p className="text-5xl text-dblue">{title}</p>
-            <p className="text-2xl">{description}</p>
+            <p className="md:text-5xl text-3xl text-dblue">{title}</p>
+            <p className="md:text-2xl text-xl">{description}</p>
             {currentStep === steps.length - 1 && (
               <p className="text-lg text-gray-600 mt-4">{additionalText}</p>
             )}
           </div>
         </div>
       </div>
-      <div className="md:w-3/5 w-full h-full flex flex-col items-center justify-center p-10 gap-10">
+      <div className="md:w-3/5 w-full md:h-full flex flex-col items-center justify-center p-10 gap-10">
         <progress
-          className="progress progress-success w-56"
+          className="progress progress-success w-56 md:visible invisible"
           value={progress}
           max="100"
         ></progress>
@@ -146,9 +146,9 @@ export const ObTutorialContainer = () => {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
-          className="w-full md:h-full h-fit flex items-center justify-center text-4xl font-bold shadow-2xl rounded-box"
+          className="min-w-full md:h-full h-44 flex items-center justify-center text-4xl shadow-2xl rounded-box"
         ></div>
-        <div className="w-fit text-center h-fit rounded-box bg-cgray flex font-semibold text-xl p-7">
+        <div className="w-fit text-center h-fit rounded-box bg-cgray flex font-semibold md:text-xl text-lg p-7">
           <p>{instruction}</p>
         </div>
         <MotionButton

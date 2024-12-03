@@ -110,7 +110,7 @@ export const ObWalletContainer = () => {
     steps[currentStep];
 
   return (
-    <div className="flex flex-row">
+    <div className="flex md:flex-row flex-col">
       <div className="md:w-3/6 w-full h-full bg-cgray flex p-10">
         <div className="w-full h-full flex flex-col gap-10 justify-center items-start">
           <Image alt="Logo" src={web3EduLogo} className="w-28 h-auto" />

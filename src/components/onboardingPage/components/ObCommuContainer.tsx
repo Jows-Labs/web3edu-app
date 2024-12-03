@@ -42,15 +42,15 @@ export const ObCommuContainers = ({
   handleTabClick,
 }: OnboardingProps<void>) => {
   return (
-    <div className=" flex flex-row">
+    <div className=" flex md:flex-row flex-col">
       <div className="md:w-3/6 w-full h-full bg-cgray flex p-10">
         <div className="w-full h-full flex flex-col gap-10 justify-center items-start">
           <Image alt="ss" src={web3EduLogo} className="w-28 h-auto" />
           <div className="font-semibold flex flex-col gap-8">
-            <p className="text-5xl text-dblue">
+            <p className="md:text-5xl text-3xl text-dblue">
               Particide das nossas comunidades
             </p>
-            <p className="text-2xl">
+            <p className="md:text-2xl text-xl">
               Junte-se às nossas comunidades Web3 e fique por dentro de tudo!
               Siga-nos nas redes sociais, compartilhe experiências e aprenda
               junto com a gente. Não perca as novidades!
@@ -65,10 +65,10 @@ export const ObCommuContainers = ({
         </div>
       </div>
       <div className="md:w-3/6 w-full h-full flex flex-col p-10">
-        <div className="w-full h-[60vh] flex flex-col gap-10 justify-center items-center">
+        <div className="w-full md:h-[60vh] h-fit p-2 flex flex-col gap-10 justify-center items-center">
           <MotionDiv
             func={() => linkDiscord()}
-            className="md:w-3/5 w-full h-1/5  transform bg-cgray rounded-box text-2xl flex flex-row p-5 justify-center items-center font-semibold text-2xl cursor-pointer"
+            className="md:w-3/5 w-full  transform bg-cgray rounded-box md:text-2xl text-xl flex flex-row p-5 justify-center items-center font-semibold text-2xl md:cursor-pointer"
           >
             <p className="flex flex-row gap-2 justify-center items-center">
               <FaDiscord className="w-12 h-auto text-[#536BF2]" /> Servidor no
@@ -78,7 +78,7 @@ export const ObCommuContainers = ({
 
           <MotionDiv
             func={() => linkTelegram()}
-            className="md:w-3/5 w-full h-1/5  bg-cgray rounded-box text-2xl flex flex-row p-5 justify-center items-center font-semibold text-2xl cursor-pointer"
+            className="md:w-3/5 w-full bg-cgray rounded-box md:text-2xl text-xl flex flex-row p-5 justify-center items-center font-semibold text-2xl md:cursor-pointer"
           >
             <p className="flex flex-row gap-2 justify-center items-center">
               <FaTelegram className="w-12 h-auto text-[#24A1DD]" />
