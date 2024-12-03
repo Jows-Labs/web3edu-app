@@ -4,6 +4,7 @@ import { useContent } from "@/providers/content-context";
 
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import MdxSection from "./RenderMdx";
+import { RenderQuestionV } from "./Question";
 
 export const Task = ({
   sectionId,
@@ -82,6 +83,12 @@ export const Task = ({
               question={section.question}
               fetchDone={fetchDone}
               isLast={section.isLast}
+            />
+          ) : section.type === "question" ? (
+            <RenderQuestionV
+              description={section.description}
+              isLast={section.isLast}
+              fetchDone={fetchDone}
             />
           ) : (
             <>

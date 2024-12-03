@@ -6,10 +6,12 @@ import { TrailsCardSection } from "./TrailsCardSection";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useContent } from "@/providers/content-context";
 
 export const Home = () => {
   const router = useRouter();
   const { userDbInfo } = useWeb3AuthContext();
+  const { fetchAiAnswerCheck } = useContent();
 
   useEffect(() => {
     if (userDbInfo) {

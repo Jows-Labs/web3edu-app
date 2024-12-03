@@ -24,11 +24,28 @@ export const UserSection = () => {
   useEffect(() => {
     console.log(userDbInfo, googleUserInfo);
     setUserName(userDbInfo?.displayName);
-    setLinkedin(userDbInfo?.linkedin);
-    setDiscord(userDbInfo?.discord);
+    setLinkedin(userDbInfo?.socialMedia?.linkedin);
+    setDiscord(userDbInfo?.socialMedia?.discord);
   }, [userDbInfo]);
 
+  const linkedinRegex =
+    /((https?:\/\/)?((www|\w\w)\.)?linkedin\.com\/)((([\w]{2,3})?)|([^\/]+\/(([\w|\d-&#?=])+\/?){1,}))$/;
+
   const fetchUserEdit = async () => {
+    if (!linkedinRegex.test(linkedin)) {
+      toast.warning("Link do linkedin inválido", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return;
+    }
     try {
       const response = await fetch("/api/user/edit", {
         method: "POST",
@@ -114,15 +131,6 @@ export const UserSection = () => {
                   {userDbInfo.displayName}
                 </p>
               </div>
-            </div>
-            <div className="flex h-full justify-center">
-              <MotionButton
-                Icon={MdEdit}
-                label="Editar Imagem"
-                func={() => teste}
-                className="flex justify-center bg-green text-xs text-ddblue h-7 w-[9rem] items-center md:text-sm md:h-8 md:w-36"
-                type="button"
-              />
             </div>
           </div>
 
