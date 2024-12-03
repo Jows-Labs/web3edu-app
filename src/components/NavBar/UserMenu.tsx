@@ -1,9 +1,11 @@
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { useRouter } from "next/navigation";
 import { CgProfile } from "react-icons/cg";
 import { IoWalletOutline } from "react-icons/io5";
 
 export const UserMenu = () => {
   const { googleUserInfo, logout, isLoggedIn, WalletUi } = useWeb3AuthContext();
+  const router = useRouter();
 
   return (
     <div className="flex flex-row justify-self-end items-center gap-2">
@@ -39,13 +41,11 @@ export const UserMenu = () => {
           className="menu menu-md dropdown-content bg-neutralbg rounded-box z-[1] mt-1 w-52 p-2 shadow py-2 text-neutral"
         >
           <li>
-            <a onClick={() => console.log(googleUserInfo)}>Profile</a>
+            <a onClick={() => router.push("/userPage")}>Perfil</a>
           </li>
+
           <li>
-            <a>Settings</a>
-          </li>
-          <li>
-            <a onClick={logout}>Logout</a>
+            <a onClick={logout}>Sair</a>
           </li>
         </ul>
       </div>
