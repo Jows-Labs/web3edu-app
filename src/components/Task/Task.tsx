@@ -89,6 +89,7 @@ export const Task = ({
               description={section.description}
               isLast={section.isLast}
               fetchDone={fetchDone}
+              question={section.question}
             />
           ) : (
             <>
