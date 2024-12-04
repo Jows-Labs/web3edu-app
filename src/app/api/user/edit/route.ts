@@ -10,8 +10,8 @@ export const POST = async (req: NextRequest) => {
       !uid ||
       !displayName ||
       !socialMedia ||
-      !socialMedia.linkedin ||
-      !socialMedia.discord
+      socialMedia.linkedin === undefined ||
+      socialMedia.discord === undefined
     ) {
       return new NextResponse(
         JSON.stringify({

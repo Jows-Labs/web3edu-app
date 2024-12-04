@@ -11,10 +11,6 @@ import { getDisplayName } from "next/dist/shared/lib/utils";
 import { Bounce, toast } from "react-toastify";
 
 export const UserSection = () => {
-  function teste() {
-    console.log("teste");
-  }
-
   const { userDbInfo, googleUserInfo, fetchUserDbData } = useWeb3AuthContext();
 
   const [userName, setUserName] = useState("");
@@ -22,30 +18,17 @@ export const UserSection = () => {
   const [discord, setDiscord] = useState("");
 
   useEffect(() => {
-    console.log(userDbInfo, googleUserInfo);
     setUserName(userDbInfo?.displayName);
-    setLinkedin(userDbInfo?.socialMedia?.linkedin);
-    setDiscord(userDbInfo?.socialMedia?.discord);
+    if (userDbInfo.socialMedia) {
+      setLinkedin(userDbInfo?.socialMedia?.linkedin);
+      setDiscord(userDbInfo?.socialMedia?.discord);
+    }
   }, [userDbInfo]);
 
   const linkedinRegex =
     /((https?:\/\/)?((www|\w\w)\.)?linkedin\.com\/)((([\w]{2,3})?)|([^\/]+\/(([\w|\d-&#?=])+\/?){1,}))$/;
 
   const fetchUserEdit = async () => {
-    if (!linkedinRegex.test(linkedin)) {
-      toast.warning("Link do linkedin inválido", {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        transition: Bounce,
-      });
-      return;
-    }
     try {
       const response = await fetch("/api/user/edit", {
         method: "POST",
@@ -61,8 +44,17 @@ export const UserSection = () => {
       });
       if (response.ok) {
         fetchUserDbData(googleUserInfo?.uid);
-        console.log(response.json());
-        toast.success("Dados Atualizados com Sucesso!", {
+      }
+    } catch (error: any) {
+      console.error("Erro ao editar os dados do usúario", error);
+    }
+  };
+
+  const Submit = async () => {
+    console.log(linkedin, discord);
+    if (linkedin !== "") {
+      if (!linkedinRegex.test(linkedin)) {
+        toast.warning("Link do linkedin inválido", {
           position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
@@ -73,9 +65,19 @@ export const UserSection = () => {
           theme: "light",
           transition: Bounce,
         });
+        return;
       }
-    } catch (error: any) {
-      console.error("Erro ao editar os dados do usúario", error);
+      toast.promise(fetchUserEdit(), {
+        pending: "Enviando...",
+        success: "Dados salvos com sucesso!",
+        error: "Erro ao enviar dados.",
+      });
+    } else if (linkedin === "") {
+      toast.promise(fetchUserEdit(), {
+        pending: "Enviando...",
+        success: "Dados salvos com sucesso!",
+        error: "Erro ao enviar dados.",
+      });
     }
   };
 
@@ -93,24 +95,6 @@ export const UserSection = () => {
             >
               Dados
             </a>
-            {/* <a
-              role="tab"
-              className="tab hover:tab-active text-xm md:text-lg text-dgray"
-            >
-              Senha
-            </a>
-            <a
-              role="tab"
-              className="tab hover:tab-active text-xm text-dgray md:text-lg"
-            >
-              Acessibilidade
-            </a>
-            <a
-              role="tab"
-              className="tab hover:tab-active text-xm text-dgray md:text-lg"
-            >
-              Privacidade
-            </a> */}
           </div>
         </div>
         <div className="flex flex-col flex flex-col gap-6 ">
@@ -184,7 +168,7 @@ export const UserSection = () => {
             <MotionButton
               Icon={FaSave}
               label="Salvar"
-              func={() => fetchUserEdit()}
+              func={() => Submit()}
               className=" flex justify-center text-xs items-center  h-7 w-[6rem] bg-green text-ddblue md:text-sm md:h-8 md:w-36"
               type="button"
             />

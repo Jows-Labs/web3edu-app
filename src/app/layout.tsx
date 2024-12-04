@@ -77,8 +77,8 @@ export default function RootLayout({
               </section>
               <RewardContainer />
               <ToastContainer
-                position="top-right"
-                autoClose={5000}
+                position="top-center"
+                autoClose={2500}
                 hideProgressBar={false}
                 newestOnTop={false}
                 closeOnClick

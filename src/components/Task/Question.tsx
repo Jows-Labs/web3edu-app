@@ -46,17 +46,26 @@ export const RenderQuestionV = ({
       return;
     }
 
-    const aiAnswer: AiAnswerProps = await fetchAiAnswerCheck(question, answer);
+    const aiAnswer: AiAnswerProps = await toast.promise(
+      fetchAiAnswerCheck(question, answer),
+      {
+        pending: "Verificando...",
+      }
+    );
     console.log(aiAnswer);
     setAiExplanation(aiAnswer.explicacao);
 
     if (isCorrect) {
-      fetchDone(isLast);
+      toast.promise(fetchDone(isLast), {
+        pending: "Enviando...",
+        success: "Tarefa concluida com sucesso!",
+        error: "Erro ao concluir tarefa.",
+      });
     } else {
       if (aiAnswer.valido === true) {
         setIsCorrect(true);
         toast.success("Resposta correta!", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -68,7 +77,7 @@ export const RenderQuestionV = ({
         });
       } else {
         toast.error("Resposta Incorreta!", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
