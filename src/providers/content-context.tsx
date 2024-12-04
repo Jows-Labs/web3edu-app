@@ -19,12 +19,17 @@ interface ContentState {
   ) => Object;
   rewardContainerVisibility: any;
   handleRewardContainer: () => void;
-  fetchAiAnswerCheck: (question: string, prompt: string) => AiAnswerProps;
+  fetchAiAnswerCheck: (question: string, prompt: string) => Promise<AiAnswerProps>;
   fetchSectionContent: (
     trailId: string,
     sectionId: string,
     uid: string
   ) => Object;
+}
+
+interface AiAnswerProps {
+  explicacao: string;
+  valido: boolean;
 }
 
 const ContentContext = createContext<ContentState>({
@@ -35,7 +40,7 @@ const ContentContext = createContext<ContentState>({
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
-  fetchAiAnswerCheck: () => ({ explicacao: "", valido: false }),
+  fetchAiAnswerCheck: () => Promise.resolve({ explicacao: "", valido: false }),
   fetchSectionContent: () => ({}),
   handleRewardContainer: () => {},
   rewardContainerVisibility: {},
@@ -141,7 +146,7 @@ export const ContentProvider = ({
     }
   };
 
-  const fetchAiAnswerCheck = async (question: string, prompt: string) => {
+  const fetchAiAnswerCheck = async (question: string, prompt: string): Promise<AiAnswerProps> => {
     try {
       const response = await fetch("/api/ai", {
         method: "POST",
@@ -155,9 +160,13 @@ export const ContentProvider = ({
       });
       const data = await response.json();
       const obj = await JSON.parse(data.message.content);
-      return obj;
+      return {
+        explicacao: obj.explicacao,
+        valido: obj.valido,
+      };
     } catch (error: any) {
       console.error(error);
+      throw error;
     }
   };
 
