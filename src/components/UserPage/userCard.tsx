@@ -4,14 +4,23 @@ import Image from "next/image";
 import { MdEdit } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MotionButton } from "../ui/Button";
-import useWeb3Auth from "@/lib/web3auth/web3auth";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useEffect, useState } from "react";
 import { getDisplayName } from "next/dist/shared/lib/utils";
 import { Bounce, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export const UserSection = () => {
   const { userDbInfo, googleUserInfo, fetchUserDbData } = useWeb3AuthContext();
+  const router = useRouter();
+  const { isLoggedIn } = useWeb3AuthContext();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      router.push("/");
+      toast.warning("Faça login para acessar esta tela");
+    }
+  }, [isLoggedIn]);
 
   const [userName, setUserName] = useState("");
   const [linkedin, setLinkedin] = useState("");

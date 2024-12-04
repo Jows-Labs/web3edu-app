@@ -11,12 +11,24 @@ import { useContent } from "@/providers/content-context";
 import { useEffect, useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import KnowLedge from "../KYC/KnowYourCostumer";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 export const Trails = () => {
   const { fetchTrailsList, trailsList } = useContent();
   const { userDbInfo } = useWeb3AuthContext();
   const [filteredTrails, setFilteredTrails] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  const router = useRouter();
+  const { isLoggedIn } = useWeb3AuthContext();
+
+  useEffect(() => {
+    if (!isLoggedIn) {
+      toast.warning("Faça login para acessar esta tela");
+      router.push("/");
+    }
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (userDbInfo !== null) {
