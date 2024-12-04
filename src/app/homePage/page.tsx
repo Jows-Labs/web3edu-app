@@ -1,20 +1,27 @@
 "use client";
 
 import { Home } from "@/components/homePage/Home";
-// import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
-// import { useRouter } from "next/navigation";
-// import { useEffect } from "react";
+import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
+import { Island_Moments } from "next/font/google";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export default function homePage() {
-  // useEffect(() => {
-  //   if (!isLoggedIn) {
-  //     // Redirecionar de volta para a página de login se não estiver autenticado
-  //     router.push("/");
-  //   } else {
-  //     // Carregar informações do usuário
-  //     console.log("User Info:", userInfo);
-  //     console.log("User Account:", userAccount);
-  //   }
-  // }, [isLoggedIn, userInfo, userAccount]);
+  const router = useRouter();
+  const { isLoggedIn } = useWeb3AuthContext();
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+    if (isLoggedIn === undefined) {
+      console.log("teste");
+      return;
+    }
+    if (isLoggedIn === false) {
+      router.push("/");
+      toast.warning("Faça login para acessar esta tela");
+    }
+  }, [isLoggedIn]);
+
   return <Home />;
 }

@@ -6,10 +6,10 @@ export const LoginButton = () => {
   const handleLogin = async () => {
     try {
       await login();
-    }catch(error){
+    } catch (error) {
       console.log("LOGIN ERROR: ", error);
     }
-  }
+  };
 
   return (
     <MotionButton

@@ -89,7 +89,7 @@ const walletPlugin = new WalletServicesPlugin({
 
 export default function useWeb3Auth() {
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [userInfo, setUserInfo] =
@@ -100,6 +100,10 @@ export default function useWeb3Auth() {
   const [walletServicesPlugin, setWalletServicesPlugin] =
     useState<WalletServicesPlugin | null>(null);
 
+  useEffect(() => {
+    const storedLoggedIn = localStorage.getItem("isLoggedIn");
+    setIsLoggedIn(storedLoggedIn === "true");
+  }, []);
   useEffect(() => {
     const init = async () => {
       try {
@@ -127,6 +131,11 @@ export default function useWeb3Auth() {
     };
     init();
   }, []);
+
+  useEffect(() => {
+    // Salva o estado de login no localStorage sempre que ele muda
+    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (!web3auth) return;
@@ -222,7 +231,6 @@ export default function useWeb3Auth() {
 
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
-        router.push("/homePage");
       }
     } catch (error) {
       console.error(error);

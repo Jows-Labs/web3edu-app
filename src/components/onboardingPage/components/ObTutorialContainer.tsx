@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { Bounce, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import useWeb3Auth from "@/lib/web3auth/web3auth";
 
 const steps = [
   {
@@ -75,6 +76,7 @@ export const ObTutorialContainer = () => {
 
   const fetchTutorialDone = async () => {
     try {
+      console.log(googleUserInfo.uid);
       const response = await fetch("/api/user/onboarding", {
         method: "POST",
         headers: { "Content-Type": "aplication/json" },
@@ -92,7 +94,7 @@ export const ObTutorialContainer = () => {
         router.push(`/homePage`);
       }
     } catch (error: any) {
-      console.error(error);
+      console.error(error.msg);
     }
   };
 
