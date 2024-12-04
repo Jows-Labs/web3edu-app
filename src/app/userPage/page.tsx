@@ -7,14 +7,5 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 
 export default function userPage() {
-  const router = useRouter();
-  const { isLoggedIn } = useWeb3Auth();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/");
-      toast.warning("Faça login para acessar esta tela");
-    }
-  }, [isLoggedIn]);
   return <UserSection />;
 }
