@@ -46,22 +46,22 @@ export const RenderQuestionV = ({
       return;
     }
 
-    const aiAnswer: AiAnswerProps = await toast.promise(
-      fetchAiAnswerCheck(question, answer),
-      {
-        pending: "Verificando...",
-      }
-    );
-    console.log(aiAnswer);
-    setAiExplanation(aiAnswer.explicacao);
-
     if (isCorrect) {
       toast.promise(fetchDone(isLast), {
         pending: "Enviando...",
         success: "Tarefa concluida com sucesso!",
         error: "Erro ao concluir tarefa.",
       });
+      return;
     } else {
+      const aiAnswer: AiAnswerProps = await toast.promise(
+        fetchAiAnswerCheck(question, answer),
+        {
+          pending: "Verificando...",
+        }
+      );
+      console.log(aiAnswer);
+      setAiExplanation(aiAnswer.explicacao);
       if (aiAnswer.valido === true) {
         setIsCorrect(true);
         toast.success("Resposta correta!", {

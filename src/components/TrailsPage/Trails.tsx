@@ -14,23 +14,25 @@ import KnowLedge from "../KYC/KnowYourCostumer";
 
 export const Trails = () => {
   const { fetchTrailsList, trailsList } = useContent();
-  const { googleUserInfo } = useWeb3AuthContext();
+  const { userDbInfo } = useWeb3AuthContext();
   const [filteredTrails, setFilteredTrails] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    if (trailsList.length <= 0 && googleUserInfo !== null) {
-      fetchTrailsList(googleUserInfo?.uid);
+    if (userDbInfo !== null) {
+      fetchTrailsList(userDbInfo?.uid);
     }
-  }, [googleUserInfo]);
+  }, [userDbInfo]);
 
   useEffect(() => {
-    const filtered = trailsList.filter((trail: any) =>
-      trail.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-    setFilteredTrails(filtered);
-    console.log(filteredTrails);
-  }, [searchTerm]);
+    if (trailsList.length > 0) {
+      const filtered = trailsList.filter((trail: any) =>
+        trail.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredTrails(filtered);
+      console.log(filteredTrails);
+    }
+  }, [searchTerm, trailsList]);
 
   return (
     <div className="flex w-full h-full justify-start items-center flex-col overflow-y-scroll px-12 mt-4">
