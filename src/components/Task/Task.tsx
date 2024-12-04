@@ -88,8 +88,8 @@ export const Task = ({
             <RenderQuestionV
               description={section.description}
               isLast={section.isLast}
+              question={section.title}
               fetchDone={fetchDone}
-              question={section.question}
             />
           ) : (
             <>

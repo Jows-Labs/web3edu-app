@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { MDXRemote } from "next-mdx-remote";
 import { useMDXComponents } from "@/mdx-components";
 import { MotionButton } from "../ui/Button";
+import { toast } from "react-toastify";
 
 interface MdxSectionProps {
   fetchDone: (param: Boolean) => Promise<void>;
@@ -68,7 +69,13 @@ export default function MdxSection({
             label="Marcar como concluído"
             type="button"
             className="bg-green text-neutral w-fit min-h-12 self-end"
-            func={() => fetchDone(isLast)}
+            func={() => {
+              toast.promise(fetchDone(isLast), {
+                pending: "Enviando...",
+                success: "Tarefa concluida com sucesso!",
+                error: "Erro ao concluir tarefa.",
+              });
+            }}
           />
         </>
       ) : (

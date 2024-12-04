@@ -23,12 +23,16 @@ export const RenderQuizV = ({
 
   function HandleSubmit() {
     if (isCorrect) {
-      fetchDone(isLast);
+      toast.promise(fetchDone(isLast), {
+        pending: "Enviando...",
+        success: "Tarefa concluida com sucesso!",
+        error: "Erro ao concluir tarefa.",
+      });
     } else {
       if (options[selectedOpt].correct === true) {
         setIsCorrect(true);
         toast.success("Resposta correta!", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -40,7 +44,7 @@ export const RenderQuizV = ({
         });
       } else {
         toast.error("Resposta Incorreta!", {
-          position: "top-right",
+          position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,

@@ -88,17 +88,7 @@ export const ObTutorialContainer = () => {
         });
         const data = await response.json();
         setUserDbInfo(data.user);
-        toast.success("Tutorial completo!", {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          transition: Bounce,
-        });
+
         router.push(`/homePage`);
       }
     } catch (error: any) {
@@ -160,7 +150,11 @@ export const ObTutorialContainer = () => {
           type="button"
           func={() =>
             currentStep === steps.length - 1
-              ? fetchTutorialDone()
+              ? toast.promise(fetchTutorialDone(), {
+                  pending: "Enviando...",
+                  success: "Tutorial completo!",
+                  error: "Erro ao concluir tutorial.",
+                })
               : handleNextStep()
           }
           className="bg-cgreen w-fit text-lg font-semibold"

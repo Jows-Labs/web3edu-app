@@ -2,6 +2,7 @@ import Image from "next/image";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 import { MotionButton } from "../ui/Button";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 export default function Kyc2({
   handleTabClick,
@@ -131,7 +132,13 @@ export default function Kyc2({
         <MotionButton
           label="Enviar"
           type="button"
-          func={() => fetchKyc()}
+          func={() =>
+            toast.promise(fetchKyc(), {
+              pending: "Enviando...",
+              success: "Formulário enviado com sucesso!",
+              error: "Erro ao enviar formulário.",
+            })
+          }
           className="bg-cgreen w-3/5 text-neutral font-semibold"
         />
       </div>
