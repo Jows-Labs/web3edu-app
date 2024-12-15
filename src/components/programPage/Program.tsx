@@ -1,13 +1,26 @@
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 
-import { useContent } from "@/providers/content-context";
+import { ContentProvider, useContent } from "@/providers/content-context";
 import { Task } from "../Task/Task";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useRouter } from "next/navigation";
+import { ProgramContainer } from "../programsPage/ProgramContainer";
 
 export const Program = ({ programId }: ProgramProps) => {
-  const { googleUserInfo, isLoggedIn } = useWeb3AuthContext();
-  const [program, setProgram] = useState({});
+  const { isLoggedIn, userDbInfo } = useWeb3AuthContext();
+  const { trailsList, fetchTrailsList } = useContent();
+  const [program, setProgram] = useState<ProgramContainerProps>({
+    programId: "",
+    banner: "",
+    description: "",
+    estimatedTime: 0,
+    requirements: {},
+    title: "",
+  });
+
+  useEffect(() => {
+    console.log(program);
+  }, [program]);
 
   const router = useRouter();
 
@@ -22,6 +35,15 @@ export const Program = ({ programId }: ProgramProps) => {
       }
 
       const data = await response.json();
+      const requiredTrail = trailsList.find(
+        (trail: { id: string }) => trail.id === data.requirements.trail
+      );
+
+      // Armazena o nome e a porcentagem da trilha
+      if (requiredTrail) {
+        data.requirements.trailName = requiredTrail.name;
+        data.requirements.trailPercentage = requiredTrail.percentage;
+      }
       setProgram(data);
     } catch (error: any) {
       console.error("Erro na requisição fetchProgram:", error);
@@ -35,14 +57,20 @@ export const Program = ({ programId }: ProgramProps) => {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if (Object.keys(program).length === 0) {
-      const res = fetchProgram();
+    if (Object.keys(userDbInfo).length !== 0) {
+      fetchTrailsList(userDbInfo?.uid);
     }
-  }, [programId]);
+  }, [programId, userDbInfo]);
+
+  useEffect(() => {
+    if (program.programId === "" && trailsList.length > 0) {
+      fetchProgram();
+    }
+  }, [programId, trailsList]);
 
   return (
     <div className="md:h-full w-full justify-center items-center flex flex-col md:flex-row sm:px-10 sm:pb-6 md:gap-10 ">
-      {!googleUserInfo || Object.keys(program).length === 0 ? (
+      {!userDbInfo || program.programId === "" ? (
         <div className="md:w-3/5 w-full md:h-full flex flex-col justify-start items-start bg-cgray md:rounded-box p-10 md:gap-3 gap-6 md:overflow-y-auto">
           <div className="flex w-full flex-col gap-4">
             <div className="skeleton h-32 w-full"></div>
@@ -54,7 +82,7 @@ export const Program = ({ programId }: ProgramProps) => {
           <div className="skeleton h-full w-full"></div>
         </div>
       ) : (
-        <></>
+        <ProgramContainer program={program} />
       )}
     </div>
   );

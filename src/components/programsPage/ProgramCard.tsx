@@ -16,7 +16,7 @@ export const ProgramCard = ({
   return (
     <MotionDiv
       className="w-full h-80 max-w-80"
-      func={() => router.push(`/learn/${id}/trail`)}
+      func={() => router.push(`/programPage/${id}`)}
     >
       <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
         <img

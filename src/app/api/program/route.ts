@@ -21,8 +21,11 @@ export const GET = async (req: NextRequest) => {
       return new NextResponse(
         JSON.stringify({
           programId,
-          name: programData.name,
+          title: programData.title,
           description: programData.description,
+          banner: programData.banner,
+          estimatedTime: programData.estimatedTime,
+          requirements: programData.requirements,
         }),
         {
           status: 200,

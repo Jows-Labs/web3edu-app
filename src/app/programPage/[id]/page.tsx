@@ -1,10 +1,10 @@
 "use client";
 
-import { Learn } from "@/components/learn/Learn";
+import { Program } from "@/components/programPage/Program";
 import { useParams } from "next/navigation";
 
 export default function ProgramPage() {
-  const { trailIdRt, sectionId } = useParams();
+  const { id } = useParams();
 
-  return <Learn trailIdRt={trailIdRt} sectionId={sectionId} />;
+  return <Program programId={id} />;
 }
