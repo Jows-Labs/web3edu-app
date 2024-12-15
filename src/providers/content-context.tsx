@@ -4,9 +4,11 @@ import React, { createContext, useState, useContext } from "react";
 
 interface ContentState {
   trailsList: any;
+  programsList: any;
   trail: any;
   trailSections: any;
   fetchTrailsList: (uid: string) => void;
+  fetchProgramsList: () => void;
   fetchTrail: (trailIdRt: string) => any;
   fetchTrailSections: (trailIdRt: string, uid: string) => Object;
   fetchTrailAirDrop: (
@@ -19,7 +21,10 @@ interface ContentState {
   ) => Object;
   rewardContainerVisibility: any;
   handleRewardContainer: () => void;
-  fetchAiAnswerCheck: (question: string, prompt: string) => Promise<AiAnswerProps>;
+  fetchAiAnswerCheck: (
+    question: string,
+    prompt: string
+  ) => Promise<AiAnswerProps>;
   fetchSectionContent: (
     trailId: string,
     sectionId: string,
@@ -35,8 +40,10 @@ interface AiAnswerProps {
 const ContentContext = createContext<ContentState>({
   trail: {},
   trailsList: [],
+  programsList: [],
   trailSections: {},
   fetchTrailsList: () => {},
+  fetchProgramsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
@@ -52,6 +59,7 @@ export const ContentProvider = ({
   children: React.ReactNode;
 }) => {
   const [trailsList, setTrailsList] = useState<any>([]);
+  const [programsList, setProgramsList] = useState<any>([]);
   const [trailSections, setTrailSections] = useState<any[]>([]);
   const [rewardContainerVisibility, setRewardContainerVisibility] =
     useState(false);
@@ -68,6 +76,18 @@ export const ContentProvider = ({
       });
       const data = await response.json();
       setTrailsList(data.trails);
+    } catch (error: any) {
+      console.log(error);
+    }
+  };
+
+  const fetchProgramsList = async () => {
+    try {
+      const response = await fetch("/api/programs", {
+        method: "GET",
+      });
+      const data = await response.json();
+      setProgramsList(data.programs);
     } catch (error: any) {
       console.log(error);
     }
@@ -146,7 +166,10 @@ export const ContentProvider = ({
     }
   };
 
-  const fetchAiAnswerCheck = async (question: string, prompt: string): Promise<AiAnswerProps> => {
+  const fetchAiAnswerCheck = async (
+    question: string,
+    prompt: string
+  ): Promise<AiAnswerProps> => {
     try {
       const response = await fetch("/api/ai", {
         method: "POST",
@@ -233,6 +256,8 @@ export const ContentProvider = ({
         handleRewardContainer,
         rewardContainerVisibility,
         trailsList,
+        programsList,
+        fetchProgramsList,
         fetchTrail,
         fetchTrailAirDrop,
         fetchTrailSections,
