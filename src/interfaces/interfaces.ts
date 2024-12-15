@@ -29,6 +29,10 @@ interface LearnProps {
   sectionId: any;
 }
 
+interface ProgramProps {
+  programId: any;
+}
+
 interface Interests {
   crypto: boolean;
   blockchain: boolean;

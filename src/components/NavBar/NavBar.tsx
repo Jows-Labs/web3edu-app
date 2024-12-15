@@ -39,10 +39,10 @@ export default function NavBar({}) {
             className="menu menu-sm dropdown-content bg-neutralbg rounded-box z-[11] mt-3 w-52 p-2 shadow-lg py-2 text-neutral "
           >
             <li>
-              <a href="/homePage">Home</a>
+              <a onClick={() => router.push("/homePage")}>Home</a>
             </li>
-            <li>
-              <a>Fórum</a>
+            <li onClick={() => router.push("/programsPage")}>
+              <a>Programs</a>
             </li>
             <li>
               <a>Artigos</a>
@@ -62,10 +62,10 @@ export default function NavBar({}) {
         <div className="navbar-center hidden lg:flex bg-[#F0F0F0] rounded-box h-12 justify-center flex-col">
           <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-cgray rounded-box">
             <li>
-              <a href="/homePage">Home</a>
+              <a onClick={() => router.push("/homePage")}>Home</a>
             </li>
-            <li>
-              <a>Fórum</a>
+            <li onClick={() => router.push("/programsPage")}>
+              <a>Programs</a>
             </li>
             <li>
               <a>Artigos</a>
