@@ -16,6 +16,19 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     const whitelistDocRef = doc(db, "whitelist", uid);
     const docSnap = await getDoc(whitelistDocRef);
 
+    const userData = docSnap.data();
+    const isEligible = userData?.status?.[trailId]?.eligible;
+
+    if (!isEligible) {
+      return new NextResponse(
+        JSON.stringify({
+          error: "Usuário não é elegível para essa trilha",
+        }),
+        { status: 400 }
+      );
+      
+    }
+
     if (docSnap.exists()) {
       // Se o documento já existe, atualiza o status da trilha
       await updateDoc(whitelistDocRef, {
