@@ -9,11 +9,20 @@ import { useEffect, useState } from "react";
 import { getDisplayName } from "next/dist/shared/lib/utils";
 import { Bounce, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { IoChevronBack } from "react-icons/io5";
+import { IconButton } from "../ui/IconButton";
 
 export const UserSection = () => {
   const { userDbInfo, googleUserInfo, fetchUserDbData } = useWeb3AuthContext();
   const router = useRouter();
   const { isLoggedIn } = useWeb3AuthContext();
+  const back = () => {
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/homePage");
+    }
+  };
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -92,7 +101,7 @@ export const UserSection = () => {
 
   return (
     <div className="flex w-full h-full justify-center items-center">
-      <div className=" w-4/5 h-[26rem] md:w-2/5 md:h-[30rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7">
+      <div className=" w-4/5 h-[26rem] md:w-3/5 md:h-[30rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7">
         <div className="flex w-full h-12 flex-row justify-center">
           <div
             role="tablist"
@@ -100,9 +109,15 @@ export const UserSection = () => {
           >
             <a
               role="tab"
-              className="tab hover:tab-active text-xm md:text-lg text-dgray"
+              className="tab hover:tab-active text-xm md:text-lg text-dgray flex justify-between"
             >
+              <IconButton
+                func={back}
+                Icon={IoChevronBack}
+                className="text-neutral"
+              />
               Dados
+              <a role="tab"></a>
             </a>
           </div>
         </div>
@@ -158,7 +173,7 @@ export const UserSection = () => {
                 value={discord}
                 onChange={(e) => setDiscord(e.target.value)}
                 type="text"
-                placeholder=""
+                placeholder="UserName"
                 className="input input-bordered w-full md:h-10 h-8  bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
               <div className="label">
@@ -168,7 +183,7 @@ export const UserSection = () => {
                 value={linkedin}
                 onChange={(e) => setLinkedin(e.target.value)}
                 type="text"
-                placeholder=""
+                placeholder="www.linkedin.com/in/username"
                 className="input input-bordered w-full md:h-10 h-8 bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
             </div>
