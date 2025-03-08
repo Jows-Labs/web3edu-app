@@ -18,6 +18,7 @@ export const POST = async (req: NextRequest) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": `Bearer ${process.env.NEXT_PUBLIC_GAIA_API_KEY}`,
         },
         body: JSON.stringify({
           messages: [
@@ -30,6 +31,7 @@ export const POST = async (req: NextRequest) => {
               content: prompt,
             },
           ],
+          "model": "llama",
         }),
       }
     );
