@@ -7,17 +7,9 @@ import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useRouter } from "next/navigation";
 
 export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
-  const { googleUserInfo, isLoggedIn } = useWeb3AuthContext();
+  const { googleUserInfo } = useWeb3AuthContext();
 
   const { fetchTrail, trail } = useContent();
-
-  const router = useRouter();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/");
-    }
-  }, [isLoggedIn]);
 
   useEffect(() => {
     if (Object.keys(trail).length === 0) {

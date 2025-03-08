@@ -1,5 +1,3 @@
-import Image from "next/image";
-import UserImage from "../../assets/images/UserImage.png";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { IconButton } from "../ui/IconButton";
 import { FaDiscord, FaLinkedin } from "react-icons/fa6";
