@@ -7,6 +7,7 @@ import { ContentProvider } from "@/providers/content-context";
 import { ToastContainer } from "react-toastify";
 import { RewardContainer } from "@/components/RewardContainer/RewardContainer";
 import { Lexend_Deca } from "next/font/google";
+import { LoadingProvider } from "@/lib/loading-context";
 
 /* export const metadata: Metadata = {
   title: "Web3EduBrasil",
@@ -61,37 +62,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Web3AuthProvider>
-      <ContentProvider>
-        <html lang="pt-br">
-          <head />
+    <LoadingProvider>
+      <Web3AuthProvider>
+        <ContentProvider>
+          <html lang="pt-br">
+            <head />
 
-          <body className={LexendDeca.className}>
-            <main
-              className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen overflow-hidden "
-              data-theme="light"
-            >
-              <NavBar />
-              <section className="flex flex-col h-full w-full overflow-y-auto ">
-                {children}
-              </section>
-              <RewardContainer />
-              <ToastContainer
-                position="top-center"
-                autoClose={2500}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
-            </main>
-          </body>
-        </html>
-      </ContentProvider>
-    </Web3AuthProvider>
+            <body className={LexendDeca.className}>
+              <main
+                className="flex w-full flex-col items-center bg-neutralbg justify-start h-screen overflow-hidden "
+                data-theme="light"
+              >
+                <NavBar />
+                <section className="flex flex-col h-full w-full overflow-y-auto ">
+                  {children}
+                </section>
+                <RewardContainer />
+                <ToastContainer
+                  position="top-center"
+                  autoClose={2500}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
+              </main>
+            </body>
+          </html>
+        </ContentProvider>
+      </Web3AuthProvider>
+    </LoadingProvider>
   );
 }
