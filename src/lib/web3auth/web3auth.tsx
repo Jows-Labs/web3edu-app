@@ -238,10 +238,14 @@ export default function useWeb3Auth() {
 
   const logout = async () => {
     try {
+      console.log("AAAA");
       if (web3auth.status === ADAPTER_EVENTS.CONNECTED) await web3auth.logout();
       await signOut(getAuth(app));
       setProvider(null);
       setAccounts([]);
+      setUserDbInfo({});
+      setUserInfo(null);
+      setGoogleUserInfo(null);
       localStorage.removeItem("googleUserInfo");
       router.push("/");
     } catch (error) {
