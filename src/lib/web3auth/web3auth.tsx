@@ -33,10 +33,10 @@ import { toast } from "react-toastify";
 // Configuração do Web3Auth e da Chain
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: "0xaa36a7",
-  rpcTarget: "https://rpc.ankr.com/eth_sepolia",
-  displayName: "Ethereum Sepolia",
-  blockExplorerUrl: "https://sepolia.etherscan.io/",
+  chainId: "0x1",
+  rpcTarget: process.env.NEXT_PUBLIC_WEB3AUTH_RPC_TARGET,
+  displayName: "Ethereum",
+  blockExplorerUrl: "https://etherscan.io/",
   ticker: "ETH",
   tickerName: "Ethereum",
 };
