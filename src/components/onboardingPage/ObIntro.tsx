@@ -3,12 +3,14 @@
 import Image from "next/image";
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
 import { MotionButton } from "../ui/Button";
+import { useRouter } from "next/navigation";
 
 const teste = () => {
   console.log("oi");
 };
 
 export const ObIntro = ({ handleTabClick }: OnboardingProps<void>) => {
+  const router = useRouter();
   return (
     <div className="w-full h-full flex justify-center items-center p-5">
       <div className="w-full h-full flex flex-col justify-center items-center gap-10 text-center">
@@ -32,6 +34,9 @@ export const ObIntro = ({ handleTabClick }: OnboardingProps<void>) => {
           func={() => handleTabClick("ObCommu")}
           className="bg-cgreen w-28 text-neutral font-bold"
         />
+        <div className="cursor-pointer text-dblue">
+          <a onClick={() => router.push("/homePage")}>Pular Introdução</a>
+        </div>
       </div>
     </div>
   );
