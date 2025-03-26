@@ -12,7 +12,7 @@ import { MotionDiv } from "../ui/MotionDiv";
 export default function NavBar({}) {
   const router = useRouter();
 
-  const { isLoggedIn } = useWeb3AuthContext();
+  const { userInfo } = useWeb3AuthContext();
 
   return (
     <div className="flex w-full bg-neutralbg justify-between sm:px-10 h-fit p-[0.5rem]">
@@ -76,7 +76,7 @@ export default function NavBar({}) {
           </ul>
         </div>
       </div>
-      {isLoggedIn ? <UserMenu /> : <LoginButton />}
+      {userInfo ? <UserMenu /> : <LoginButton />}
     </div>
   );
 }

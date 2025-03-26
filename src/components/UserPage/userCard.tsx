@@ -1,12 +1,9 @@
 "use client";
 
-import Image from "next/image";
-import { MdEdit } from "react-icons/md";
 import { FaSave } from "react-icons/fa";
 import { MotionButton } from "../ui/Button";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { useEffect, useState } from "react";
-import { getDisplayName } from "next/dist/shared/lib/utils";
 import { Bounce, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { IoChevronBack } from "react-icons/io5";

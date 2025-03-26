@@ -8,8 +8,6 @@ interface Web3AuthContextProps {
   login: () => Promise<void>;
   logout: () => Promise<void>;
   WalletUi: () => Promise<void>;
-  isLoggedIn: boolean;
-  isLoggingIn: boolean;
   userInfo: Partial<any> | null;
   userDbInfo: any;
   fetchUserDbData: (uid: string) => void;
@@ -27,8 +25,6 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
     login,
     logout,
     WalletUi,
-    isLoggedIn,
-    isLoggingIn,
     userInfo,
     userDbInfo,
     fetchUserDbData,
@@ -43,8 +39,6 @@ export const Web3AuthProvider = ({ children }: { children: ReactNode }) => {
         login,
         logout,
         WalletUi,
-        isLoggedIn,
-        isLoggingIn,
         userInfo,
         userDbInfo,
         fetchUserDbData,
