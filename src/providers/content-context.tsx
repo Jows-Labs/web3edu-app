@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useState, useContext } from "react";
+import { MdQuestionMark } from "react-icons/md";
 
 interface ContentState {
   trailsList: any;
@@ -171,6 +172,7 @@ export const ContentProvider = ({
     prompt: string
   ): Promise<AiAnswerProps> => {
     try {
+      console.log(question, prompt);
       const response = await fetch("/api/ai", {
         method: "POST",
         headers: {
@@ -182,6 +184,7 @@ export const ContentProvider = ({
         }),
       });
       const data = await response.json();
+      console.log(data);
       const obj = await JSON.parse(data.message.content);
       return {
         explicacao: obj.explicacao,

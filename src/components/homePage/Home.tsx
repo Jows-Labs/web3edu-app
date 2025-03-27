@@ -8,18 +8,11 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useContent } from "@/providers/content-context";
 import { toast } from "react-toastify";
+import { useLoading } from "@/lib/loading-context";
 
 export const Home = () => {
   const router = useRouter();
-  const { userDbInfo, isLoggedIn } = useWeb3AuthContext();
-  const { fetchAiAnswerCheck } = useContent();
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/");
-      toast.warning("Faça login para acessar esta tela");
-    }
-  }, [isLoggedIn]);
+  const { userDbInfo } = useWeb3AuthContext();
 
   useEffect(() => {
     if (userDbInfo) {

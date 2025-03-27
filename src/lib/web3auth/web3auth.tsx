@@ -19,21 +19,24 @@ import {
   onAuthStateChanged,
   signInWithPopup,
   signOut,
+  User,
   UserCredential,
 } from "firebase/auth";
 import React, { useEffect, useState } from "react";
 import { WalletServicesPlugin } from "@web3auth/wallet-services-plugin";
 import Web3 from "web3";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { app } from "@/firebase/config";
+import { useLoading } from "../loading-context";
+import { toast } from "react-toastify";
 
 // Configuração do Web3Auth e da Chain
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: "0xaa36a7",
-  rpcTarget: "https://rpc.ankr.com/eth_sepolia",
-  displayName: "Ethereum Sepolia",
-  blockExplorerUrl: "https://sepolia.etherscan.io/",
+  chainId: "0x1",
+  rpcTarget: process.env.NEXT_PUBLIC_WEB3AUTH_RPC_TARGET,
+  displayName: "Ethereum",
+  blockExplorerUrl: "https://etherscan.io/",
   ticker: "ETH",
   tickerName: "Ethereum",
 };
@@ -89,8 +92,9 @@ const walletPlugin = new WalletServicesPlugin({
 
 export default function useWeb3Auth() {
   const router = useRouter();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const pathname = usePathname();
+
+  const [user, setUser] = useState<User | null>(null);
   const [provider, setProvider] = useState<IProvider | null>(null);
   const [userInfo, setUserInfo] =
     useState<Partial<OpenloginLoginParams> | null>(null);
@@ -99,11 +103,8 @@ export default function useWeb3Auth() {
   const [userDbInfo, setUserDbInfo] = useState({});
   const [walletServicesPlugin, setWalletServicesPlugin] =
     useState<WalletServicesPlugin | null>(null);
+  const { setIsLoading } = useLoading();
 
-  useEffect(() => {
-    const storedLoggedIn = localStorage.getItem("isLoggedIn");
-    setIsLoggedIn(storedLoggedIn === "true");
-  }, []);
   useEffect(() => {
     const init = async () => {
       try {
@@ -113,7 +114,6 @@ export default function useWeb3Auth() {
         setWalletServicesPlugin(walletPlugin);
 
         if (web3auth.status === ADAPTER_EVENTS.CONNECTED) {
-          setIsLoggedIn(true);
           const userInfo = await web3auth.getUserInfo();
           setUserInfo(userInfo);
 
@@ -133,15 +133,9 @@ export default function useWeb3Auth() {
   }, []);
 
   useEffect(() => {
-    // Salva o estado de login no localStorage sempre que ele muda
-    localStorage.setItem("isLoggedIn", isLoggedIn.toString());
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     if (!web3auth) return;
 
     const handleConnectionChange = () => {
-      setIsLoggedIn(web3auth.status === ADAPTER_EVENTS.CONNECTED);
       if (web3auth.status !== ADAPTER_EVENTS.CONNECTED) {
         router.push("/");
       }
@@ -168,17 +162,18 @@ export default function useWeb3Auth() {
   useEffect(() => {
     const auth = getAuth(app);
 
-    onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setIsLoggedIn(true);
+    onAuthStateChanged(auth, async (firebaseUser) => {
+      setUser(firebaseUser);
+      setIsLoading(false);
 
-        fetchUserDbData(user.uid);
+      if (firebaseUser) {
+        fetchUserDbData(firebaseUser.uid);
 
         try {
           const userObj = {
-            uid: user.uid,
-            email: user.email,
-            displayName: user.displayName,
+            uid: firebaseUser.uid,
+            email: firebaseUser.email,
+            displayName: firebaseUser.displayName,
             tutorialDone: false,
             createdAt: new Date(),
           };
@@ -189,14 +184,16 @@ export default function useWeb3Auth() {
           const data = await response.json();
           console.log(data);
         } catch (error: any) {
-          console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
-          console.log("erro teste", error);
+          console.log("Error saving user data", error);
         }
       } else {
-        setIsLoggedIn(false);
+        if (pathname !== "/") {
+          router.push("/");
+          toast.warning("Faça login para acessar esta tela");
+        }
       }
     });
-  }, []);
+  }, [router, pathname]);
 
   const signInWithGoogle = async (): Promise<UserCredential> => {
     const auth = getAuth(app);
@@ -208,7 +205,7 @@ export default function useWeb3Auth() {
 
   const login = async () => {
     try {
-      setIsLoggingIn(true);
+      setIsLoading(true);
       const loginRes = await signInWithGoogle();
       const idToken = await loginRes.user.getIdToken(true);
 
@@ -235,17 +232,20 @@ export default function useWeb3Auth() {
     } catch (error) {
       console.error(error);
     } finally {
-      setIsLoggingIn(false);
+      setIsLoading(false);
     }
   };
 
   const logout = async () => {
     try {
+      console.log("AAAA");
       if (web3auth.status === ADAPTER_EVENTS.CONNECTED) await web3auth.logout();
       await signOut(getAuth(app));
       setProvider(null);
-      setIsLoggedIn(false);
       setAccounts([]);
+      setUserDbInfo({});
+      setUserInfo(null);
+      setGoogleUserInfo(null);
       localStorage.removeItem("googleUserInfo");
       router.push("/");
     } catch (error) {
@@ -264,8 +264,7 @@ export default function useWeb3Auth() {
   return {
     logout,
     login,
-    isLoggedIn,
-    isLoggingIn,
+    user,
     WalletUi,
     userInfo,
     userAccount,
