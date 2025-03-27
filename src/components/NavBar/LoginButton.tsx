@@ -13,10 +13,10 @@ export const LoginButton = () => {
 
   return (
     <MotionButton
-      label="Login"
+      label="Comece Agora!"
       func={handleLogin}
       type="button"
-      className="text-black border rounded-2xl font-medium"
+      className="text-white bg-dblue border rounded-xl text-neutral"
     />
   );
 };

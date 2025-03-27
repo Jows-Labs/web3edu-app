@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -50,3 +51,6 @@ a.mdx {
   cursor: pointer !important;
   text-decoration: underline !important;
 }
+
+
+

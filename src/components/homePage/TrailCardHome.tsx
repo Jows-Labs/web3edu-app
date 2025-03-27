@@ -16,7 +16,7 @@ export const TrailCardHome = ({
     >
       <div className="flex gap-4 items-center text-neutral h-1/4">
         {Icon ? <Icon className="h-full w-auto text-neutral" /> : <></>}
-        <p className="text-md font-semibold">{text}</p>
+        <p className="text-base font-semibold">{text}</p>
       </div>
 
 

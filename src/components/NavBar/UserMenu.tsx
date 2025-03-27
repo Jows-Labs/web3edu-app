@@ -17,22 +17,15 @@ export const UserMenu = () => {
       >
         {userInfo ? (
           <IoWalletOutline
-            className="w-9 h-9 black content-center"
+            className="w-8 h-8 black content-center"
             style={{ color: "black" }}
           />
         ) : null}
-      </div>
-      <div className="dropdown dropdown-end">
-        <div
-          tabIndex={1}
-          role="button"
-          className="btn btn-ghost btn-circle avatar"
-        >
-          <div className="w-10 rounded-full">
-            {userInfo ? (
-              <img alt="User Image" src={googleUserInfo?.photoURL} />
+     export default function NavBar({}) {
+  const router = useRouter();
+  const { isLoggedIn, userInfo } = useWeb3AuthContext();
             ) : (
-              <CgProfile className="w-10 h-10" />
+              <CgProfile className="w-9 h-9" />
             )}
           </div>
         </div>
@@ -42,6 +35,9 @@ export const UserMenu = () => {
         >
           <li>
             <a onClick={() => router.push("/userPage")}>Perfil</a>
+          </li>
+          <li>
+            <a onClick={() => router.push("/onboarding")}>Ajuda</a>
           </li>
 
           <li>
