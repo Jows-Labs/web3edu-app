@@ -5,7 +5,7 @@ export const Section4 = () => {
     <div className="w-full h-fit flex bg-neutralbg md:px-20 px-10 py-10 flex-col justify-center items-center ">
       <div className="flex flex-col justify-center items-center gap-8">
         <p className="text-neutral text-4xl font-bold text-center">
-          Trilhas de Aprendizagem
+          Trilhas de Aprendizagem (Em Breve)
         </p>
         <p className="text-gray md:px-20 font-medium text-justify ">
           Explore <strong>conteúdos detalhados</strong> sobre esses temas

@@ -11,11 +11,10 @@ import { MotionDiv } from "../ui/MotionDiv";
 
 export default function NavBar({}) {
   const router = useRouter();
-
   const { isLoggedIn } = useWeb3AuthContext();
 
   return (
-    <div className="flex w-full bg-neutralbg justify-between sm:px-10 h-fit p-[0.5rem]">
+    <div className="flex w-full bg-neutralbg justify-between items-center sm:px-10 h-fit p-[0.5rem]">
       <div className="flex gap-3 items-center">
         <div className="dropdown">
           <div tabIndex={0} className="lg:hidden">
@@ -38,18 +37,19 @@ export default function NavBar({}) {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-neutralbg rounded-box z-[11] mt-3 w-52 p-2 shadow-lg py-2 text-neutral "
           >
-            <li>
-              <a onClick={() => router.push("/homePage")}>Home</a>
-            </li>
-            <li onClick={() => router.push("/programsPage")}>
-              <a>Programs</a>
-            </li>
-            <li>
-              <a>Artigos</a>
-            </li>
-            <li>
-              <a onClick={() => router.push("/trailsPage")}>Trilhas</a>
-            </li>
+            {isLoggedIn && (
+              <>
+                <li>
+                  <a onClick={() => router.push("/homePage")}>Home</a>
+                </li>
+                <li onClick={() => router.push("/programsPage")}>
+                  <a>Programs</a>
+                </li>
+                <li>
+                  <a onClick={() => router.push("/trailsPage")}>Trilhas</a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <MotionDiv
@@ -61,18 +61,19 @@ export default function NavBar({}) {
         </MotionDiv>
         <div className="navbar-center hidden lg:flex bg-[#F0F0F0] rounded-box h-12 justify-center flex-col">
           <ul className="menu menu-horizontal px-3 text-neutral font-medium bg-cgray rounded-box">
-            <li>
-              <a onClick={() => router.push("/homePage")}>Home</a>
-            </li>
-            <li onClick={() => router.push("/programsPage")}>
-              <a>Programs</a>
-            </li>
-            <li>
-              <a>Artigos</a>
-            </li>
-            <li>
-              <a onClick={() => router.push("/trailsPage")}>Trilhas</a>
-            </li>
+            {isLoggedIn && (
+              <>
+                <li>
+                  <a onClick={() => router.push("/homePage")}>Home</a>
+                </li>
+                <li onClick={() => router.push("/programsPage")}>
+                  <a>Programs</a>
+                </li>
+                <li>
+                  <a onClick={() => router.push("/trailsPage")}>Trilhas</a>
+                </li>
+              </>
+            )}
           </ul>
         </div>
       </div>

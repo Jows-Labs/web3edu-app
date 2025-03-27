@@ -17,7 +17,7 @@ export const UserMenu = () => {
       >
         {isLoggedIn ? (
           <IoWalletOutline
-            className="w-9 h-9 black content-center"
+            className="w-8 h-8 black content-center"
             style={{ color: "black" }}
           />
         ) : null}
@@ -28,11 +28,11 @@ export const UserMenu = () => {
           role="button"
           className="btn btn-ghost btn-circle avatar"
         >
-          <div className="w-10 rounded-full">
+          <div className="w-9 rounded-full">
             {isLoggedIn ? (
               <img alt="User Image" src={googleUserInfo?.photoURL} />
             ) : (
-              <CgProfile className="w-10 h-10" />
+              <CgProfile className="w-9 h-9" />
             )}
           </div>
         </div>
@@ -42,6 +42,9 @@ export const UserMenu = () => {
         >
           <li>
             <a onClick={() => router.push("/userPage")}>Perfil</a>
+          </li>
+          <li>
+            <a onClick={() => router.push("/onboarding")}>Ajuda</a>
           </li>
 
           <li>

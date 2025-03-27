@@ -28,19 +28,23 @@ export const TrailCardsLanding = () => {
     },
   ];
   return (
-    <div className="flex md:flex-wrap flex-row gap-16 justify-start md:justify-center overflow-x-auto w-full py-8">
-      {cardData.map((card, index) => (
-        <MotionDiv
-          key={index}
-          className="rounded-box bg-[#F0F0F0] h-36 min-w-64 flex flex-col p-6 items-start gap-7 shadow-xl"
-        >
-          {card.icon}
-          <div className="flex w-full text-blue items-center justify-between">
-            <p className="font-medium">{card.text}</p>
-            <FaArrowRight className="h-full text-gray cursor-pointer" />
-          </div>
-        </MotionDiv>
-      ))}
-    </div>
+<div className="flex flex-wrap gap-12 justify-center w-full py-8 mb-5">
+  {cardData.map((card, index) => (
+    <MotionDiv
+      key={index}
+      className="rounded-box bg-[#F0F0F0] h-28 flex flex-col p-4 items-start gap-5 shadow-xl min-w-[calc(20%-1rem)]" 
+    >
+      {card.icon}
+      <div className="flex w-full text-blue items-center justify-between">
+        <p className="font-medium">{card.text}</p>
+        <FaArrowRight className="h-full text-gray cursor-pointer" />
+      </div>
+    </MotionDiv>
+  ))}
+</div>
+
+
+
+
   );
 };

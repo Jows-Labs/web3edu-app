@@ -158,7 +158,7 @@ export const UserSection = () => {
                 value={discord}
                 onChange={(e) => setDiscord(e.target.value)}
                 type="text"
-                placeholder=""
+                placeholder="Nome do seu Perfil"
                 className="input input-bordered w-full md:h-10 h-8  bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
               <div className="label">
@@ -168,7 +168,7 @@ export const UserSection = () => {
                 value={linkedin}
                 onChange={(e) => setLinkedin(e.target.value)}
                 type="text"
-                placeholder=""
+                placeholder="Link do seu Perfil"
                 className="input input-bordered w-full md:h-10 h-8 bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
             </div>

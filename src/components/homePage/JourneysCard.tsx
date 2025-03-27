@@ -25,7 +25,7 @@ export const JourneysCard = () => {
                   : router.push(`/userPage`)
               }
             >
-              <p className="text-lg font-bold">Preencher dados do perfil</p>{" "}
+              <p className=" font-bold">Preencher dados do perfil</p>{" "}
               {userDbInfo?.socialMedia?.discord &&
               userDbInfo?.socialMedia?.linkedin ? (
                 <FaCheck className="h-8 w-auto" />
@@ -37,7 +37,7 @@ export const JourneysCard = () => {
               className="h-1/4 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100"
               onClick={() => !userDbInfo.kyc && setKycOpen(!kycOpen)}
             >
-              <p className="text-lg font-bold">Pesquisa de perfil</p>{" "}
+              <p className=" font-bold">Pesquisa de perfil</p>{" "}
               {userDbInfo.kyc ? (
                 <FaCheck className="h-8 w-auto" />
               ) : (
@@ -45,7 +45,7 @@ export const JourneysCard = () => {
               )}
             </div>
             <div className="h-1/4 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100">
-              <p className="text-lg font-bold">Resgatar NFT de boas-vindas</p>{" "}
+              <p className=" font-bold">Resgatar NFT de boas-vindas</p>{" "}
               <FaCheck className="h-8 w-auto" />
             </div>
             <div
@@ -54,7 +54,7 @@ export const JourneysCard = () => {
                 userDbInfo?.trails ? null : router.push("/trailsPage")
               }
             >
-              <p className="text-lg font-bold">Comece uma trilha</p>{" "}
+              <p className="font-bold">Comece uma trilha</p>{" "}
               {userDbInfo.trails ? (
                 <FaCheck className="h-8 w-auto" />
               ) : (

@@ -8,6 +8,7 @@ import Onboarding3 from "../../../assets/images/tutorial/trailspage.png";
 import Onboarding4 from "../../../assets/images/tutorial/trailpage.png";
 import Onboarding5 from "../../../assets/images/tutorial/reward.png";
 import Onboarding6 from "../../../assets/images/tutorial/acesswallet.png";
+import Onboarding7 from "../../../assets/images/tutorial/yourprofile.jpg";
 import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
 import { useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
@@ -23,6 +24,14 @@ const steps = [
     image: Onboarding1.src,
     progress: 16.6,
     instruction: "Acesse através da barra de navegação ao topo da tela",
+  },
+  {
+    title: "Seu Perfil",
+    description:
+      "Aqui, você pode personalizar seu perfil, adicionando o Discord ou o LinkedIn. Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!",
+    image: Onboarding7.src,
+    progress: 25,
+    instruction: "Acesse (Perfil) no canto superior direito da sua tela, clicando no ícone do seu perfil.",
   },
   {
     title: "Configurar perfil de usuário",
