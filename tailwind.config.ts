@@ -59,5 +59,9 @@ const config: Config = {
     themes: ["light"],
   },
   darkMode: "selector",
+
+
+
+  
 };
 export default config;

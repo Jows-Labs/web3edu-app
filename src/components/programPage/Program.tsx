@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { ProgramContainer } from "../programsPage/ProgramContainer";
 
 export const Program = ({ programId }: ProgramProps) => {
-  const { isLoggedIn, userDbInfo } = useWeb3AuthContext();
+  const { userInfo, userDbInfo } = useWeb3AuthContext();
   const { trailsList, fetchTrailsList } = useContent();
   const [program, setProgram] = useState<ProgramContainerProps>({
     programId: "",
@@ -51,10 +51,10 @@ export const Program = ({ programId }: ProgramProps) => {
   };
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!userInfo) {
       router.push("/");
     }
-  }, [isLoggedIn]);
+  }, [userInfo]);
 
   useEffect(() => {
     if (Object.keys(userDbInfo).length !== 0) {

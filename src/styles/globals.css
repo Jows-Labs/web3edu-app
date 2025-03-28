@@ -3,6 +3,7 @@
 @tailwind utilities;
 @plugin "@tailwindcss/typography";
 
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -31,4 +32,23 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+ul.mdx {
+  list-style-type: disc;
+  margin-left: 15px !important;
+}
+ol.mdx {
+  list-style-type: decimal;
+  list-style-position: inside;
+}
+
+li.mdx {
+  margin-bottom: 1rem !important;
+}
+
+a.mdx {
+  color: blue !important;
+  cursor: pointer !important;
+  text-decoration: underline !important;
 }

@@ -10,7 +10,7 @@ export const MotionButton = ({
 }: MotionButtonProps<void>) => {
   return (
     <motion.button
-      className={` px-4 py-2 rounded-box text-base-content shadow-lg ${className} `}
+      className={` px-3 py-[0.125rem] h-9 rounded-[0.7rem] text-base-content shadow-lg ${className} `}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{
