@@ -53,9 +53,6 @@ export const RewardContainer = () => {
     handleRewardContainer();
   }
 
-  useEffect(() => {
-    console.log(trail);
-  }, [trail]);
   return (
     <div
       className={`w-full min-h-full bg-black/50 flex justify-center items-center text-neutral absolute z-20 top-0 px-5 md:px-0 ${

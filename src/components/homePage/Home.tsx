@@ -13,6 +13,7 @@ import { useLoading } from "@/lib/loading-context";
 export const Home = () => {
   const router = useRouter();
   const { userDbInfo } = useWeb3AuthContext();
+  const { fetchAchievedNfts, achievedNfts } = useContent();
 
   useEffect(() => {
     if (userDbInfo) {
@@ -21,10 +22,16 @@ export const Home = () => {
       }
     }
   }, [userDbInfo]);
+
+  useEffect(() => {
+    if (userDbInfo && achievedNfts.length === 0) {
+      fetchAchievedNfts(userDbInfo.uid);
+    }
+  }, [userDbInfo]);
   return (
     <div className="h-full w-full grid items-center grid-cols-1 lg:grid-rows-5 pb-6 lg:grid-cols-5 lg:px-40 px-10 justify-center gap-10">
       <UserCard />
-      <NftsCard />
+      <NftsCard achievedNfts={achievedNfts} />
       <JourneysCard />
       <TrailsCardSection />
     </div>

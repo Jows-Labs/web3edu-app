@@ -13,10 +13,10 @@ export const Trails = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
-    if (userDbInfo !== null) {
+    if (userDbInfo !== null && trailsList.length === 0) {
       fetchTrailsList(userDbInfo?.uid);
     }
-  }, [userDbInfo]);
+  }, [userDbInfo, trailsList]);
 
   useEffect(() => {
     if (trailsList.length > 0) {
