@@ -1,15 +1,23 @@
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
-import discordIcon from "../../assets/icons/discord-icon.svg"
+import discordIcon from "../../assets/icons/discord-icon.svg";
 import Image from "next/image";
 
 export default function Section1() {
   return (
     <div className="w-full flex flex-col bg-neutralbg">
       <div className="bg-ddblue w-full flex items-center justify-center md:text-sm gap-4 py-2 px-4 md:py-4 text-white">
-        <p>Conecte-se ao Futuro: Impulsionando a Inovação na Web3</p>
+        <p className="md:text-lg text-md max-w-[50%]">
+          Conecte-se ao Futuro: Impulsionando a Inovação na Web3
+        </p>
         <div className="flex flex-row items-center gap-2">
-        <a href="https://discord.gg/GJk58TPaDx" target="_blank" className="underline cursor-aointer">Participe da comunidade</a>
-        <Image alt="" src={discordIcon} className="md:h-6 w-auto" />
+          <a
+            href="https://discord.gg/GJk58TPaDx"
+            target="_blank"
+            className="underline cursor-pointer"
+          >
+            Participe da comunidade
+          </a>
+          <Image alt="" src={discordIcon} className="h-[80%] w-auto" />
         </div>
       </div>
       <div className="md:h-full w-full px-5 md:py-20 py-10 flex md:flex-row flex-col md:justify-around items-center gap-10 text-neutral">
