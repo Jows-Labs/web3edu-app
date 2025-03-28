@@ -21,9 +21,16 @@ export const UserMenu = () => {
             style={{ color: "black" }}
           />
         ) : null}
-     export default function NavBar({}) {
-  const router = useRouter();
-  const { isLoggedIn, userInfo } = useWeb3AuthContext();
+      </div>
+      <div className="dropdown dropdown-end">
+        <div
+          tabIndex={1}
+          role="button"
+          className="btn btn-ghost btn-circle avatar"
+        >
+          <div className="w-9 rounded-full">
+            {userInfo ? (
+              <img alt="User Image" src={googleUserInfo?.photoURL} />
             ) : (
               <CgProfile className="w-9 h-9" />
             )}
