@@ -84,11 +84,14 @@ export const ContentProvider = ({
   };
 
   const fetchAchievedNfts = async (uid: string) => {
-    console.log(db);
-    // const userRef = doc(db, "users", uid);
-    const achievedNftsRef = collection(db, uid, "achievedNfts");
-    const snapshot = await getDocs(achievedNftsRef);
-    setAchievedNfts(snapshot.docs.map((doc) => doc.data() as AchievedNft));
+    try {
+      const userRef = doc(db, "users", uid);
+      const achievedNftsRef = collection(userRef, "achievedNfts");
+      const snapshot = await getDocs(achievedNftsRef);
+      setAchievedNfts(snapshot.docs.map((doc) => doc.data() as AchievedNft));
+    } catch (error: any) {
+      console.error("Erro ao buscar NFTs conquistados:", error);
+    }
   };
 
   const fetchTrailsList = async (uid: string) => {

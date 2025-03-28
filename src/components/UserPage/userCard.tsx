@@ -12,7 +12,6 @@ import { IconButton } from "../ui/IconButton";
 export const UserSection = () => {
   const { userDbInfo, googleUserInfo, fetchUserDbData } = useWeb3AuthContext();
   const router = useRouter();
-  const { isLoggedIn } = useWeb3AuthContext();
   const back = () => {
     if (window.history.length > 1) {
       router.back();
@@ -20,13 +19,6 @@ export const UserSection = () => {
       router.push("/homePage");
     }
   };
-
-  useEffect(() => {
-    if (!isLoggedIn) {
-      router.push("/");
-      toast.warning("Faça login para acessar esta tela");
-    }
-  }, [isLoggedIn]);
 
   const [userName, setUserName] = useState("");
   const [linkedin, setLinkedin] = useState("");
@@ -114,7 +106,6 @@ export const UserSection = () => {
                 className="text-neutral"
               />
               Dados
-              <a role="tab"></a>
             </a>
           </div>
         </div>
