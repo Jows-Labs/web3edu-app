@@ -76,6 +76,7 @@ export const Task = ({
               id={section.id}
               trailId={trailId}
               isLast={section.isLast}
+              done={section.done}
             />
           ) : section.type === "quiz" ? (
             <RenderQuizV

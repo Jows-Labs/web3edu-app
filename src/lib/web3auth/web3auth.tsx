@@ -34,7 +34,7 @@ import { toast } from "react-toastify";
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
   chainId: "0x1",
-  rpcTarget: process.env.NEXT_PUBLIC_WEB3AUTH_RPC_TARGET,
+  rpcTarget: process.env.NEXT_PUBLIC_WEB3AUTH_RPC_TARGET || "",
   displayName: "Ethereum",
   blockExplorerUrl: "https://etherscan.io/",
   ticker: "ETH",
@@ -238,7 +238,6 @@ export default function useWeb3Auth() {
 
   const logout = async () => {
     try {
-      console.log("AAAA");
       if (web3auth.status === ADAPTER_EVENTS.CONNECTED) await web3auth.logout();
       await signOut(getAuth(app));
       setProvider(null);
@@ -247,7 +246,6 @@ export default function useWeb3Auth() {
       setUserInfo(null);
       setGoogleUserInfo(null);
       localStorage.removeItem("googleUserInfo");
-      router.push("/");
     } catch (error) {
       console.error("Error during logout:", error);
     }

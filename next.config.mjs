@@ -4,6 +4,17 @@ import createMDX from "@next/mdx";
 const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
+  images: {
+    domains: ["ipfs.io"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "ipfs.io",
+        port: "",
+        pathname: "/ipfs/**",
+      },
+    ],
+  },
 };
 
 const withMDX = createMDX({

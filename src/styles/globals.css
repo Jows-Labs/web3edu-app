@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@plugin "@tailwindcss/typography";
 
 
 :root {
@@ -51,6 +52,3 @@ a.mdx {
   cursor: pointer !important;
   text-decoration: underline !important;
 }
-
-
-

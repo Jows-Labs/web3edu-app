@@ -1,13 +1,23 @@
 "use client";
 
 import React, { createContext, useState, useContext } from "react";
-import { MdQuestionMark } from "react-icons/md";
+import {
+  getFirestore,
+  doc,
+  collection,
+  addDoc,
+  serverTimestamp,
+  getDocs,
+} from "firebase/firestore";
+import { db } from "@/firebase/config";
 
 interface ContentState {
   trailsList: any;
   programsList: any;
   trail: any;
   trailSections: any;
+  achievedNfts: AchievedNft[];
+  fetchAchievedNfts: (uid: string) => void;
   fetchTrailsList: (uid: string) => void;
   fetchProgramsList: () => void;
   fetchTrail: (trailIdRt: string) => any;
@@ -43,7 +53,9 @@ const ContentContext = createContext<ContentState>({
   trailsList: [],
   programsList: [],
   trailSections: {},
+  achievedNfts: [],
   fetchTrailsList: () => {},
+  fetchAchievedNfts: () => {},
   fetchProgramsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
@@ -62,12 +74,24 @@ export const ContentProvider = ({
   const [trailsList, setTrailsList] = useState<any>([]);
   const [programsList, setProgramsList] = useState<any>([]);
   const [trailSections, setTrailSections] = useState<any[]>([]);
+  const [achievedNfts, setAchievedNfts] = useState<AchievedNft[]>([]);
   const [rewardContainerVisibility, setRewardContainerVisibility] =
     useState(false);
   const [trail, setTrail] = useState<any>({});
 
   const handleRewardContainer = async () => {
     setRewardContainerVisibility(!rewardContainerVisibility);
+  };
+
+  const fetchAchievedNfts = async (uid: string) => {
+    try {
+      const userRef = doc(db, "users", uid);
+      const achievedNftsRef = collection(userRef, "achievedNfts");
+      const snapshot = await getDocs(achievedNftsRef);
+      setAchievedNfts(snapshot.docs.map((doc) => doc.data() as AchievedNft));
+    } catch (error: any) {
+      console.error("Erro ao buscar NFTs conquistados:", error);
+    }
   };
 
   const fetchTrailsList = async (uid: string) => {
@@ -240,6 +264,21 @@ export const ContentProvider = ({
             ipfsHash: IpfsHash,
           }),
         });
+        console.log(walletAddress, trailId, trailIcon);
+
+        if (response2.ok) {
+          const db = getFirestore();
+          const userRef = doc(db, "users", uid);
+          const achievedNftsRef = collection(userRef, "achievedNfts");
+
+          await addDoc(achievedNftsRef, {
+            walletAddress,
+            trailId,
+            ipfs: trailIcon,
+            createdAt: serverTimestamp(),
+          });
+        }
+
         const data2 = await response2.json();
         console.log(data2);
       } else {
@@ -260,6 +299,8 @@ export const ContentProvider = ({
         rewardContainerVisibility,
         trailsList,
         programsList,
+        achievedNfts,
+        fetchAchievedNfts,
         fetchProgramsList,
         fetchTrail,
         fetchTrailAirDrop,

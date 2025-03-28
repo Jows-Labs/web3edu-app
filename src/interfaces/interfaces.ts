@@ -114,3 +114,10 @@ interface Trail {
   topics: string[];
   trailId: string;
 }
+
+interface AchievedNft {
+  walletAddress: string;
+  trailId: string;
+  ipfs: string;
+  createdAt: Date;
+}
