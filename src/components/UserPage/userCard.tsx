@@ -12,7 +12,7 @@ import { IconButton } from "../ui/IconButton";
 export const UserSection = () => {
   const { userDbInfo, googleUserInfo, fetchUserDbData } = useWeb3AuthContext();
   const router = useRouter();
-  const { isLoggedIn } = useWeb3AuthContext();
+  const { userInfo } = useWeb3AuthContext();
   const back = () => {
     if (window.history.length > 1) {
       router.back();
@@ -22,11 +22,11 @@ export const UserSection = () => {
   };
 
   useEffect(() => {
-    if (!isLoggedIn) {
+    if (!userInfo) {
       router.push("/");
       toast.warning("Faça login para acessar esta tela");
     }
-  }, [isLoggedIn]);
+  }, [userInfo]);
 
   const [userName, setUserName] = useState("");
   const [linkedin, setLinkedin] = useState("");
@@ -171,7 +171,7 @@ export const UserSection = () => {
                 onChange={(e) => setDiscord(e.target.value)}
                 type="text"
 
-                placeholder="Nome do seu Perfil"=======
+                placeholder="Nome do seu Perfil"
            
 
                 className="input input-bordered w-full md:h-10 h-8  bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
