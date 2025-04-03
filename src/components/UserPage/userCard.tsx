@@ -174,7 +174,7 @@ export const UserSection = () => {
                 value={linkedin}
                 onChange={(e) => setLinkedin(e.target.value)}
                 type="text"
-                placeholder="Link do seu Perfil"
+                placeholder="www.linkedin.com/in/username"
                 className="input input-bordered w-full md:h-10 h-8 bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
             </div>
