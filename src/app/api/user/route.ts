@@ -36,7 +36,7 @@ export const GET = async (req: NextRequest) => {
 
 export const POST = async (req: NextRequest, res: NextResponse) => {
   try {
-    const data = await req.json();
+    let data = await req.json();
     console.log(data);
     const userDocRef = doc(db, "users", data.uid);
     const docSnap = await getDoc(userDocRef);
@@ -46,7 +46,11 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
       return new NextResponse(JSON.stringify({ user: userData }), {
         status: 200,
       });
-    } else {
+    } else { 
+      data = {
+        ...data,
+        createdAt: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
+      };
       const user = await setDoc(userDocRef, data);
 
       return new NextResponse(
