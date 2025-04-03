@@ -4,15 +4,11 @@ import AnimationLearning from "../../assets/animations/LearningAnimation.json" a
 import AnimationRewards from "../../assets/animations/RewardsAnimation.json" assert { type: "json" };
 import AnimationEmBreve from "../../assets/animations/EmBreveAnimation.json" assert { type: "json" };
 
-
 export default function Section2() {
   return (
     <div className="w-full flex flex-col">
       <figure>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 1440 160"
-        >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 160">
           <path
             fill="#7EC8A0"
             fillOpacity="1"
@@ -23,8 +19,7 @@ export default function Section2() {
 
       <div className="bg-cgreen w-full h-fit p-10 flex flex-col justify-center items-center gap-10 mt-[-1px]">
         <p className="text-neutral text-3xl font-bold">Principais Funções</p>
-        <div className="flex justify-start md:justify-center items-start gap-10 py-10 h-fit w-full overflow-hidden">
-          
+        <div className="flex justify-start md:justify-center items-start gap-10 py-10 h-fit w-full overflow-x-auto">
           <MainFunctions
             functionName="Sistema de Recompensas"
             content="Os alunos que concluem as trilhas de aprendizagem recebem certificação via blockchain, garantindo reconhecimento autêntico e verificável do conhecimento adquirido."
