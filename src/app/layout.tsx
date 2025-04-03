@@ -48,6 +48,7 @@ import { LoadingProvider } from "@/lib/loading-context";
     "web3educacao",
     "web3edu",
     "web3edubrasil",
+    "web3 brasil"
   ],
 }; */
 

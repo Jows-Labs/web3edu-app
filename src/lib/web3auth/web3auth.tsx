@@ -33,10 +33,10 @@ import { toast } from "react-toastify";
 // Configuração do Web3Auth e da Chain
 const chainConfig = {
   chainNamespace: CHAIN_NAMESPACES.EIP155,
-  chainId: "0x1",
-  rpcTarget: process.env.NEXT_PUBLIC_WEB3AUTH_RPC_TARGET || "",
-  displayName: "Ethereum",
-  blockExplorerUrl: "https://etherscan.io/",
+  chainId: "0xAA36A7",
+  rpcTarget: process.env.NEXT_PUBLIC_ALCHEMY_RPC_TARGET || "",
+  displayName: "Sepolia Testnet",
+  blockExplorerUrl: "https://sepolia.etherscan.io/",
   ticker: "ETH",
   tickerName: "Ethereum",
 };
@@ -175,7 +175,6 @@ export default function useWeb3Auth() {
             email: firebaseUser.email,
             displayName: firebaseUser.displayName,
             tutorialDone: false,
-            createdAt: new Date(),
           };
           const response = await fetch("/api/user", {
             method: "POST",
