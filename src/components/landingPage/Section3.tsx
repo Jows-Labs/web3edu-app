@@ -12,7 +12,7 @@ import { useState } from "react";
 
 export const Section3 = () => {
   const [videoLink, setVideoLink] = useState(
-    "https://www.youtube.com/embed/0kIIDNvxqug"
+    "https://www.youtube.com/embed/LDWxrrl21AM"
   );
 
   function teste() {
@@ -48,7 +48,7 @@ export const Section3 = () => {
             className="bg-cgreen w-full min-w-[10rem] text-neutral rounded-full"
             type="button"
             func={() =>
-              setVideoLink("https://www.youtube.com/embed/0kIIDNvxqug")
+              setVideoLink("https://www.youtube.com/embed/LDWxrrl21AM")
             }
             label="Recompensas"
             Icon={() => (
@@ -60,7 +60,7 @@ export const Section3 = () => {
             className="bg-cgreen w-full min-w-[10rem] text-neutral rounded-full"
             type="button"
             func={() =>
-              setVideoLink("https://www.youtube.com/embed/NG-5L34HqOs")
+              setVideoLink("https://www.youtube.com/embed/AWrs8B5_K34")
             }
             label="Trilhas"
             Icon={() => (

@@ -68,18 +68,7 @@ export default function MdxSection({
           }}
         />
       )}
-      <MotionButton
-        type="button"
-        label="Marcar como concluído"
-        className="w-fit bg-blue text-white"
-        func={() => {
-          toast.promise(fetchDone(isLast), {
-            pending: "Enviando...",
-            success: "Tarefa concluída com sucesso!",
-            error: "Erro ao concluir tarefa.",
-          });
-        }}
-      />
+      
     </div>
   );
 }
