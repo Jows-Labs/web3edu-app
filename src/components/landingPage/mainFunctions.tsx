@@ -28,7 +28,7 @@ function MainFunctions({
 
   return (
     <motion.div
-      className={`bg-[#F3F3F3] text-black flex flex-col min-w-80 rounded-3xl shadow-xl overflow-hidden transition-all ${className}`}
+      className={`bg-[#F3F3F3] text-black flex flex-col md:min-w-96 min-w-80 max-w-96 rounded-3xl shadow-xl overflow-hidden transition-all ${className}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -41,17 +41,17 @@ function MainFunctions({
             image
           )}
         </div>
-        <div className="w-3/5 h-full bg-[#001D3D] rounded-r-3xl flex justify-center items-center text-center shadow-lg">
+        <div className="w-3/5 h-full bg-[#001D3D] rounded-r-3xl flex justify-center items-center text-center shadow-lg md:px-8 px-2">
           <p className="text-white text-2xl">{functionName}</p>
         </div>
       </div>
 
       {/* Parte Inferior Expansível */}
       <motion.div
-        className="bg-gray-200 text-black px-4 py-2 text-sm rounded-b-3xl overflow-hidden"
+        className="bg-gray-200 text-black px-4 py-2 text-sm rounded-b-3xl h-fit overflow-hidden"
         initial={{ maxHeight: 0, opacity: 0 }}
         animate={{
-          maxHeight: isHovered ? 100 : 0,
+          maxHeight: isHovered ? 9999 : 0,
           opacity: isHovered ? 1 : 0,
         }}
         transition={{ duration: 0.2, ease: "easeInOut" }}

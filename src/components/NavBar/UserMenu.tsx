@@ -30,7 +30,7 @@ export const UserMenu = () => {
         >
           <div className="w-9 rounded-full">
             {userInfo ? (
-              <img alt="User Image" src={googleUserInfo?.photoURL} />
+              <img alt="User Image" src="https://imgs.search.brave.com/6S8yL0z8CMzh1LhUnKButQCb0KnA0XL2goUeqmeI6mE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGNkbi5jb20u/YnIvaW1nL2ltZ19w/cm9kLzgxL2FwbGlx/dWVfZGVfcGFyZWRl/X2RlY29yYXRpdm9f/ZW1fbWRmX2FsZmFi/ZXRvX2xldHJhX21f/NjUwMjlfMV82MTUz/YWQ3MTA2NjkxZDNj/NWE2MGJhMmNmMzFi/NjlmOS5qcGc" />
             ) : (
               <CgProfile className="w-9 h-9" />
             )}

@@ -12,7 +12,7 @@ import { useState } from "react";
 
 export const Section3 = () => {
   const [videoLink, setVideoLink] = useState(
-    "https://www.youtube.com/embed/0kIIDNvxqug"
+    "https://www.youtube.com/embed/LDWxrrl21AM"
   );
 
   function teste() {
@@ -38,17 +38,17 @@ export const Section3 = () => {
           </p>
           <p className="whitespace-pre-wrap"> </p>
           <p className="text-gray w-3/4">
-          Veja a seguir as nossas principais funções presentes em nosso site.
+            Veja a seguir as nossas principais funções presentes em nosso site.
             <strong> Aprenda</strong> as principais coisas do mundo do Web3!
           </p>
         </div>
 
-        <div className="flex w-full border border-cgray h-full rounded-full p-2 justify-start gap-5 text-neutral">
+        <div className="flex w-full min-w-fit border border-cgray h-fit rounded-full p-2 justify-start gap-5 text-neutral">
           <MotionButton
-            className="bg-cgreen w-[30%] text-neutral w-fit rounded-full"
+            className="bg-cgreen w-full min-w-[10rem] text-neutral rounded-full"
             type="button"
             func={() =>
-              setVideoLink("https://www.youtube.com/embed/0kIIDNvxqug")
+              setVideoLink("https://www.youtube.com/embed/LDWxrrl21AM")
             }
             label="Recompensas"
             Icon={() => (
@@ -57,17 +57,16 @@ export const Section3 = () => {
           />
 
           <MotionButton
-            className="bg-cgreen w-[30%] text-neutral rounded-full"
+            className="bg-cgreen w-full min-w-[10rem] text-neutral rounded-full"
             type="button"
             func={() =>
-              setVideoLink("https://www.youtube.com/embed/NG-5L34HqOs")
+              setVideoLink("https://www.youtube.com/embed/AWrs8B5_K34")
             }
             label="Trilhas"
             Icon={() => (
               <Image src={TrailIcon} alt="Trail Icon" className="w-4 h-4" />
             )}
           />
-        
         </div>
       </div>
 

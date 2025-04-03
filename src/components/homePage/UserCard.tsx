@@ -14,7 +14,7 @@ export default function UserCard() {
       <div className="border border-gray rounded-full h-20 w-20 overflow-hidden absolute z-10 top-[12.5%] left-8 bg-white">
         {googleUserInfo !== null ? (
           <img
-            src={googleUserInfo?.photoURL}
+            src="https://imgs.search.brave.com/6S8yL0z8CMzh1LhUnKButQCb0KnA0XL2goUeqmeI6mE/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMudGNkbi5jb20u/YnIvaW1nL2ltZ19w/cm9kLzgxL2FwbGlx/dWVfZGVfcGFyZWRl/X2RlY29yYXRpdm9f/ZW1fbWRmX2FsZmFi/ZXRvX2xldHJhX21f/NjUwMjlfMV82MTUz/YWQ3MTA2NjkxZDNj/NWE2MGJhMmNmMzFi/NjlmOS5qcGc"
             alt=""
             className="w-full h-full"
           ></img>
