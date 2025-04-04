@@ -239,8 +239,8 @@ export const ContentProvider = ({
           },
         }
       );
-      const checkElegibilityData = await checkElegibilityResponse.json();
-      const { eligible } = checkElegibilityData;
+      const checkEligibilityData = await checkEligibilityResponse.json();
+      const { eligible } = checkEligibilityData;
       if (eligible === false) {
         console.error("Usuário não é elegível para receber o NFT");
         return toast.error("Usuário não é elegível para receber o NFT");
