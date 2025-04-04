@@ -10,6 +10,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 import { db } from "@/firebase/config";
+import { toast } from "react-toastify";
 
 interface ContentState {
   trailsList: any;
@@ -54,15 +55,15 @@ const ContentContext = createContext<ContentState>({
   programsList: [],
   trailSections: {},
   achievedNfts: [],
-  fetchTrailsList: () => {},
-  fetchAchievedNfts: () => {},
-  fetchProgramsList: () => {},
+  fetchTrailsList: () => { },
+  fetchAchievedNfts: () => { },
+  fetchProgramsList: () => { },
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
   fetchAiAnswerCheck: () => Promise.resolve({ explicacao: "", valido: false }),
   fetchSectionContent: () => ({}),
-  handleRewardContainer: () => {},
+  handleRewardContainer: () => { },
   rewardContainerVisibility: {},
 });
 
@@ -209,7 +210,7 @@ export const ContentProvider = ({
       });
       const data = await response.json();
       console.log(data);
-      const obj = await JSON.parse(data.message.content);
+      const obj = await JSON.parse(data.body.content);
       return {
         explicacao: obj.explicacao,
         valido: obj.valido,
@@ -229,13 +230,33 @@ export const ContentProvider = ({
     trailName: string
   ) => {
     try {
+      const checkElegibilityResponse = await fetch(
+        "/api/whitelist",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            uid: uid,
+            trailId: trailId,
+          }),
+        }
+      );
+      const checkElegibilityData = await checkElegibilityResponse.json();
+      const { eligible } = checkElegibilityData;
+      if (eligible === false) {
+        console.error("Usuário não é elegível para receber o NFT");
+        return toast.error("Usuário não é elegível para receber o NFT");
+      }
+
       const response1 = await fetch(
         "https://api.pinata.cloud/pinning/pinJSONToIPFS",
         {
           method: "POST",
           headers: {
             Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzYjk4ZDFmMi03YzcxLTQzNDAtOTZiMi03OTE4ZjZjY2QxYTQiLCJlbWFpbCI6InBlZHJvY29lbGhvLm5hc2NpbWVudG9AZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiRlJBMSJ9LHsiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjEsImlkIjoiTllDMSJ9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6ImQwNmM2OGJkODlmZjMyOTI3YTJmIiwic2NvcGVkS2V5U2VjcmV0IjoiMzkzOTI3N2FkNWU0NjdjN2I1ZjQ1ZjIzYzAwNDFhN2I5MDE0MzY2N2YxZjIxN2UzNWE0ZDE5YWIwZWY1YzlkZCIsImV4cCI6MTc2MjkxNTA3Mn0.bKLfcn9AJA7ML1m9MIWySw7JmMGRfYAIAGU_c7oxFP4",
+              `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({

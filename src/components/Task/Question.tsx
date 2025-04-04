@@ -45,6 +45,21 @@ export const RenderQuestionV = ({
       });
       return;
     }
+    
+    if (answer.length > 500) {
+      toast.warning("Resposta muito longa! (max 500 caracteres)", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      return;
+    }
 
     if (isCorrect) {
       toast.promise(fetchDone(isLast), {
@@ -115,7 +130,7 @@ export const RenderQuestionV = ({
         label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
         type="button"
         className={`text-neutral w-fit h-12 self-end ${
-          isCorrect ? "bg-green" : "bg-transparent border border-2"
+          isCorrect ? "bg-green" : "bg-transparent border-2"
         }`}
         func={() => {
           HandleSubmit();

@@ -76,3 +76,56 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     );
   }
 };
+
+export const GET = async (req: NextRequest) => {
+  try {
+    const { uid, trailId } = await req.json();
+    if (!uid || !trailId) {
+      return new NextResponse(
+        JSON.stringify({
+          error: "Parâmetros uid e trailId são obrigatórios",
+        }),
+        { status: 400 }
+      );
+    }
+
+    const whitelistDocRef = doc(db, "whitelist", uid);
+    const docSnap = await getDoc(whitelistDocRef);
+
+    if (!docSnap.exists()) {
+      return new NextResponse(
+        JSON.stringify({
+          error: "Usuário não encontrado na whitelist",
+        }),
+        { status: 404 }
+      );
+    }
+
+    const userData = docSnap.data();
+    const trailStatus = userData?.status?.[trailId];
+
+    if (!trailStatus) {
+      return new NextResponse(
+        JSON.stringify({
+          eligible: false,
+        }),
+        { status: 200 }
+      );
+    }
+
+    const isEligible = trailStatus.eligible && trailStatus.txHash === "";
+
+    return new NextResponse(
+      JSON.stringify({
+        eligible: isEligible,
+      }),
+      { status: 200 }
+    );
+  } catch (error: any) {
+    console.error(error.message);
+    return new NextResponse(
+      JSON.stringify({ message: "Internal Server Error" }),
+      { status: 500 }
+    );
+  }
+};
