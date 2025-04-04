@@ -2,12 +2,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { model } from "@/firebase/config";
 
 function systemMessage(question: string) {
-  return `Você é um especialista em revisão de conceitos relacionados a Web3. Avalie a veracidade de declarações fornecidas para responder a pergunta: ${question}. Retorne um objeto JSON no seguinte formato:
-{
-  "valido": <true|false>,
-  "explicacao": "<uma explicação breve e objetiva>"
-}
-Caso a declaração seja válida, defina 'valido: true' e forneça uma breve explicação afirmando que está correta. Caso seja inválida, defina 'valido: false' e explique de forma clara e objetiva o que está incorreto.`;
+  return `Você é um especialista em Web3. Avalie a veracidade de declarações fornecidas para responder a pergunta: ${question}.
+  Retorne um objeto JSON:
+    {
+      "valido": <true|false>,
+      "explicacao": "<explicação concisa>"
+    }
+  Exemplos:
+  Correto: {"valido": true, "explicacao": "[Explicação correta]"}
+  Incorreto: {"valido": false, "explicacao": "[Explicação do erro]"}`;
 }
 
 export const POST = async (req: NextRequest) => {
@@ -18,7 +21,12 @@ export const POST = async (req: NextRequest) => {
 
     const modelResponse = await model.generateContent({
       systemInstruction: systemMessage(question),
-      contents: prompt,
+      contents: [
+        {
+          role: "user",
+          parts: [{ text: prompt }]
+        },
+      ],
     });
     const response = modelResponse.response;
     const result = await response.text();
