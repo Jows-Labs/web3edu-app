@@ -230,7 +230,7 @@ export const ContentProvider = ({
     trailName: string
   ) => {
     try {
-      const checkElegibilityResponse = await fetch(
+      const checkEligibilityResponse = await fetch(
         `/api/whitelist?uid=${uid}&trailId=${trailId}`,
         {
           method: "GET",
