@@ -1,6 +1,7 @@
 import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
-import { db } from "@/firebase/config";
+import { analytics, db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
+import { logEvent } from "firebase/analytics";
 
 export const GET = async (req: NextRequest) => {
   try {
@@ -52,7 +53,7 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         createdAt: new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" }),
       };
       const user = await setDoc(userDocRef, data);
-
+      logEvent(analytics, "first_access");
       return new NextResponse(
         JSON.stringify({
           message: "UsuÃ¡rio adicionado com sucesso",

@@ -16,7 +16,7 @@ const firebaseConfig = {
 };
 
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-// const analytics = getAnalytics(app);
+const analytics = getAnalytics(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 const db = getFirestore(app);
@@ -25,4 +25,4 @@ const db = getFirestore(app);
 const vertexAI = getVertexAI(app);
 const model = getGenerativeModel(vertexAI, { model: "gemini-2.0-flash-lite-001" });
 
-export { app, auth, storage, db, model };
+export { app, auth, storage, db, model, analytics };
