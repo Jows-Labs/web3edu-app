@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { model } from "@/firebase/config";
 
 function systemMessage(question: string) {
   return `Você é um especialista em revisão de conceitos relacionados a Web3. Avalie a veracidade de declarações fornecidas para responder a pergunta: ${question}. Retorne um objeto JSON no seguinte formato:
@@ -8,54 +9,25 @@ function systemMessage(question: string) {
 }
 Caso a declaração seja válida, defina 'valido: true' e forneça uma breve explicação afirmando que está correta. Caso seja inválida, defina 'valido: false' e explique de forma clara e objetiva o que está incorreto.`;
 }
+
 export const POST = async (req: NextRequest) => {
   try {
     const { question, prompt } = await req.json();
 
-    const response = await fetch(
-      "https://llama8b.gaia.domains/v1/chat/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GAIA_API_KEY}`,
-        },
-        body: JSON.stringify({
-          messages: [
-            {
-              role: "system",
-              content: systemMessage(question),
-            },
-            {
-              role: "user",
-              content: prompt,
-            },
-          ],
-          model: "llama",
-        }),
-      }
-    );
+    if (prompt.length > 500) return NextResponse.json({error: "Prompt too long, must be under 500 characters" }, { status: 400 });
 
-    // Verifica se a resposta foi bem-sucedida
-    if (!response.ok) {
-      const errorData = await response.json();
-      const errorMessage =
-        errorData.message || "Erro ao buscar conteúdo da seção";
-      throw new Error(errorMessage);
-    }
-
-    // Extrai os dados da resposta
-    console.log("response", response);
-    const { choices } = await response.json();
-    const message = choices[0]?.message || "Message not found";
-
-    // Retorna a resposta final
-    return NextResponse.json({ message }, { status: 201 });
+    const modelResponse = await model.generateContent({
+      systemInstruction: systemMessage(question),
+      contents: prompt,
+    });
+    const response = modelResponse.response;
+    const result = await response.text();
+    return NextResponse.json({ body: result }, { status: 201 });
   } catch (error: any) {
     // Tratamento de erro
-    console.error("Erro no endpoint POST:", error.message);
+    console.error("Erro no endpoint AI:", error.message);
     return NextResponse.json(
-      { message: error.message || "Internal Server Error" },
+      { message: error.message || "Error validating the prompt" },
       { status: 500 }
     );
   }
