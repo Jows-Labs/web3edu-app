@@ -231,16 +231,12 @@ export const ContentProvider = ({
   ) => {
     try {
       const checkElegibilityResponse = await fetch(
-        "/api/whitelist",
+        `/api/whitelist?uid=${uid}&trailId=${trailId}`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            uid: uid,
-            trailId: trailId,
-          }),
         }
       );
       const checkElegibilityData = await checkElegibilityResponse.json();

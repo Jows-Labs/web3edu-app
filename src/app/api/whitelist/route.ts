@@ -79,7 +79,8 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
 
 export const GET = async (req: NextRequest) => {
   try {
-    const { uid, trailId } = await req.json();
+    const uid = req.nextUrl.searchParams.get("uid");
+    const trailId = req.nextUrl.searchParams.get("trailId");
     if (!uid || !trailId) {
       return new NextResponse(
         JSON.stringify({
