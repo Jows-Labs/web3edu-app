@@ -210,7 +210,9 @@ export const ContentProvider = ({
       });
       const data = await response.json();
       console.log(data);
-      const obj = await JSON.parse(data.body.content);
+      const bodyString = data.body;
+      const jsonString = bodyString.replace("`json", "").replace("`", "").trim();
+      const obj = JSON.parse(jsonString);
       return {
         explicacao: obj.explicacao,
         valido: obj.valido,
