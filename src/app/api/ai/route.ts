@@ -21,8 +21,7 @@ export const POST = async (param: NextRequest) => {
       contents: prompt,
     });
     const response = req.response;
-    const result = response.text();
-
+    const result = await response.text();
     return NextResponse.json({ body: result }, { status: 201 });
   } catch (error: any) {
     // Tratamento de erro
