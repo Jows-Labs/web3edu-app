@@ -51,7 +51,7 @@ export const ObCommuContainers = ({
               Participe das nossas <br></br>   comunidades
             </p>
             <p className="md:text-2xl text-base">
-              Junte-se às nossas comunidades Web3 e fique por dentro de tudo!
+              Junte-se às nossas comunidades e fique por dentro de tudo!
               Siga-nos nas redes sociais, compartilhe experiências e aprenda
               junto com a gente. Não perca as novidades!
             </p>
