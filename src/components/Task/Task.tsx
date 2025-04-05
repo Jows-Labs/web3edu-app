@@ -65,10 +65,7 @@ export const Task = ({
 
   return (
     <div className="md:w-3/5 w-full h-full flex flex-col gap-2">
-      <p className="text-blue font-extrabold md:text-2xl text-2xl md:text-start text-left flex items-center md:h-[6%] h-fit px-2">
-        {section.title}
-      </p>
-      <div className="w-full md:h-[94%] h-fit bg-neutralbg flex md:gap-3 md:flex-row flex-col">
+      <div className="w-full md:h-full h-fit bg-neutralbg flex md:gap-3 md:flex-row flex-col">
         <div className="w-full h-full bg-cgray relative md:rounded-box flex flex-col text-neutral justify-between md:overflow-y-auto p-8 font-medium text-medium gap-5">
           {section.type === "text" ? (
             <MdxSection
