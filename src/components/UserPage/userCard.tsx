@@ -94,29 +94,26 @@ export const UserSection = () => {
   return (
     <div className="flex w-full h-full justify-center items-center">
       <div className=" w-4/5 h-[26rem] md:w-3/5 md:h-[30rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7">
-        <div className="flex w-full h-12 flex-row justify-center">
-          <div
-            role="tablist"
-            className="tabs tabs-bordered gap-1 md:gap-8 w-full h-4/5"
-          >
-            <a
-              role="tab"
-              className="tab hover:tab-active text-xm md:text-lg text-dgray flex justify-between"
-            >
-              <IconButton
-                func={back}
-                Icon={IoChevronBack}
-                className="text-neutral"
-              />
-              Dados
-            </a>
-          </div>
-        </div>
-        <div className="flex flex-col flex flex-col gap-6 ">
+      <div className="flex w-full h-12 flex-row items-center justify-between">
+
+  <IconButton
+    func={back}
+    Icon={IoChevronBack}
+    className="text-bold ml-4 h-6 w-6"
+  />
+
+
+  <div className="absolute left-1/2 transform -translate-x-1/2">
+    <span className="text-sm md:text-lg text-dgray">Dados Pessoais</span>
+  </div>
+
+
+  <div className="w-6 md:w-8" />
+</div>
+
+        <div className="flex flex-col  gap-6 ">
           <div className="flex h-full md:justify-start justify-center">
-            <p className="text-dgray text-md md:text-xl mt-5 font-medium">
-              Dados Pessoais
-            </p>
+            
           </div>
           <div className="md:flex-row flex-col flex gap-4 justify-between">
             <div className="flex flex-row justify-center items-center">
@@ -127,7 +124,7 @@ export const UserSection = () => {
               ></img>
               <div className="flex flex-col items-left ml-4">
                 <p className="text-dgray font-medium text-sm md:text-lg">
-                  {userDbInfo.displayName}
+                {userDbInfo?.displayName || ""}
                 </p>
               </div>
             </div>
@@ -136,7 +133,7 @@ export const UserSection = () => {
           <label className="flex flex-row h-full w-full gap-8 justify-center">
             <div className="flex flex-col justify-center w-full">
               <div className="label text-dgray">
-                <span className="md:text-sm text-xs  text-dgray">Nome</span>
+                <span className="md:text-sm text-xs  text-dgray">Nome de Exibição</span>
               </div>
               <input
                 value={userName}
