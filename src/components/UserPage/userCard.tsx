@@ -93,6 +93,29 @@ export const UserSection = () => {
 
   return (
     <div className="flex w-full h-full justify-center items-center">
+      <div className=" w-4/5 h-[26rem] md:w-3/5 md:h-[26rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7 gap-5">
+        <div className="flex w-full h-12 flex-row justify-center">
+          <div
+            role="tablist"
+            className="tabs tabs-bordered gap-1 md:gap-8 w-full h-4/5"
+          >
+            <a
+              role="tab"
+              className="tab hover:tab-active text-xm md:text-lg text-dgray flex justify-between"
+            >
+              <IconButton
+                func={back}
+                Icon={IoChevronBack}
+                className="text-neutral"
+              />
+              <div className="text-dgray text-md md:text-xl font-medium">
+                Dados Pessoais
+              </div>
+              <div></div>
+            </a>
+          </div>
+        </div>
+        <div className="flex flex-col flex flex-col gap-6 ">
       <div className=" w-4/5 h-[26rem] md:w-3/5 md:h-[30rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7">
       <div className="flex w-full h-12 flex-row items-center justify-between">
 
@@ -133,6 +156,9 @@ export const UserSection = () => {
           <label className="flex flex-row h-full w-full gap-8 justify-center">
             <div className="flex flex-col justify-center w-full">
               <div className="label text-dgray">
+                <span className="md:text-sm text-xs  text-dgray">
+                  Nome de Exibição
+                </span>
                 <span className="md:text-sm text-xs  text-dgray">Nome de Exibição</span>
               </div>
               <input
@@ -161,10 +187,7 @@ export const UserSection = () => {
                 value={discord}
                 onChange={(e) => setDiscord(e.target.value)}
                 type="text"
-
                 placeholder="Nome do seu Perfil"
-           
-
                 className="input input-bordered w-full md:h-10 h-8  bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
               <div className="label">
@@ -174,11 +197,7 @@ export const UserSection = () => {
                 value={linkedin}
                 onChange={(e) => setLinkedin(e.target.value)}
                 type="text"
-
-                placeholder="Link do seu Perfil"
-
-
-
+                placeholder="www.linkedin.com/in/username"
                 className="input input-bordered w-full md:h-10 h-8 bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
             </div>

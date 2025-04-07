@@ -1,0 +1,12 @@
+{
+  "navbar": {
+    "home": "Home",
+    "Programs": "Programs",
+    "trails": "Trails"
+  },
+  "profile": "Profile",
+  "exit": "Logout",
+  "help": "Help",
+  "LearningTrails": "Learning Trails",
+  "StartNow": "Start Now!"
+}

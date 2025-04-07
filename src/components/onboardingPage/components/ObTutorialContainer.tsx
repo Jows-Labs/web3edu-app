@@ -31,7 +31,8 @@ const steps = [
       "Aqui, você pode personalizar seu perfil, adicionando o Discord e LinkedIn. Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!",
     image: Onboarding7.src,
     progress: 25,
-    instruction: "Acesse (Perfil) no canto superior direito da sua tela, clicando no ícone do seu perfil.",
+    instruction:
+      "Acesse (Perfil) no canto superior direito da sua tela, clicando no ícone do seu perfil.",
   },
   {
     title: "Configurar perfil de usuário",

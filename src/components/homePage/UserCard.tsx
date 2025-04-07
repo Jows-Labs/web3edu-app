@@ -39,7 +39,9 @@ export default function UserCard() {
             {userDbInfo?.socialMedia?.discord ? (
               <MotionDiv className="flex items-center gap-2 cursor-pointer">
                 <FaDiscord className="h-8 w-8 text-ddblue" />
-                <p className="md:text-base">{userDbInfo?.socialMedia?.discord}</p>
+                <p className="md:text-base">
+                  {userDbInfo?.socialMedia?.discord}
+                </p>
               </MotionDiv>
             ) : (
               <></>

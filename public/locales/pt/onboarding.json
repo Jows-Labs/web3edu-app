@@ -1,5 +1,8 @@
 {
   "NextPage": "Avançar",
+  "SkipIntrodution": "Pular Introdução",
+  "NextSetp": "Próximo Passo",
+  "AcessPlataform": "Acessar Plataforma",
 
   "WelCome": {
     "h1": "Seja bem vindo a Web3EduBrasil!",
@@ -20,6 +23,12 @@
     "h1": "Tela Home",
     "IntroText": "Nesta tela você encontrará alguns dados de seu perfil, um preview de suas NFT's conquistadas, a jornada de usuário e suas três últimas trilhas de aprendizagem realizadas.",
     "acess": "Acesse através da barra de navegação ao topo da tela"
+  },
+
+  "profile": {
+    "h1": "Seu Perfil",
+    "FormText": "Aqui, você pode personalizar seu perfil, adicionando o Discord ou o LinkedIn. Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!",
+    "acess": "Acesse (Perfil) no canto superior direito da sua tela, clicando no ícone do seu perfil."
   },
 
   "UserConfig": {
