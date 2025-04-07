@@ -3,12 +3,11 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { CiStar } from "react-icons/ci";
-import { SiBitcoinsv } from "react-icons/si";
-import Image1 from "../../assets/images/criptoTest.jpg";
-import { useContent } from "@/providers/content-context";
-import { useEffect } from "react";
+
 import { useRouter } from "next/navigation";
 import { MotionDiv } from "../ui/MotionDiv";
+import { logEvent } from "firebase/analytics";
+// import { analytics } from "@/firebase/config";
 
 export const TrailCards = ({
   image,
@@ -21,7 +20,10 @@ export const TrailCards = ({
   return (
     <MotionDiv
       className="w-full h-80 max-w-80"
-      func={() => router.push(`/learn/${id}/trail`)}
+      func={() => {
+        router.push(`/learn/${id}/1`);
+        // logEvent(analytics, `trail_start_${title}`);
+      }}
     >
       <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">
         <img

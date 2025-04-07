@@ -3,11 +3,11 @@
 import { MotionButton } from "../../ui/Button";
 import Image from "next/image";
 import Onboarding1 from "../../../assets/images/tutorial/homepage.png";
-import Onboarding2 from "../../../assets/images/tutorial/kyc.png";
+import Onboarding2 from "../../../assets/images/tutorial/kyc.jpg";
 import Onboarding3 from "../../../assets/images/tutorial/trailspage.png";
 import Onboarding4 from "../../../assets/images/tutorial/trailpage.png";
 import Onboarding5 from "../../../assets/images/tutorial/reward.png";
-import Onboarding6 from "../../../assets/images/tutorial/acesswallet.png";
+import Onboarding6 from "../../../assets/images/tutorial/acesswallet.jpg";
 import Onboarding7 from "../../../assets/images/tutorial/yourprofile.jpg";
 import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
 import { useState } from "react";
@@ -28,7 +28,7 @@ const steps = [
   {
     title: "Seu Perfil",
     description:
-      "Aqui, você pode personalizar seu perfil, adicionando o Discord e  LinkedIn. Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!",
+      "Aqui, você pode personalizar seu perfil, adicionando o Discord e LinkedIn. Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!",
     image: Onboarding7.src,
     progress: 25,
     instruction:
@@ -37,10 +37,10 @@ const steps = [
   {
     title: "Configurar perfil de usuário",
     description:
-      "Complete nosso breve formulário para recomendarmos trilhas de aprendizagem do seu interesse.",
+      "Complete nosso breve formulário para recomendarmos trilhas de aprendizagem do seu interesse!",
     image: Onboarding2.src,
     progress: 33.3,
-    instruction: `Acesse na tela home em "Jornada do usuário"`,
+    instruction: `Acesse na tela home em "Pesquisa de perfil"`,
   },
   {
     title: "Tela de trilhas",

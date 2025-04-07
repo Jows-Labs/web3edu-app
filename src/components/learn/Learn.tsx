@@ -36,6 +36,7 @@ export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
     }
   }, [trail, trailIdRt, trailsList]);
 
+
   return (
     <div className="md:h-full w-full justify-center items-center flex flex-col md:flex-row sm:px-10 sm:pb-6 md:gap-10 ">
       {!googleUserInfo || !trailIdRt || Object.keys(trail).length === 0 ? (
@@ -49,8 +50,6 @@ export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
           <div className="skeleton h-full w-full"></div>
           <div className="skeleton h-full w-full"></div>
         </div>
-      ) : sectionId === "trail" ? (
-        <TrailContainer trail={trail} />
       ) : (
         <Task sectionId={sectionId} trailId={trail?.trailId} />
       )}

@@ -29,6 +29,7 @@ import { useRouter, usePathname } from "next/navigation";
 import { app } from "@/firebase/config";
 import { useLoading } from "../loading-context";
 import { toast } from "react-toastify";
+import { logEvent } from "firebase/analytics";
 
 // Configuração do Web3Auth e da Chain
 const chainConfig = {
@@ -228,6 +229,8 @@ export default function useWeb3Auth() {
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
       }
+
+      // logEvent(analytics, "login");
     } catch (error) {
       console.error(error);
     } finally {
@@ -253,6 +256,7 @@ export default function useWeb3Auth() {
   const WalletUi = async () => {
     try {
       await walletServicesPlugin?.showWalletUi();
+      // logEvent(analytics, "open_wallet");
     } catch (error) {
       console.error("error while displaying the wallet: ", error);
     }
