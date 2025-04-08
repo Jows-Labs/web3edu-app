@@ -20,7 +20,7 @@ export const RewardContainer = () => {
     fetchTrailAirDrop,
     trail,
   } = useContent();
-  const { googleUserInfo, userAccount } = useWeb3AuthContext();
+  const { googleUserInfo, userAccount, userDbInfo } = useWeb3AuthContext();
 
   const texts = [
     {
@@ -45,7 +45,7 @@ export const RewardContainer = () => {
     fetchTrailAirDrop(
       "https://ipfs.io/ipfs/QmZMBnu9vShWJdmxciWg2Ji6di3sKMKvq8cDT7X5uSB6AN",
       googleUserInfo?.uid,
-      googleUserInfo?.displayName,
+      userDbInfo?.displayName || googleUserInfo?.displayName,
       userAccount[0],
       trail?.trailId,
       trail?.name
