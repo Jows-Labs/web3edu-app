@@ -1,3 +1,3 @@
-import { airdropNFTOnEligibility } from "./trigger/airdropHandler";
+import {airdropNFT} from "./trigger/airdropHandler";
 
-exports.airdropNFTOnEligibility = airdropNFTOnEligibility;
+exports.airdropNFT = airdropNFT;
