@@ -1,5 +1,5 @@
 import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
-import discordIcon from "../../assets/icons/discord-icon.svg";
+import { FaDiscord } from "react-icons/fa";
 import Image from "next/image";
 
 export default function Section1() {
@@ -17,7 +17,7 @@ export default function Section1() {
           >
             Participe da comunidade
           </a>
-          <Image alt="" src={discordIcon} className="h-[80%] w-auto" />
+          <FaDiscord size={30}/>
         </div>
       </div>
       <div className="md:h-full w-full px-5 md:py-20 py-10 flex md:flex-row flex-col md:justify-around items-center gap-10 text-neutral">

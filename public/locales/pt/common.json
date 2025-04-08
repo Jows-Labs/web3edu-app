@@ -1,10 +1,12 @@
 {
   "navbar": {
     "home": "Home",
-    "Programs": "Programas"
+    "Programs": "Programas",
+    "trails": "Trilhas"
   },
-  "trails": "Trilhas",
   "profile": "Perfil",
   "exit": "Sair",
-  "LearningTrails": "Trilhas de Aprendizagem"
+  "help": "Ajuda",
+  "LearningTrails": "Trilhas de Aprendizagem",
+  "StartNow": "Comece Agora!"
 }

@@ -48,10 +48,10 @@ export const ObCommuContainers = ({
           <Image alt="ss" src={web3EduLogo} className="w-28 h-auto" />
           <div className="font-semibold flex flex-col gap-8">
             <p className="md:text-5xl text-3xl leading-loose text-dblue">
-              Participe das nossas <br></br>   comunidades
+              Participe das nossas <br></br> comunidades
             </p>
             <p className="md:text-2xl text-base">
-              Junte-se às nossas comunidades Web3 e fique por dentro de tudo!
+              Junte-se às nossas comunidades e fique por dentro de tudo!
               Siga-nos nas redes sociais, compartilhe experiências e aprenda
               junto com a gente. Não perca as novidades!
             </p>

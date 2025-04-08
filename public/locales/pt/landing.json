@@ -5,8 +5,11 @@
 
   "Features": {
     "title": "Principais Funções",
-    "rewards": "Sistema de Recompensa",
-    "LearningTrails": "Trilhas de Aprendizagem"
+    "rewards": "Sistema de Recompensas",
+    "RewardContent": "Os alunos que concluem as trilhas de aprendizagem recebem certificação via blockchain, garantindo reconhecimento autêntico e verificável do conhecimento adquirido.",
+    "LearningTrails": "Trilhas de Aprendizagem",
+    "LearningTrailsContent": "Nossas trilhas de aprendizagem guiam os alunos do básico ao avançado de forma prática e interativa, com módulos bem estruturados e testes para reforçar o conhecimento.",
+    "soon": "Mais em breve..."
   },
 
   "Explore": {
@@ -14,10 +17,11 @@
     "h1": "Explore a Plataforma",
     "functions": "Veja a seguir as nossas principais funções presentes em nosso site. Aprenda as principais coisas do mundo do Web3!",
     "rewards": "Recompensas",
-    "forum": "Fórum"
+    "trails": "Trilhas"
   },
 
   "Topics2": {
+    "LearningTrails": "Trilhas de Aprendizagem (Em Breve)",
     "ExploreContents": "Explore conteúdos detalhados sobre esses temas fascinantes e amplie seu conhecimento sobre o universo digital das finanças e tecnologia. Seja bem-vindo à sua jornada de a aprendizado conosco!",
     "cripto": "Criptomoedas",
     "blockchain": "Blockchain",
