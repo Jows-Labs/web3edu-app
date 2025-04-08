@@ -96,9 +96,9 @@ export const GET = async (req: NextRequest) => {
     if (!docSnap.exists()) {
       return new NextResponse(
         JSON.stringify({
-          error: "Usuário não encontrado na whitelist",
+          eligible: true,
         }),
-        { status: 404 }
+        { status: 200 }
       );
     }
 
@@ -113,7 +113,8 @@ export const GET = async (req: NextRequest) => {
         { status: 200 }
       );
     }
-
+  
+    // Check if the user is eligible and has no TX hash, maybe validate the minted status
     const isEligible = trailStatus.eligible && trailStatus.txHash === "";
 
     return new NextResponse(
