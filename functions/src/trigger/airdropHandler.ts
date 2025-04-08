@@ -1,10 +1,10 @@
 // src/handlers/airdropHandler.js
 
-import { onDocumentWritten } from "firebase-functions/v2/firestore";
-import { runContract } from "../utils/wallet";
-import { updateAirdropStatus } from "../utils/firestoreScripts";
+import {onDocumentWritten} from "firebase-functions/v2/firestore";
+import {runContract} from "../utils/wallet";
+import {updateAirdropStatus} from "../utils/firestoreScripts";
 
-export const airdropNFTOnEligibility = onDocumentWritten(
+export const airdropNFT = onDocumentWritten(
     {
         document: "whitelist/{uid}",
         secrets: ["CONTRACT_ADDRESS", "PRIVATE_KEY", "RPC_URL"],
@@ -25,7 +25,9 @@ export const airdropNFTOnEligibility = onDocumentWritten(
         const rpcUrl = process.env.RPC_URL;
 
         if (!contractAddress || !privateKey || !rpcUrl) {
-            throw new Error("Missing required environment variables: CONTRACT_ADDRESS, PRIVATE_KEY, or RPC_URL");
+            throw new Error(
+                "Missing required environment variables: CONTRACT_ADDRESS, PRIVATE_KEY, or RPC_URL"
+            );
         }
 
         // Itera sobre cada categoria de airdrop no campo 'status'
