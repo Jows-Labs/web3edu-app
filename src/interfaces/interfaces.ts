@@ -84,6 +84,7 @@ interface TaskUnitsProps {
   id: string;
   trailId: string;
   done: Boolean;
+  index: number;
 }
 
 interface TrailsPageProps {

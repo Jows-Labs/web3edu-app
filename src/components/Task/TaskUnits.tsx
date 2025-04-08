@@ -3,10 +3,20 @@ import { useParams, useRouter } from "next/navigation";
 import { MotionDiv } from "../ui/MotionDiv";
 import { FaCircleCheck } from "react-icons/fa6";
 import { useEffect } from "react";
+import { useContent } from "@/providers/content-context";
+import { toast } from "react-toastify";
+import { FaLock } from "react-icons/fa";
 
-export const TaskUnits = ({ text, id, trailId, done }: TaskUnitsProps) => {
+export const TaskUnits = ({
+  text,
+  id,
+  trailId,
+  done,
+  index,
+}: TaskUnitsProps) => {
   const router = useRouter();
   const { sectionId } = useParams();
+  const { trailSections } = useContent();
 
   return (
     <MotionDiv
@@ -17,10 +27,30 @@ export const TaskUnits = ({ text, id, trailId, done }: TaskUnitsProps) => {
           ? "border-ddblue border-2"
           : ""
       } ${done === true && sectionId === id ? "border-green border-2" : ""}`}
-      func={() => router.push(`/learn/${trailId}/${id}`)}
+      func={() => {
+        if (index === 0) {
+          router.push(`/learn/${trailId}/${id}`);
+        } else if (trailSections[index - 1].done === true) {
+          router.push(`/learn/${trailId}/${id}`);
+        } else {
+          toast.error("Complete a tarefa anterior");
+        }
+      }}
     >
-      <p className="line-clamp-3 w-full">{text}</p>
-      {done === true && <FaCircleCheck className="h-auto min-w-6 text-green" />}
+      <p
+        className={`line-clamp-3 w-full ${
+          trailSections && trailSections[index - 1]?.done === false
+            ? "text-neutral/50"
+            : ""
+        }`}
+      >
+        {text}
+      </p>
+      {trailSections && trailSections[index - 1]?.done === false ? (
+        <FaLock className="h-auto min-w-6 text-ddblue" />
+      ) : (
+        done === true && <FaCircleCheck className="h-auto min-w-6 text-green" />
+      )}
     </MotionDiv>
   );
 };
