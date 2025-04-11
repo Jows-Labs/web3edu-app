@@ -20,9 +20,9 @@ export const airdropNFT = onDocumentWritten(
 
         const airdropCategories = newValue?.status ?? {};
 
-        const contractAddress = (event as any).secrets.CONTRACT_ADDRESS;
-        const privateKey = (event as any).secrets.PRIVATE_KEY;
-        const rpcUrl = (event as any).secrets.RPC_URL;
+        const contractAddress = process.env.CONTRACT_ADDRESS;
+        const privateKey = process.env.PRIVATE_KEY;
+        const rpcUrl = process.env.RPC_URL;
 
         if (!contractAddress || !privateKey || !rpcUrl) {
             throw new Error(
