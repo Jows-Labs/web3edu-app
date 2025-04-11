@@ -55,15 +55,15 @@ const ContentContext = createContext<ContentState>({
   programsList: [],
   trailSections: {},
   achievedNfts: [],
-  fetchTrailsList: () => {},
-  fetchAchievedNfts: () => {},
-  fetchProgramsList: () => {},
+  fetchTrailsList: () => { },
+  fetchAchievedNfts: () => { },
+  fetchProgramsList: () => { },
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
   fetchAiAnswerCheck: () => Promise.resolve({ explicacao: "", valido: false }),
   fetchSectionContent: () => ({}),
-  handleRewardContainer: () => {},
+  handleRewardContainer: () => { },
   rewardContainerVisibility: {},
 });
 
@@ -84,16 +84,41 @@ export const ContentProvider = ({
     setRewardContainerVisibility(!rewardContainerVisibility);
   };
 
-  const fetchAchievedNfts = async (uid: string) => {
+  const fetchAchievedNfts = async (walletAddress: string) => {
+    const options = {
+      method: 'GET',
+      headers: { accept: 'application/json' },
+    };
+
+    const url = `https://eth-sepolia.g.alchemy.com/nft/v3/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForOwner?owner=${walletAddress}&contractAddresses[]=0x8984b78F102f85222E7fa9c43d37d84E087B1Be8&withMetadata=true&orderBy=transferTime&pageSize=100`;
+
     try {
-      const userRef = doc(db, "users", uid);
-      const achievedNftsRef = collection(userRef, "achievedNfts");
-      const snapshot = await getDocs(achievedNftsRef);
-      setAchievedNfts(snapshot.docs.map((doc) => doc.data() as AchievedNft));
-    } catch (error: any) {
+      const res = await fetch(url, options);
+      console.log(res);
+      const data = await res.json();
+
+      const formattedNfts: AchievedNft[] = data.ownedNfts.map((nft: any) => {
+        const trailId = extractTrailName(nft.description);
+        return {
+          walletAddress,
+          trailId,
+          ipfs: nft.raw.metadata?.image || nft.image.originalUrl || '',
+          createdAt: new Date(nft.timeLastUpdated),
+        };
+      });
+
+      setAchievedNfts(formattedNfts);
+    } catch (error) {
       console.error("Erro ao buscar NFTs conquistados:", error);
     }
   };
+
+  // Função para extrair só o <nome> da trilha
+  function extractTrailName(description: string): string {
+    if (!description) return 'desconhecido';
+    const match = description.match(/trilha de aprendizagem\s(.+)$/i);
+    return match ? match[1].trim() : 'desconhecido';
+  }
 
   const fetchTrailsList = async (uid: string) => {
     try {
