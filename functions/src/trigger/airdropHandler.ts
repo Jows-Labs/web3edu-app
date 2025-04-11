@@ -1,8 +1,8 @@
 // src/handlers/airdropHandler.js
 
-import {onDocumentWritten} from "firebase-functions/v2/firestore";
-import {runContract} from "../utils/wallet";
-import {updateAirdropStatus} from "../utils/firestoreScripts";
+import { onDocumentWritten } from "firebase-functions/v2/firestore";
+import { runContract } from "../utils/wallet";
+import { updateAirdropStatus } from "../utils/firestoreScripts";
 
 export const airdropNFT = onDocumentWritten(
     {
@@ -20,9 +20,9 @@ export const airdropNFT = onDocumentWritten(
 
         const airdropCategories = newValue?.status ?? {};
 
-        const contractAddress = process.env.CONTRACT_ADDRESS;
-        const privateKey = process.env.PRIVATE_KEY;
-        const rpcUrl = process.env.RPC_URL;
+        const contractAddress = (event as any).secrets.CONTRACT_ADDRESS;
+        const privateKey = (event as any).secrets.PRIVATE_KEY;
+        const rpcUrl = (event as any).secrets.RPC_URL;
 
         if (!contractAddress || !privateKey || !rpcUrl) {
             throw new Error(
@@ -40,7 +40,7 @@ export const airdropNFT = onDocumentWritten(
                     const walletAddress = newValue?.address;
                     const ipfsHash = airdrop.ipfsHash;
 
-                    let contract = runContract(contractAddress, privateKey, rpcUrl);
+                    const contract = runContract(contractAddress, privateKey, rpcUrl);
 
                     // Executa o mint no contrato com walletAddress e ipfsHash
                     const tx = await contract.safeMint(walletAddress, ipfsHash);
