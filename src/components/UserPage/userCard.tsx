@@ -93,7 +93,7 @@ export const UserSection = () => {
 
   return (
     <div className="flex w-full h-full justify-center items-center">
-      <div className=" w-4/5 h-[26rem] md:w-3/5 md:h-[26rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7 gap-5">
+      <div className="w-4/5 h-[26rem] md:w-3/5 md:h-[26rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7 gap-5">
         <div className="flex w-full h-12 flex-row justify-center">
           <div
             role="tablist"
@@ -115,51 +115,28 @@ export const UserSection = () => {
             </a>
           </div>
         </div>
-        <div className="flex flex-col flex flex-col gap-6 ">
-      <div className=" w-4/5 h-[26rem] md:w-3/5 md:h-[30rem] bg-cgray shadow-xl flex flex-col border-2 border-gray rounded-[2rem] pt-2 md:pt-7 p-7">
-      <div className="flex w-full h-12 flex-row items-center justify-between">
 
-  <IconButton
-    func={back}
-    Icon={IoChevronBack}
-    className="text-bold ml-4 h-6 w-6"
-  />
-
-
-  <div className="absolute left-1/2 transform -translate-x-1/2">
-    <span className="text-sm md:text-lg text-dgray">Dados Pessoais</span>
-  </div>
-
-
-  <div className="w-6 md:w-8" />
-</div>
-
-        <div className="flex flex-col  gap-6 ">
-          <div className="flex h-full md:justify-start justify-center">
-            
-          </div>
+        <div className="flex flex-col gap-6">
           <div className="md:flex-row flex-col flex gap-4 justify-between">
             <div className="flex flex-row justify-center items-center">
               <img
                 src={googleUserInfo?.photoURL}
                 alt=""
-                className=" w-10 h-10 md:w-16 md:h-16 rounded-full"
-              ></img>
+                className="w-10 h-10 md:w-16 md:h-16 rounded-full"
+              />
               <div className="flex flex-col items-left ml-4">
                 <p className="text-dgray font-medium text-sm md:text-lg">
-                {userDbInfo?.displayName || ""}
+                  {userDbInfo?.displayName || ""}
                 </p>
               </div>
             </div>
           </div>
-
           <label className="flex flex-row h-full w-full gap-8 justify-center">
             <div className="flex flex-col justify-center w-full">
               <div className="label text-dgray">
-                <span className="md:text-sm text-xs  text-dgray">
+                <span className="md:text-sm text-xs text-dgray">
                   Nome de Exibição
                 </span>
-                <span className="md:text-sm text-xs  text-dgray">Nome de Exibição</span>
               </div>
               <input
                 value={userName}
@@ -188,7 +165,7 @@ export const UserSection = () => {
                 onChange={(e) => setDiscord(e.target.value)}
                 type="text"
                 placeholder="Nome do seu Perfil"
-                className="input input-bordered w-full md:h-10 h-8  bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
+                className="input input-bordered w-full md:h-10 h-8 bg-white md:text-base text-xs md:rounded-box border-2 border-gray text-dgray"
               />
               <div className="label">
                 <span className="md:text-sm text-xs text-dgray">Linkedin</span>
@@ -207,7 +184,7 @@ export const UserSection = () => {
               Icon={FaSave}
               label="Salvar"
               func={() => Submit()}
-              className=" flex justify-center text-xs items-center  h-7 w-[6rem] bg-green text-ddblue md:text-sm md:h-8 md:w-36"
+              className="flex justify-center text-xs items-center h-7 w-[6rem] bg-green text-ddblue md:text-sm md:h-8 md:w-36"
               type="button"
             />
           </div>
