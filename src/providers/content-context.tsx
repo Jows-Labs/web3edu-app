@@ -239,7 +239,7 @@ export const ContentProvider = ({
     try {
       console.log(uid, trailId);
       const checkEligibilityResponse = await fetch(
-        `/api/whitelist?uid=${uid}&trailId=${trailId}&walletAddress=${walletAddress}`,
+        `/api/whitelist?uid=${uid}&trailId=${trailId}`,
         {
           method: "GET",
           headers: {
