@@ -1,4 +1,4 @@
-import { doc, getDoc, collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -30,13 +30,6 @@ export const GET = async (req: NextRequest) => {
       isLast: false,
       ...contentSnapshot.data(),
     };
-
-    const sectionsRef = collection(db, `trails/${trailId}/contents`);
-    const sectionsSnapshot = await getDocs(sectionsRef);
-    const sections = sectionsSnapshot.docs.map((doc) => doc.id);
-
-    const isLast = sections[sections.length - 1] === sectionId;
-    content.isLast = isLast;
 
     const userDocRef = doc(db, "users", uid);
     const userDocSnap = await getDoc(userDocRef);

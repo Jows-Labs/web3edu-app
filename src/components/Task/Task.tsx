@@ -13,8 +13,12 @@ export const Task = ({
   sectionId: string;
   trailId: string;
 }) => {
-  const { fetchSectionContent, fetchTrailSections, handleRewardContainer } =
-    useContent();
+  const {
+    fetchSectionContent,
+    fetchTrailSections,
+    handleRewardContainer,
+    trailSections,
+  } = useContent();
   const [section, setSection] = useState<any>({});
   const { googleUserInfo } = useWeb3AuthContext();
 
@@ -24,14 +28,21 @@ export const Task = ({
       sectionId,
       googleUserInfo?.uid
     );
-    setSection(sectionData);
-  }, [trailId, sectionId, googleUserInfo, fetchSectionContent]);
+    const isLast =
+      trailSections.length > 0 &&
+      trailSections[trailSections.length - 1].id === sectionId;
+    setSection({ ...sectionData, isLast });
+  }, [trailId, sectionId, googleUserInfo, fetchSectionContent, trailSections]);
 
   useEffect(() => {
     if (googleUserInfo && trailId && Object.keys(section).length === 0) {
       fetchData();
     }
   }, [googleUserInfo, trailId, section, fetchData]);
+
+  useEffect(() => {
+    console.log(section);
+  }, [section]);
 
   const fetchDone = async (isLast: Boolean) => {
     try {

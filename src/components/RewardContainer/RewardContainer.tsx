@@ -43,7 +43,7 @@ export const RewardContainer = () => {
       transition: Bounce,
     });
     fetchTrailAirDrop(
-      "https://ipfs.io/ipfs/QmZMBnu9vShWJdmxciWg2Ji6di3sKMKvq8cDT7X5uSB6AN",
+      "https://ipfs.io/ipfs/bafybeigi5amko72vmekhlrpatery7wpwg54rl7wjthphgnqlld3ekwob7e",
       googleUserInfo?.uid,
       userDbInfo?.displayName || googleUserInfo?.displayName,
       userAccount[0],
@@ -55,7 +55,7 @@ export const RewardContainer = () => {
 
   return (
     <div
-      className={`w-full min-h-full bg-black/50 flex justify-center items-center text-neutral absolute z-20 top-0 px-5 md:px-0 ${
+      className={`w-full min-h-full bg-neutral/50 flex justify-center items-center text-neutral absolute z-20 top-0 px-5 md:px-0 ${
         rewardContainerVisibility ? "visible" : "invisible"
       }`}
     >

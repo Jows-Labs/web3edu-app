@@ -55,15 +55,15 @@ const ContentContext = createContext<ContentState>({
   programsList: [],
   trailSections: {},
   achievedNfts: [],
-  fetchTrailsList: () => { },
-  fetchAchievedNfts: () => { },
-  fetchProgramsList: () => { },
+  fetchTrailsList: () => {},
+  fetchAchievedNfts: () => {},
+  fetchProgramsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
   fetchAiAnswerCheck: () => Promise.resolve({ explicacao: "", valido: false }),
   fetchSectionContent: () => ({}),
-  handleRewardContainer: () => { },
+  handleRewardContainer: () => {},
   rewardContainerVisibility: {},
 });
 
@@ -211,12 +211,17 @@ export const ContentProvider = ({
       const data = await response.json();
       console.log(data);
       const bodyString = data.body;
-      const jsonString = bodyString.replace("`json", "").replace("`", "").trim();
-      const obj = JSON.parse(jsonString);
-      return {
-        explicacao: obj.explicacao,
-        valido: obj.valido,
-      };
+      const jsonString = bodyString.replace(/`json|`/g, "").trim();
+      try {
+        const obj = JSON.parse(jsonString);
+        return {
+          explicacao: obj.explicacao,
+          valido: obj.valido,
+        };
+      } catch (parseError) {
+        console.error("Erro ao fazer parse do JSON:", parseError);
+        throw new Error("Formato de resposta inválido da API");
+      }
     } catch (error: any) {
       console.error(error);
       throw error;
@@ -232,6 +237,7 @@ export const ContentProvider = ({
     trailName: string
   ) => {
     try {
+      console.log(uid, trailId);
       const checkEligibilityResponse = await fetch(
         `/api/whitelist?uid=${uid}&trailId=${trailId}`,
         {
@@ -243,6 +249,7 @@ export const ContentProvider = ({
       );
       const checkEligibilityData = await checkEligibilityResponse.json();
       const { eligible } = checkEligibilityData;
+      console.log(checkEligibilityData);
       if (eligible === false) {
         console.error("Usuário não é elegível para receber o NFT");
         return toast.error("Usuário não é elegível para receber o NFT");
@@ -253,8 +260,7 @@ export const ContentProvider = ({
         {
           method: "POST",
           headers: {
-            Authorization:
-              `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
+            Authorization: `Bearer ${process.env.NEXT_PUBLIC_PINATA_JWT}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
