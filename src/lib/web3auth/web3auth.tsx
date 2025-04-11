@@ -40,6 +40,7 @@ const chainConfig = {
   blockExplorerUrl: "https://sepolia.etherscan.io/",
   ticker: "ETH",
   tickerName: "Ethereum",
+  isTestnet: true,
 };
 
 const web3authConfig = {
@@ -74,6 +75,7 @@ const web3auth = new Web3AuthNoModal({
     logoDark:
       "https://github.com/Web3EduBrasil/web3edu-app/blob/main/src/assets/images/Web3EduBrasil_logo.png?raw=true",
     defaultLanguage: "pt",
+    appName: "Web3EduBrasil",
   },
 });
 

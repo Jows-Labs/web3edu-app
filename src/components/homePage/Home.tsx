@@ -12,7 +12,7 @@ import { useLoading } from "@/lib/loading-context";
 
 export const Home = () => {
   const router = useRouter();
-  const { userDbInfo } = useWeb3AuthContext();
+  const { userDbInfo, userAccount } = useWeb3AuthContext();
   const { fetchAchievedNfts, achievedNfts } = useContent();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const Home = () => {
 
   useEffect(() => {
     if (userDbInfo && achievedNfts.length === 0) {
-      fetchAchievedNfts(userDbInfo.uid);
+      fetchAchievedNfts(userAccount[0]);
     }
   }, [userDbInfo]);
   return (
