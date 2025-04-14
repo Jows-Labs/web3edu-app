@@ -1,8 +1,10 @@
 import MainFunctions from "./mainFunctions";
-import Lottie from "lottie-react";
-import AnimationLearning from "../../assets/animations/LearningAnimation.json" assert { type: "json" };
-import AnimationRewards from "../../assets/animations/RewardsAnimation.json" assert { type: "json" };
-import AnimationEmBreve from "../../assets/animations/EmBreveAnimation.json" assert { type: "json" };
+import dynamic from 'next/dynamic';
+import AnimationLearning from "../../assets/animations/LearningAnimation.json";
+import AnimationRewards from "../../assets/animations/RewardsAnimation.json";
+import AnimationEmBreve from "../../assets/animations/EmBreveAnimation.json";
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 export default function Section2() {
   return (

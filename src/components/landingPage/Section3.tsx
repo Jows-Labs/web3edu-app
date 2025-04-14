@@ -1,12 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import Lottie from "lottie-react";
+import dynamic from 'next/dynamic';
 import GiftIcon from "../../assets/icons/gift.svg";
 import ForumIcon from "../../assets/icons/forum-icon.svg";
 import TrailIcon from "../../assets/icons/trail-icon.svg";
 import { MotionButton } from "../ui/Button";
 import AnimationFuture from "../../assets/animations/FuturoAnimado.json";
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 import { useState } from "react";
 

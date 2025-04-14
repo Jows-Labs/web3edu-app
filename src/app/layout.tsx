@@ -15,6 +15,7 @@ const LexendDeca = Lexend_Deca({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_LINK || 'http://localhost:3000'),
   title: "Web3EduBrasil",
   description:
     "Web3EduBrasil é uma plataforma de ensino descentralizada que facilita o aprendizado de tecnologias web3.",

@@ -16,10 +16,12 @@ export const UserSection = () => {
   const { userInfo } = useWeb3AuthContext();
 
   const back = () => {
-    if (window.history.length > 1) {
-      router.back();
-    } else {
-      router.push("/homePage");
+    if (typeof window !== "undefined") {
+      if (window.history.length > 1) {
+        router.back();
+      } else {
+        router.push("/homePage");
+      }
     }
   };
 
