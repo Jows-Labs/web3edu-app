@@ -28,6 +28,9 @@ export const NftsCard = ({ achievedNfts }: { achievedNfts: AchievedNft[] }) => {
                 width={100}
                 height={100}
                 className="w-full h-full object-cover"
+                onClick={() => {
+                  window.open(nft.openseaUrl, "_blank");
+                }}
               />
             </div>
           ))

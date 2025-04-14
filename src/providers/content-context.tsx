@@ -99,11 +99,16 @@ export const ContentProvider = ({
 
       const formattedNfts: AchievedNft[] = data.ownedNfts.map((nft: any) => {
         const trailId = extractTrailName(nft.description);
+        const contractAddress = nft.contract?.address;
+        const tokenId = nft.tokenId;
+        const openseaUrl = `https://testnets.opensea.io/assets/sepolia/${contractAddress}/${tokenId}`;
+        
         return {
           walletAddress,
           trailId,
           ipfs: nft.raw.metadata?.image || nft.image.originalUrl || '',
           createdAt: new Date(nft.timeLastUpdated),
+          openseaUrl,
         };
       });
 

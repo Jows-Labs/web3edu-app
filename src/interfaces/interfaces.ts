@@ -121,4 +121,5 @@ interface AchievedNft {
   trailId: string;
   ipfs: string;
   createdAt: Date;
+  openseaUrl: string;
 }
