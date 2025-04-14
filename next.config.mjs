@@ -5,7 +5,7 @@ const nextConfig = {
   reactStrictMode: true,
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    domains: ["ipfs.io"],
+    domains: ["ipfs.io", "lh3.googleusercontent.com", "firebasestorage.googleapis.com"],
     remotePatterns: [
       {
         protocol: "https",
@@ -13,8 +13,27 @@ const nextConfig = {
         port: "",
         pathname: "/ipfs/**",
       },
+      {
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.json$/,
+      type: 'json'
+    });
+    return config;
+  }
 };
 
 const withMDX = createMDX({
