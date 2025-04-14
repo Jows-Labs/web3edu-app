@@ -20,7 +20,7 @@ export const NftsCard = ({ achievedNfts }: { achievedNfts: AchievedNft[] }) => {
           achievedNfts.map((nft) => (
             <div
               key={nft.trailId}
-              className="w-20 h-20 flex items-center justify-center"
+              className="w-2/3 h-2/3 flex items-center justify-center cursor-pointer"
             >
               <Image
                 src={nft.ipfs}
@@ -28,6 +28,9 @@ export const NftsCard = ({ achievedNfts }: { achievedNfts: AchievedNft[] }) => {
                 width={100}
                 height={100}
                 className="w-full h-full object-cover"
+                onClick={() => {
+                  window.open(nft.openseaUrl, "_blank");
+                }}
               />
             </div>
           ))

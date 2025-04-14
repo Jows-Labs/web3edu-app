@@ -17,6 +17,7 @@ export default function UserCard() {
             src={googleUserInfo?.photoURL}
             alt=""
             className="w-full h-full"
+            fetchPriority="high"
           ></img>
         ) : (
           <div className="skeleton h-full w-full"></div>
@@ -25,7 +26,7 @@ export default function UserCard() {
       <div className="text-neutral px-8 pt-16 pb-4 h-3/4 flex flex-col justify-between">
         <h2 className="font-bold text-xl">{userDbInfo?.displayName}</h2>
         <div className="w-full flex justify-between items-end">
-          <p className="font-medium  text-gray">São Paulo, Brasil</p>
+          <p className="font-medium  text-gray">📍 On-chain</p>
           <div className="flex flex-col gap-3 md:flex-row items-start ">
             {userDbInfo?.socialMedia?.linkedin ? (
               <IconButton
