@@ -20,7 +20,7 @@ export const NftsCard = ({ achievedNfts }: { achievedNfts: AchievedNft[] }) => {
           achievedNfts.map((nft) => (
             <div
               key={nft.trailId}
-              className="w-2/3 h-2/3 flex items-center justify-center cursor-pointer"
+              className="w-20 h-20 flex items-center justify-center"
             >
               <Image
                 src={nft.ipfs}
