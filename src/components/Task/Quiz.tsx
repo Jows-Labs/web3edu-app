@@ -4,22 +4,30 @@ import { useEffect, useState } from "react";
 import { MotionButton } from "../ui/Button";
 import { MotionDiv } from "../ui/MotionDiv";
 import { Bounce, toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 interface QuizSectionProps {
   options: Array<any>;
   question: string;
   fetchDone: (param: Boolean) => Promise<void>;
+  done: boolean;
   isLast: Boolean;
+  trailId: string;
+  id: string;
 }
 
 export const RenderQuizV = ({
   options,
   question,
   fetchDone,
+  done,
+  trailId,
   isLast,
+  id,
 }: QuizSectionProps) => {
   const [selectedOpt, setSelectedOpt] = useState(0);
   const [isCorrect, setIsCorrect] = useState(false);
+  const router = useRouter();
 
   function HandleSubmit() {
     if (isCorrect) {
@@ -88,17 +96,26 @@ export const RenderQuizV = ({
           );
         })}
       </div>
-      <MotionButton
-        rightIcon={true}
-        label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
-        type="button"
-        className={`text-neutral w-fit h-12 self-end ${
-          isCorrect ? "bg-green" : "bg-transparent border border-2"
-        }`}
-        func={() => {
-          HandleSubmit();
-        }}
-      />
+      {done && !isLast ? (
+        <MotionButton
+          type="button"
+          label="Avançar"
+          className="w-fit bg-blue text-white"
+          func={() => router.push(`/learn/${trailId}/${Number(id) + 1}`)}
+        />
+      ) : (
+        <MotionButton
+          rightIcon={true}
+          label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
+          type="button"
+          className={`text-neutral w-fit h-12 self-end ${
+            isCorrect ? "bg-green" : "bg-transparent border border-2"
+          }`}
+          func={() => {
+            HandleSubmit();
+          }}
+        />
+      )}
     </>
   );
 };

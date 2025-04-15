@@ -15,15 +15,19 @@ export const Learn = ({ trailIdRt, sectionId }: LearnProps) => {
   const { fetchTrail, trail, trailsList } = useContent();
 
   useEffect(() => {
+    if (!trailsList || trailsList.length === 0) {
+      return;
+    }
+
     if (Object.keys(trail).length === 0) {
       fetchTrail(trailIdRt);
     } else if (
       trailIdRt !== trail?.trailId &&
-      trailsList.some((t: { id: string }) => t.id === trailIdRt) &&
-      Object.keys(trailsList).length !== 0
+      trailsList.some((t: { id: string }) => t.id === trailIdRt)
     ) {
       fetchTrail(trailIdRt);
     }
+
     if (
       trailIdRt &&
       !trailsList.some((t: { id: string }) => t.id === trailIdRt) &&

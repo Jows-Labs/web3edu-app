@@ -55,15 +55,15 @@ const ContentContext = createContext<ContentState>({
   programsList: [],
   trailSections: {},
   achievedNfts: [],
-  fetchTrailsList: () => { },
-  fetchAchievedNfts: () => { },
-  fetchProgramsList: () => { },
+  fetchTrailsList: () => {},
+  fetchAchievedNfts: () => {},
+  fetchProgramsList: () => {},
   fetchTrail: () => ({}),
   fetchTrailSections: () => ({}),
   fetchTrailAirDrop: () => ({}),
   fetchAiAnswerCheck: () => Promise.resolve({ explicacao: "", valido: false }),
   fetchSectionContent: () => ({}),
-  handleRewardContainer: () => { },
+  handleRewardContainer: () => {},
   rewardContainerVisibility: {},
 });
 
@@ -86,15 +86,14 @@ export const ContentProvider = ({
 
   const fetchAchievedNfts = async (walletAddress: string) => {
     const options = {
-      method: 'GET',
-      headers: { accept: 'application/json' },
+      method: "GET",
+      headers: { accept: "application/json" },
     };
 
     const url = `https://eth-sepolia.g.alchemy.com/nft/v3/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}/getNFTsForOwner?owner=${walletAddress}&contractAddresses[]=0x8984b78F102f85222E7fa9c43d37d84E087B1Be8&withMetadata=true&orderBy=transferTime&pageSize=100`;
 
     try {
       const res = await fetch(url, options);
-      console.log(res);
       const data = await res.json();
 
       const formattedNfts: AchievedNft[] = data.ownedNfts.map((nft: any) => {
@@ -102,11 +101,11 @@ export const ContentProvider = ({
         const contractAddress = nft.contract?.address;
         const tokenId = nft.tokenId;
         const openseaUrl = `https://testnets.opensea.io/assets/sepolia/${contractAddress}/${tokenId}`;
-        
+
         return {
           walletAddress,
           trailId,
-          ipfs: nft.raw.metadata?.image || nft.image.originalUrl || '',
+          ipfs: nft.raw.metadata?.image || nft.image.originalUrl || "",
           createdAt: new Date(nft.timeLastUpdated),
           openseaUrl,
         };
@@ -120,9 +119,9 @@ export const ContentProvider = ({
 
   // Função para extrair só o <nome> da trilha
   function extractTrailName(description: string): string {
-    if (!description) return 'desconhecido';
+    if (!description) return "desconhecido";
     const match = description.match(/trilha de aprendizagem\s(.+)$/i);
-    return match ? match[1].trim() : 'desconhecido';
+    return match ? match[1].trim() : "desconhecido";
   }
 
   const fetchTrailsList = async (uid: string) => {
@@ -267,7 +266,7 @@ export const ContentProvider = ({
     trailName: string
   ) => {
     try {
-      console.log(uid, trailId);
+      // Verifica elegibilidade
       const checkEligibilityResponse = await fetch(
         `/api/whitelist?uid=${uid}&trailId=${trailId}`,
         {
@@ -279,12 +278,14 @@ export const ContentProvider = ({
       );
       const checkEligibilityData = await checkEligibilityResponse.json();
       const { eligible } = checkEligibilityData;
-      console.log(checkEligibilityData);
-      if (eligible === false) {
-        console.error("Usuário não é elegível para receber o NFT");
-        return toast.error("Usuário não é elegível para receber o NFT");
-      }
 
+      if (!eligible) {
+        toast.error("Usuário não é elegível para receber o NFT");
+        return;
+      }
+      toast.success("Usuário elegível para receber o NFT");
+
+      // Faz upload do certificado para o IPFS
       const response1 = await fetch(
         "https://api.pinata.cloud/pinning/pinJSONToIPFS",
         {
@@ -304,44 +305,51 @@ export const ContentProvider = ({
 
       const data = await response1.json();
       const IpfsHash = data.IpfsHash;
-      console.log(IpfsHash);
 
-      if (IpfsHash !== undefined) {
-        const response2 = await fetch("/api/whitelist", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            uid: uid,
-            walletAddress: walletAddress,
-            trailId: trailId,
-            ipfsHash: IpfsHash,
-          }),
-        });
-        console.log(walletAddress, trailId, trailIcon);
-
-        if (response2.ok) {
-          const db = getFirestore();
-          const userRef = doc(db, "users", uid);
-          const achievedNftsRef = collection(userRef, "achievedNfts");
-
-          await addDoc(achievedNftsRef, {
-            walletAddress,
-            trailId,
-            ipfs: trailIcon,
-            createdAt: serverTimestamp(),
-          });
-        }
-
-        const data2 = await response2.json();
-        console.log(data2);
-      } else {
+      if (!IpfsHash) {
+        toast.error("Erro ao gerar o hash IPFS");
         console.error("Erro: IpfsHash não definido");
+        return;
+      }
+      toast.success("Certificado enviado para o IPFS com sucesso");
+
+      // Registra o NFT no backend
+      const response2 = await fetch("/api/whitelist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          uid: uid,
+          walletAddress: walletAddress,
+          trailId: trailId,
+          ipfsHash: IpfsHash,
+        }),
+      });
+
+      if (response2.ok) {
+        toast.success("NFT registrado com sucesso no backend");
+
+        // Salva o NFT no Firestore
+        const db = getFirestore();
+        const userRef = doc(db, "users", uid);
+        const achievedNftsRef = collection(userRef, "achievedNfts");
+
+        await addDoc(achievedNftsRef, {
+          walletAddress,
+          trailId,
+          ipfs: trailIcon,
+          createdAt: serverTimestamp(),
+        });
+
+        toast.success("NFT salvo no Firestore com sucesso");
+      } else {
+        const errorData = await response2.json();
+        toast.error(`Erro ao registrar NFT no backend: ${errorData.message}`);
       }
     } catch (error: any) {
+      toast.error(`Erro na requisição: ${error.message}`);
       console.error("Erro na requisição fetchTrailAirDrop:", error);
-      throw error;
     }
   };
 

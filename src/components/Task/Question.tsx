@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MotionButton } from "../ui/Button";
 import { MotionDiv } from "../ui/MotionDiv";
 import { Bounce, toast } from "react-toastify";
-import { Input } from "../ui/Input";
+import { useRouter } from "next/navigation";
 import { TextArea } from "../ui/TextArea";
 import { useContent } from "@/providers/content-context";
 
@@ -13,6 +13,9 @@ interface RenderQuestionProps {
   isLast: Boolean;
   fetchDone: (param: Boolean) => Promise<void>;
   question: string;
+  done: boolean;
+  trailId: string;
+  id: string;
 }
 
 export const RenderQuestionV = ({
@@ -20,11 +23,15 @@ export const RenderQuestionV = ({
   isLast,
   fetchDone,
   question,
+  id,
+  trailId,
+  done,
 }: RenderQuestionProps) => {
   const [answer, setAnswer] = useState("");
   const [aiExplanation, setAiExplanation] = useState("");
   const [isCorrect, setIsCorrect] = useState(false);
   const { fetchAiAnswerCheck } = useContent();
+  const router = useRouter();
 
   useEffect(() => {
     console.log(aiExplanation);
@@ -45,7 +52,7 @@ export const RenderQuestionV = ({
       });
       return;
     }
-    
+
     if (answer.length > 500) {
       toast.warning("Resposta muito longa! (max 500 caracteres)", {
         position: "top-right",
@@ -125,17 +132,30 @@ export const RenderQuestionV = ({
           className="w-full min-h-full"
         />
       </div>
-      <MotionButton
-        rightIcon={true}
-        label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
-        type="button"
-        className={`text-neutral w-fit h-12 self-end ${
-          isCorrect ? "bg-green" : "bg-transparent border-2"
-        }`}
-        func={() => {
-          HandleSubmit();
-        }}
-      />
+
+      <div className="flex gap-4">
+        {" "}
+        {done && !isLast ? (
+          <MotionButton
+            type="button"
+            label="Avançar"
+            className="w-fit bg-blue text-white"
+            func={() => router.push(`/learn/${trailId}/${Number(id) + 1}`)}
+          />
+        ) : (
+          <MotionButton
+            rightIcon={true}
+            label={isCorrect === true ? "Marcar como concluído" : "Verificar"}
+            type="button"
+            className={`text-neutral w-fit h-12 self-end ${
+              isCorrect ? "bg-green" : "bg-transparent border-2"
+            }`}
+            func={() => {
+              HandleSubmit();
+            }}
+          />
+        )}
+      </div>
     </>
   );
 };

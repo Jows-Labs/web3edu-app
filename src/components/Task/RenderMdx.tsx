@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { MDXRemote } from "next-mdx-remote";
 import { toast } from "react-toastify";
 import { MotionButton } from "../ui/Button";
-import { useMDXComponents } from "@/mdx-components";
+import { useRouter } from "next/navigation";
 
 interface MdxSectionProps {
   fetchDone: (param: Boolean) => Promise<void>;
@@ -20,6 +20,7 @@ export default function MdxSection({
   done,
 }: MdxSectionProps) {
   const [mdxSource, setMdxSource] = useState<any>(null);
+  const router = useRouter();
 
   useEffect(() => {
     if (id && trailId) {
@@ -52,8 +53,13 @@ export default function MdxSection({
       ) : (
         <p>Loading...</p>
       )}
-      {done ? (
-        <></>
+      {done && !isLast ? (
+        <MotionButton
+          type="button"
+          label="Avançar"
+          className="w-fit bg-blue text-white"
+          func={() => router.push(`/learn/${trailId}/${Number(id) + 1}`)}
+        />
       ) : (
         <MotionButton
           type="button"
@@ -68,7 +74,6 @@ export default function MdxSection({
           }}
         />
       )}
-      
     </div>
   );
 }

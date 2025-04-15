@@ -43,7 +43,6 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
             eligible: true,
             ipfsHash: ipfsHash,
             minted: false,
-            txHash: "",
           },
         },
       });
@@ -100,9 +99,9 @@ export const GET = async (req: NextRequest) => {
         { status: 200 }
       );
     }
-  
+
     // Check if the user is eligible and has no TX hash, maybe validate the minted status
-    const isEligible = trailStatus.eligible && trailStatus.txHash === "";
+    const isEligible = trailStatus.txHash === "" || !trailStatus.txHash;
 
     return new NextResponse(
       JSON.stringify({

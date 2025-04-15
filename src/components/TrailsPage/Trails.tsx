@@ -30,8 +30,11 @@ export const Trails = () => {
 
   return (
     <div className="flex w-full h-full justify-start items-center flex-col overflow-y-scroll px-12 mt-4">
-      <TrailsPgTop searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-
+      <div className="flex w-full items-center md:flex-row flex-col gap-3">
+        <p className="font-bold lg:text-3xl text-2xl text-center text-nowrap md:order-first order-last">
+          Trilhas de aprendizagem
+        </p>
+      </div>
       <div className="w-full h-full gap-7 mb-8 mt-5 flex flex-wrap">
         {filteredTrails.length !== 0 ? (
           filteredTrails.map((e: any, index: any) => {

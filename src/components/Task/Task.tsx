@@ -59,6 +59,7 @@ export const Task = ({
       });
       if (response.ok) {
         fetchTrailSections(trailId, googleUserInfo?.uid);
+        setSection({ ...section, done: true });
         if (isLast) {
           handleRewardContainer();
         }
@@ -92,6 +93,9 @@ export const Task = ({
               question={section.question}
               fetchDone={fetchDone}
               isLast={section.isLast}
+              id={section.id}
+              trailId={trailId}
+              done={section.done}
             />
           ) : section.type === "question" ? (
             <RenderQuestionV
@@ -99,6 +103,9 @@ export const Task = ({
               isLast={section.isLast}
               question={section.title}
               fetchDone={fetchDone}
+              trailId={trailId}
+              done={section.done}
+              id={section.id}
             />
           ) : (
             <>
