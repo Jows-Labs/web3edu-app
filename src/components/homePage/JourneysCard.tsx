@@ -17,7 +17,7 @@ export const JourneysCard = () => {
         {userDbInfo !== null ? (
           <>
             <div
-              className="h-1/4 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray hover:bg-cgray/20 transition-colors duration-100"
+              className="h-1/3 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray hover:bg-cgray/20 transition-colors duration-100"
               onClick={() =>
                 userDbInfo?.socialMedia?.discord ||
                 userDbInfo?.socialMedia?.linkedin
@@ -34,7 +34,7 @@ export const JourneysCard = () => {
               )}
             </div>
             <div
-              className="h-1/4 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100"
+              className="h-1/3 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100"
               onClick={() => !userDbInfo.kyc && setKycOpen(!kycOpen)}
             >
               <p className=" font-bold">Pesquisa de perfil</p>{" "}
@@ -44,12 +44,9 @@ export const JourneysCard = () => {
                 <FaXmark className="h-8 w-auto" />
               )}
             </div>
-            <div className="h-1/4 border-b-[1.5px] border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100">
-              <p className=" font-bold">Resgatar NFT de boas-vindas</p>{" "}
-              <FaCheck className="h-8 w-auto" />
-            </div>
+
             <div
-              className="h-1/4 border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100"
+              className="h-1/3 border-gray flex items-center px-7 justify-between cursor-pointer bg-cgray  hover:bg-cgray/20 transition-colors duration-100"
               onClick={() =>
                 userDbInfo?.trails ? null : router.push("/trailsPage")
               }

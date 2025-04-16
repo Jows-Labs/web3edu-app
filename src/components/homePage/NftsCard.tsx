@@ -8,19 +8,19 @@ export const NftsCard = ({ achievedNfts }: { achievedNfts: AchievedNft[] }) => {
         <p className="text-neutral">NFTs</p>
         <p className="cursor-pointer font-bold text-gray">Veja Mais</p>
       </div>
-      <div className="bg-neutralbg h-full w-full rounded-box flex justify-center items-center flex-col gap-2">
+      <div className="bg-neutralbg h-full w-full rounded-box flex flex-wrap justify-start items-start gap-2 overflow-y-auto">
         {achievedNfts.length === 0 ? (
-          <>
+          <div className="flex flex-col gap-2 items-center justify-center w-full h-full">
             <Image src={NoNftIcon} alt="No NFTs icon" className="h-2/4" />
             <p className="text-base-content font-medium">
               Você não possui certificações
             </p>
-          </>
+          </div>
         ) : (
-          achievedNfts.map((nft) => (
+          achievedNfts.map((nft, index) => (
             <div
-              key={nft.trailId}
-              className="w-20 h-20 flex items-center justify-center"
+              key={index}
+              className="w-22 h-22 flex items-center justify-center"
             >
               <Image
                 src={nft.ipfs}
