@@ -10,7 +10,7 @@ export default function UserCard() {
       url.startsWith("http://") || url.startsWith("https://")
         ? url
         : `https://${url}`;
-    window.open(formattedUrl, "_blank");
+    window.open(formattedUrl, "_blank", "noopener,noreferrer");
   };
   return (
     <div className="bg-white w-full lg:h-full h-64 lg:row-span-2 flex flex-col rounded-box lg:col-span-2 border-[1.5px] border-gray relative">
