@@ -8,7 +8,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa";
 import { MotionDiv } from "@/components/ui/MotionDiv";
 import { MotionButton } from "@/components/ui/Button";
-import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
+import web3EduLogo from "../../../../public/assets/images/Web3EduBrasil_logo.png";
 import Image from "next/image";
 
 const linkDiscord = () => {

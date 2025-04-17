@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React, { useState } from "react";
-import web3EduLogo from "../../assets/images/Web3EduBrasil_logo.png";
+import web3EduLogo from "../../../public/assets/images/Web3EduBrasil_logo.png";
 import { MotionButton } from "../ui/Button";
 
 export default function Kyc1({

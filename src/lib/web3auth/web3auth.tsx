@@ -71,9 +71,9 @@ const web3auth = new Web3AuthNoModal({
   chainConfig: web3authConfig.chainConfig,
   uiConfig: {
     logoLight:
-      "https://github.com/Web3EduBrasil/web3edu-app/blob/main/src/assets/images/Web3EduBrasil_logo.png?raw=true",
+      "https://github.com/Web3EduBrasil/web3edu-app/blob/main/public/assets/images/Web3EduBrasil_logo.png?raw=true",
     logoDark:
-      "https://github.com/Web3EduBrasil/web3edu-app/blob/main/src/assets/images/Web3EduBrasil_logo.png?raw=true",
+      "https://github.com/Web3EduBrasil/web3edu-app/blob/main/public/assets/images/Web3EduBrasil_logo.png?raw=true",
     defaultLanguage: "pt",
     appName: "Web3EduBrasil",
   },
@@ -85,10 +85,11 @@ const walletPlugin = new WalletServicesPlugin({
   walletInitOptions: {
     confirmationStrategy: "modal",
     whiteLabel: {
-      logoLight: "https://images.web3auth.io/web3auth-logo-w.svg",
-      logoDark: "https://images.web3auth.io/web3auth-logo-w-light.svg",
+      logoLight: "https://cdn.prod.website-files.com/67360adb26042a9f3ca96aa5/673b3e0fd01940ddba6f657a_image%201.png",
+      logoDark: "https://cdn.prod.website-files.com/67360adb26042a9f3ca96aa5/673e41d192a4e63d42f9d3db_Mask%20group%201.webp",
       useLogoLoader: false,
       defaultLanguage: "pt",
+      appName: "Web3EduBrasil",
     },
   },
 });

@@ -2,19 +2,18 @@
 
 import { MotionButton } from "../../ui/Button";
 import Image from "next/image";
-import Onboarding1 from "../../../assets/images/tutorial/homepage.png";
-import Onboarding2 from "../../../assets/images/tutorial/kyc.jpg";
-import Onboarding3 from "../../../assets/images/tutorial/trailspage.png";
-import Onboarding4 from "../../../assets/images/tutorial/trailpage.png";
-import Onboarding5 from "../../../assets/images/tutorial/reward.png";
-import Onboarding6 from "../../../assets/images/tutorial/acesswallet.jpg";
-import Onboarding7 from "../../../assets/images/tutorial/yourprofile.jpg";
-import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
+import Onboarding1 from "../../../../public/assets/images/tutorial/homepage.png";
+import Onboarding2 from "../../../../public/assets/images/tutorial/kyc.jpg";
+import Onboarding3 from "../../../../public/assets/images/tutorial/trailspage.png";
+import Onboarding4 from "../../../../public/assets/images/tutorial/trailpage.png";
+import Onboarding5 from "../../../../public/assets/images/tutorial/reward.png";
+import Onboarding6 from "../../../../public/assets/images/tutorial/acesswallet.jpg";
+import Onboarding7 from "../../../../public/assets/images/tutorial/yourprofile.jpg";
+import web3EduLogo from "../../../../public/assets/images/Web3EduBrasil_logo.png";
 import { useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { Bounce, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import useWeb3Auth from "@/lib/web3auth/web3auth";
 
 const steps = [
   {

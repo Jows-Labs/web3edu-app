@@ -2,11 +2,11 @@
 
 import Image from "next/image";
 import dynamic from 'next/dynamic';
-import GiftIcon from "../../assets/icons/gift.svg";
-import ForumIcon from "../../assets/icons/forum-icon.svg";
-import TrailIcon from "../../assets/icons/trail-icon.svg";
+import GiftIcon from "../../../public/assets/icons/gift.svg";
+import ForumIcon from "../../../public/assets/icons/forum-icon.svg";
+import TrailIcon from "../../../public/assets/icons/trail-icon.svg";
 import { MotionButton } from "../ui/Button";
-import AnimationFuture from "../../assets/animations/FuturoAnimado.json";
+import AnimationFuture from "../../../public/assets/animations/FuturoAnimado.json";
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 

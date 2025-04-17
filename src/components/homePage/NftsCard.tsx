@@ -1,5 +1,5 @@
 import Image from "next/image";
-import NoNftIcon from "../../assets/icons/no-certificate.svg";
+import NoNftIcon from "../../../public/assets/icons/no-certificate.svg";
 
 export const NftsCard = ({ achievedNfts }: { achievedNfts: AchievedNft[] }) => {
   return (
