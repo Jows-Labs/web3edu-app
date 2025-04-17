@@ -1,8 +1,8 @@
 import MainFunctions from "./mainFunctions";
 import dynamic from 'next/dynamic';
-import AnimationLearning from "../../assets/animations/LearningAnimation.json";
-import AnimationRewards from "../../assets/animations/RewardsAnimation.json";
-import AnimationEmBreve from "../../assets/animations/EmBreveAnimation.json";
+import AnimationLearning from "../../../public/assets/animations/LearningAnimation.json";
+import AnimationRewards from "../../../public/assets/animations/RewardsAnimation.json";
+import AnimationEmBreve from "../../../public/assets/animations/EmBreveAnimation.json";
 
 const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 

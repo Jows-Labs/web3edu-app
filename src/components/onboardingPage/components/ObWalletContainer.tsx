@@ -2,12 +2,12 @@
 
 import { MotionButton } from "../../ui/Button";
 import Image from "next/image";
-import Onboarding1 from "../../../assets/images/WalletTutorial/Onboarding1.jpg";
-import Onboarding2 from "../../../assets/images/WalletTutorial/Onboarding2.jpg";
-import Onboarding3 from "../../../assets/images/WalletTutorial/Onboarding3.jpg";
-import Onboarding4 from "../../../assets/images/WalletTutorial/Onboarding4.jpg";
-import Onboarding5 from "../../../assets/images/WalletTutorial/Onboarding5.jpg";
-import web3EduLogo from "../../../assets/images/Web3EduBrasil_logo.png";
+import Onboarding1 from "../../../../public/assets/images/WalletTutorial/Onboarding1.jpg";
+import Onboarding2 from "../../../../public/assets/images/WalletTutorial/Onboarding2.jpg";
+import Onboarding3 from "../../../../public/assets/images/WalletTutorial/Onboarding3.jpg";
+import Onboarding4 from "../../../../public/assets/images/WalletTutorial/Onboarding4.jpg";
+import Onboarding5 from "../../../../public/assets/images/WalletTutorial/Onboarding5.jpg";
+import web3EduLogo from "../../../../public/assets/images/Web3EduBrasil_logo.png";
 import { useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";
 import { Bounce, toast } from "react-toastify";
