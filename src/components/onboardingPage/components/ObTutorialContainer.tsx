@@ -26,8 +26,11 @@ const steps = [
   },
   {
     title: "Seu Perfil",
-    description:
-      "Aqui, você pode personalizar seu perfil, adicionando o Discord e LinkedIn. Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!",
+    description: (
+      <span>
+        Aqui, você pode personalizar seu perfil, adicionando o Discord e LinkedIn. <span className="bg-cyellow">Não esqueça de atualizar seu nome, pois ele aparecerá no seu certificado!</span>
+      </span>
+    ),
     image: Onboarding7.src,
     progress: 25,
     instruction:
@@ -162,10 +165,10 @@ export const ObTutorialContainer = () => {
           func={() =>
             currentStep === steps.length - 1
               ? toast.promise(fetchTutorialDone(), {
-                  pending: "Enviando...",
-                  success: "Tutorial completo!",
-                  error: "Erro ao concluir tutorial.",
-                })
+                pending: "Enviando...",
+                success: "Tutorial completo!",
+                error: "Erro ao concluir tutorial.",
+              })
               : handleNextStep()
           }
           className="bg-cgreen w-fit text-lg font-semibold"
