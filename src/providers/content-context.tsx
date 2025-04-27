@@ -297,7 +297,7 @@ export const ContentProvider = ({
           body: JSON.stringify({
             pinataContent: {
               image: trailIcon,
-              description: `Este certificado é concedido a ${userName} em reconhecimento por completar com sucesso a trilha de aprendizagem ${trailName}`,
+              description: `Este certificado é concedido a ${userName} em reconhecimento por completar com sucesso a trilha de aprendizagem ${trailName}, totalizando uma carga horária de 3 horas.`,
             },
           }),
         }

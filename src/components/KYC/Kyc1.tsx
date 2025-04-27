@@ -40,56 +40,51 @@ export default function Kyc1({
           />
         </div>
 
-      
-        <ul className="mt-4 space-y-2">
-  <li>
-    <a
-      href="#"
-      className={`block h-full rounded-box shadow-lg p-4 transition-transform duration-200 hover:scale-[1.02] ${
-        level === "begginer" ? "border border-green" : ""
-      }`}
-      onClick={() => setLevel("begginer")}
-    >
-      <strong className="font-bold text-dblue">Iniciante</strong>
-      <p className="mt-1 text-xs font-medium text-gray">
-        Você ainda está dando os primeiros passos no universo Web3. Nunca usou uma carteira digital, não conhece bem o que é blockchain, criptomoedas ou NFTs, mas tem interesse em aprender.
-      </p>
-    </a>
-  </li>
+        <ul className="mt-4 space-y-2 text-justify">
+          <li>
+            <a
+              href="#"
+              className={`block h-full rounded-box shadow-lg p-4 transition-transform duration-200 hover:scale-[1.02] ${level === "begginer" ? "border border-green" : ""
+                }`}
+              onClick={() => setLevel("begginer")}
+            >
+              <strong className="font-bold text-dblue">Iniciante</strong>
+              <p className="mt-1 text-xs font-medium text-gray">
+                Você ainda está dando os primeiros passos no universo Web3. Nunca usou uma carteira digital, não conhece bem o que é blockchain, criptomoedas ou NFTs.
+              </p>
+            </a>
+          </li>
 
-  <li>
-    <a
-      href="#"
-      className={`block h-full rounded-box shadow-lg p-4 transition-transform duration-200 hover:scale-[1.02] ${
-        level === "intermediate" ? "border border-green" : ""
-      }`}
-      onClick={() => setLevel("intermediate")}
-    >
-      <strong className="font-bold text-dblue">Intermediário</strong>
-      <p className="mt-1 text-xs font-medium text-gray">
-        Você já possui conhecimentos básicos sobre Web3. Sabe o que são criptomoedas, já usou carteiras como MetaMask e entende o funcionamento de tokens e NFTs, mas ainda está explorando o mundo dos smart contracts.
-      </p>
-    </a>
-  </li>
+          <li>
+            <a
+              href="#"
+              className={`block h-full rounded-box shadow-lg p-4 transition-transform duration-200 hover:scale-[1.02] ${level === "intermediate" ? "border border-green" : ""
+                }`}
+              onClick={() => setLevel("intermediate")}
+            >
+              <strong className="font-bold text-dblue">Intermediário</strong>
+              <p className="mt-1 text-xs font-medium text-gray">
+                Você já possui conhecimentos básicos sobre Web3. Sabe o que são criptomoedas, já usou carteiras como MetaMask e entende o funcionamento de tokens e NFTs.
+              </p>
+            </a>
+          </li>
 
-  <li>
-    <a
-      href="#"
-      className={`block h-full rounded-box shadow-lg p-4 transition-transform duration-200 hover:scale-[1.02] ${
-        level === "advanced" ? "border border-green" : ""
-      }`}
-      onClick={() => setLevel("advanced")}
-    >
-      <strong className="font-bold text-dblue">Avançado</strong>
-      <p className="mt-1 text-xs font-medium text-gray">
-        Você domina os conceitos da Web3. Já desenvolveu ou interagiu com smart contracts, entende o ecossistema blockchain profundamente e está familiarizado com DAOs, DeFi, e estratégias envolvendo NFTs e dApps.
-      </p>
-    </a>
-  </li>
-</ul>
-
-
+          <li>
+            <a
+              href="#"
+              className={`block h-full rounded-box shadow-lg p-4 transition-transform duration-200 hover:scale-[1.02] ${level === "advanced" ? "border border-green" : ""
+                }`}
+              onClick={() => setLevel("advanced")}
+            >
+              <strong className="font-bold text-dblue">Avançado</strong>
+              <p className="mt-1 text-xs font-medium text-gray">
+                Você domina os conceitos da Web3. Já desenvolveu ou interagiu com smart contracts, entende o ecossistema blockchain e está familiarizado com DAOs, DeFi e dApps.
+              </p>
+            </a>
+          </li>
+        </ul>
       </div>
+
       <div className=" w-full justify-center mt-8 flex">
         <MotionButton
           label="Avançar"
