@@ -21,7 +21,7 @@ export default function Section2() {
 
       <div className="bg-cgreen w-full h-fit p-10 flex flex-col justify-center items-center gap-10 mt-[-1px]">
         <p className="text-neutral text-3xl font-bold">Principais Funções</p>
-        <div className="flex justify-start w-fit md:justify-start items-start gap-10 py-10 h-fit  overflow-x-auto text-justify">
+        <div className="flex justify-start w-full md:w-fit md:justify-start items-start gap-10 py-10 h-fit  overflow-x-auto text-justify">
           <MainFunctions
             functionName="Sistema de Recompensas"
             content="Os alunos que concluem as trilhas de aprendizagem recebem certificação via blockchain, garantindo reconhecimento autêntico e verificável do conhecimento adquirido."
