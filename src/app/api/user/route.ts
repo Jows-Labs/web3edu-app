@@ -1,7 +1,6 @@
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
-import { logEvent } from "firebase/analytics";
 
 export const GET = async (req: NextRequest) => {
   try {
@@ -43,10 +42,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     const docSnap = await getDoc(userDocRef);
 
     if (docSnap.exists()) {
-      const userData = docSnap.data();
-      return new NextResponse(JSON.stringify({ user: userData }), {
-        status: 200,
-      });
+      return new NextResponse(
+        JSON.stringify({ message: "Usuário já existe" }),
+        { status: 400 }
+      );
     } else {
       data = {
         ...data,
@@ -55,10 +54,9 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         }),
       };
       const user = await setDoc(userDocRef, data);
-      //    logEvent(analytics, "first_access");
       return new NextResponse(
         JSON.stringify({
-          message: "UsuÃ¡rio adicionado com sucesso",
+          message: "Usuario adicionado com sucesso",
           user: user,
         }),
         { status: 200 }
