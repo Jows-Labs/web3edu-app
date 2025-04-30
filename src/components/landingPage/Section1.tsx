@@ -29,7 +29,7 @@ export default function Section1() {
             </span>
           </p>
         </div>
-        <Image alt="" src={web3EduLogo} className="h-44 md:h-64 w-auto" />
+        <Image alt="" src={web3EduLogo} className="w-[160px] md:w-[150px] max-w-full h-auto" />
       </div>
     </div>
   );
