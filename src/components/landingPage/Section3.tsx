@@ -21,7 +21,7 @@ export const Section3 = () => {
     console.log("teste");
   }
   return (
-    <div className="h-fit w-full flex md:flex-row flex-col bg-neutralbg md:p-20 p-10 md:gap-20 gap-4">
+    <div className="h-fit w-full flex md:flex-row flex-col bg-neutralbg md:p-20 p-10 md:gap-28 gap-4">
       <div className="flex flex-col md:w-2/5 w-full min-h-full justify-start  gap-4 py-8">
         <div className="h-full w-full">
           <div className="w-full flex flex-col m-0 md:flex-row items-center justify-start text-3xl text-center md:text-left">
