@@ -227,8 +227,12 @@ export default function useWeb3Auth() {
       console.error(error);
     } finally {
       setIsLoading(false);
+      if (loginRes?.user) {
+        router.push("/homePage");
+      } else {
+        toast.error("Login failed. Please try again.");
+      }
     }
-    router.push("/homePage");
   };
 
   const logout = async () => {
