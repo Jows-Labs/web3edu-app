@@ -168,6 +168,7 @@ export default function useWeb3Auth() {
 
     onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
+      setIsLoading(false);
 
       if (firebaseUser) {
         fetchUserDbData(firebaseUser.uid);
@@ -179,29 +180,19 @@ export default function useWeb3Auth() {
             displayName: firebaseUser.displayName,
             tutorialDone: false,
           };
-
-          await fetch("/api/user", {
+          const response = await fetch("/api/user", {
             method: "POST",
             body: JSON.stringify(userObj),
           });
-          
-          router.push("/homePage");
-          toast.success("Login realizado com sucesso");
-          return;
+          const data = await response.json();
+          console.log(data);
         } catch (error: any) {
           console.log("Error saving user data", error);
         }
       } else {
-        //check if user has already logged but the Firebase session is expired
-        if (googleUserInfo) {
-          logout();
-          toast.warning("Login expirado, faça login novamente");
-          return;
-        }
         if (pathname !== "/") {
           router.push("/");
           toast.warning("Faça login para acessar esta tela");
-          return;
         }
       }
     });
@@ -267,10 +258,6 @@ export default function useWeb3Auth() {
 
   const WalletUi = async () => {
     try {
-      if (!web3auth.connected || web3auth.getPlugin("wallet-services") === null) {
-        toast.warning("Carteira web3 ainda não conectada, tente novamente");
-        return;
-      }
       await walletServicesPlugin?.showWalletUi();
       // logEvent(analytics, "open_wallet");
     } catch (error) {
