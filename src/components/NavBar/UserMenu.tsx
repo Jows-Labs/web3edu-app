@@ -30,7 +30,7 @@ export const UserMenu = () => {
         >
           <div className="w-9 rounded-full">
             {userInfo ? (
-              <img alt="User Image" src={googleUserInfo?.photoURL} />
+              <img alt="User Image" src={userInfo?.profileImage} fetchPriority="high"/>
             ) : (
               <CgProfile className="w-9 h-9" />
             )}
