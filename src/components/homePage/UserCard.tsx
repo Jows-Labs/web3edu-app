@@ -22,7 +22,7 @@ export default function UserCard() {
             alt=""
             className="w-full h-full"
             fetchPriority="high"
-          ></img>
+          />
         ) : (
           <div className="skeleton h-full w-full"></div>
         )}

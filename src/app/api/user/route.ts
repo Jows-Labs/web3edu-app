@@ -1,11 +1,12 @@
-import { collection, doc, getDoc, getDocs, setDoc } from "firebase/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
-import { logEvent } from "firebase/analytics";
 
 export const GET = async (req: NextRequest) => {
   try {
     const uid = req.nextUrl.searchParams.get("uid");
+    const email = req.nextUrl.searchParams.get("email");
+    const googleName = req.nextUrl.searchParams.get("googleName");
 
     if (!uid) {
       throw new Error("Missing required parameter: uid");
@@ -20,9 +21,20 @@ export const GET = async (req: NextRequest) => {
         status: 200,
       });
     } else {
-      return new NextResponse(JSON.stringify({ message: "User not found" }), {
-        status: 404,
-      });
+      const body = {
+        uid: uid,
+        email: email,
+        displayName: googleName,
+        tutorialDone: false,
+      };
+      const postResponse = await POST(
+        new NextRequest(req.url, {
+          method: "POST",
+          body: JSON.stringify(body),
+        }),
+        new NextResponse()
+      );
+      return postResponse;
     }
   } catch (error: any) {
     console.log(error.message);
@@ -43,10 +55,10 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
     const docSnap = await getDoc(userDocRef);
 
     if (docSnap.exists()) {
-      const userData = docSnap.data();
-      return new NextResponse(JSON.stringify({ user: userData }), {
-        status: 200,
-      });
+      return new NextResponse(
+        JSON.stringify({ message: "Usuário já existe" }),
+        { status: 400 }
+      );
     } else {
       data = {
         ...data,
@@ -55,10 +67,9 @@ export const POST = async (req: NextRequest, res: NextResponse) => {
         }),
       };
       const user = await setDoc(userDocRef, data);
-      //    logEvent(analytics, "first_access");
       return new NextResponse(
         JSON.stringify({
-          message: "UsuÃ¡rio adicionado com sucesso",
+          message: "Usuario adicionado com sucesso",
           user: user,
         }),
         { status: 200 }
