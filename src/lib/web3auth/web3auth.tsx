@@ -59,6 +59,13 @@ const openloginAdapter = new OpenloginAdapter({
         clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID || "",
       },
     },
+    redirectUrl: `${process.env.NEXT_PUBLIC_BUILD_ENV === "production" ? `${process.env.NEXT_PUBLIC_APP_LINK}/homePage` : "http://localhost:3000/homePage"}`,
+    whiteLabel: {
+      appName: "Web3EduBrasil",
+      appUrl: process.env.NEXT_PUBLIC_APP_LINK,
+      defaultLanguage: "pt",
+      useLogoLoader: true,
+    },
   },
   privateKeyProvider: new EthereumPrivateKeyProvider({
     config: { chainConfig },
@@ -112,7 +119,7 @@ export default function useWeb3Auth() {
   useEffect(() => {
     const init = async () => {
       try {
-        await web3auth.addPlugin(walletPlugin);
+        web3auth.getPlugin("wallet-services") === null && web3auth.addPlugin(walletPlugin);
         await web3auth.init();
         setProvider(web3auth.provider);
         setWalletServicesPlugin(walletPlugin);
@@ -228,7 +235,6 @@ export default function useWeb3Auth() {
     } finally {
       setIsLoading(false);
     }
-    router.push("/homePage");
   };
 
   const logout = async () => {
