@@ -229,7 +229,6 @@ export default function useWeb3Auth() {
         const userInfo = await web3auth.getUserInfo();
         setUserInfo(userInfo);
       }
-      await router.push("/homePage");
       // logEvent(analytics, "login");
     } catch (error) {
       console.error(error);
