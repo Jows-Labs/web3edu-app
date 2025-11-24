@@ -181,7 +181,7 @@ export default function useWeb3Auth() {
         fetchUserDbData(firebaseUser.uid, firebaseUser.email, firebaseUser.displayName);
       } else {
         //check if user has already logged but the Firebase session is expired
-        if (!web3auth.connected && googleUserInfo) {
+        if (!web3auth.connected) {
           logout();
           toast.warning("Login expirado, faça login novamente");
           return;

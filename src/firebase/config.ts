@@ -3,7 +3,7 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getFirestore } from "firebase/firestore";
-import { getVertexAI, getGenerativeModel } from "firebase/vertexai";
+import { getAI, getGenerativeModel } from "firebase/vertexai";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -22,7 +22,7 @@ const storage = getStorage(app);
 const db = getFirestore(app);
 
 // Initialize the Vertex AI service
-const vertexAI = getVertexAI(app);
+const vertexAI = getAI(app);
 const model = getGenerativeModel(vertexAI, {
   model: "gemini-2.0-flash-lite-001",
 });
