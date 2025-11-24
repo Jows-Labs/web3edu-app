@@ -59,7 +59,11 @@ const openloginAdapter = new OpenloginAdapter({
         clientId: process.env.NEXT_PUBLIC_WEB3AUTH_CLIENT_ID || "",
       },
     },
-    redirectUrl: `${process.env.NEXT_PUBLIC_BUILD_ENV === "production" ? `${process.env.NEXT_PUBLIC_APP_LINK}/homePage` : "http://localhost:3000/homePage"}`,
+    redirectUrl: `${
+      process.env.NEXT_PUBLIC_BUILD_ENV === "production"
+        ? `${process.env.NEXT_PUBLIC_APP_LINK}/homePage`
+        : "http://localhost:3000/homePage"
+    }`,
     whiteLabel: {
       appName: "Web3EduBrasil",
       appUrl: process.env.NEXT_PUBLIC_APP_LINK,
@@ -92,8 +96,10 @@ const walletPlugin = new WalletServicesPlugin({
   walletInitOptions: {
     confirmationStrategy: "modal",
     whiteLabel: {
-      logoLight: "https://cdn.prod.website-files.com/67360adb26042a9f3ca96aa5/673b3e0fd01940ddba6f657a_image%201.png",
-      logoDark: "https://cdn.prod.website-files.com/67360adb26042a9f3ca96aa5/673e41d192a4e63d42f9d3db_Mask%20group%201.webp",
+      logoLight:
+        "https://cdn.prod.website-files.com/67360adb26042a9f3ca96aa5/673b3e0fd01940ddba6f657a_image%201.png",
+      logoDark:
+        "https://cdn.prod.website-files.com/67360adb26042a9f3ca96aa5/673e41d192a4e63d42f9d3db_Mask%20group%201.webp",
       useLogoLoader: false,
       defaultLanguage: "pt",
       appName: "Web3EduBrasil",
@@ -119,7 +125,8 @@ export default function useWeb3Auth() {
   useEffect(() => {
     const init = async () => {
       try {
-        web3auth.getPlugin("wallet-services") === null && web3auth.addPlugin(walletPlugin);
+        web3auth.getPlugin("wallet-services") === null &&
+          web3auth.addPlugin(walletPlugin);
         await web3auth.init();
         setProvider(web3auth.provider);
         setWalletServicesPlugin(walletPlugin);
@@ -161,10 +168,19 @@ export default function useWeb3Auth() {
     };
   }, [web3auth]);
 
-  const fetchUserDbData = async (uid: string, email?: string | null, googleName?: string |  null) => {
-    const response = await fetch(`/api/user?uid=${uid}&email=${email || ''}&googleName=${googleName || ''}`, {
-      method: "GET",
-    });
+  const fetchUserDbData = async (
+    uid: string,
+    email?: string | null,
+    googleName?: string | null
+  ) => {
+    const response = await fetch(
+      `/api/user?uid=${uid}&email=${email || ""}&googleName=${
+        googleName || ""
+      }`,
+      {
+        method: "GET",
+      }
+    );
     const data = await response.json();
     setUserDbInfo(data.user);
     console.log(data);
@@ -178,7 +194,11 @@ export default function useWeb3Auth() {
 
       if (firebaseUser) {
         // here the endpoint handles the case wheter the user is registered or not
-        fetchUserDbData(firebaseUser.uid, firebaseUser.email, firebaseUser.displayName);
+        fetchUserDbData(
+          firebaseUser.uid,
+          firebaseUser.email,
+          firebaseUser.displayName
+        );
       } else {
         //check if user has already logged but the Firebase session is expired
         if (!web3auth.connected) {
@@ -254,7 +274,10 @@ export default function useWeb3Auth() {
 
   const WalletUi = async () => {
     try {
-      if (!web3auth.connected || web3auth.getPlugin("wallet-services") === null) {
+      if (
+        !web3auth.connected ||
+        web3auth.getPlugin("wallet-services") === null
+      ) {
         toast.warning("Carteira web3 ainda não conectada, tente novamente");
         return;
       }

@@ -100,7 +100,7 @@ export const Task = ({
             />
           ) : section.type === "question" ? (
             <RenderQuestionV
-              description={section.description}
+              description={section.question}
               isLast={section.isLast}
               question={section.question}
               fetchDone={fetchDone}
