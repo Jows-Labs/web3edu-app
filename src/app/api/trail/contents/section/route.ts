@@ -1,6 +1,8 @@
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
 import { NextRequest, NextResponse } from "next/server";
+import { serialize } from "next-mdx-remote/serialize";
+import matter from "gray-matter";
 
 export const GET = async (req: NextRequest) => {
   try {
@@ -24,11 +26,24 @@ export const GET = async (req: NextRequest) => {
       return new NextResponse("Conteúdo não encontrado", { status: 404 });
     }
 
+    const rawData = contentSnapshot.data() as any;
+
+    let mdxSource = undefined;
+    if (rawData && typeof rawData.mdx === "string" && rawData.mdx.trim()) {
+      try {
+        const { content: mdxContent } = matter(rawData.mdx);
+        mdxSource = await serialize(mdxContent);
+      } catch (err) {
+        console.error("Erro ao serializar MDX:", err);
+      }
+    }
+
     const content = {
       id: contentSnapshot.id,
       done: false,
       isLast: false,
-      ...contentSnapshot.data(),
+      ...rawData,
+      ...(mdxSource ? { mdxSource } : {}),
     };
 
     const userDocRef = doc(db, "users", uid);

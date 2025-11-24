@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-import { TrailContainer } from "./TrailContainer";
 import { TaskList } from "./TaskList";
 import { useContent } from "@/providers/content-context";
 import { Task } from "../Task/Task";
