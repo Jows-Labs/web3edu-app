@@ -1,7 +1,6 @@
 "use client";
 
 import { TrailCards } from "./TrailContainer";
-import { TrailsPgTop } from "./TrailsPgTop";
 import { useContent } from "@/providers/content-context";
 import { useEffect, useState } from "react";
 import { useWeb3AuthContext } from "@/lib/web3auth/Web3AuthProvider";

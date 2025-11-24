@@ -7,7 +7,6 @@ import { CiStar } from "react-icons/ci";
 import { useRouter } from "next/navigation";
 import { MotionDiv } from "../ui/MotionDiv";
 import { logEvent } from "firebase/analytics";
-// import { analytics } from "@/firebase/config";
 
 export const TrailCards = ({
   image,
@@ -22,7 +21,6 @@ export const TrailCards = ({
       className="w-full h-80 max-w-80"
       func={() => {
         router.push(`/learn/${id}/1`);
-        // logEvent(analytics, `trail_start_${title}`);
       }}
     >
       <div className="card bg-cgray w-full h-full shadow-xl border-2 border-gray overflow-hidden text-left">

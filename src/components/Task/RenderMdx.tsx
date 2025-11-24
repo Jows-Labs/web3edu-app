@@ -10,6 +10,7 @@ interface MdxSectionProps {
   trailId: string;
   isLast: Boolean;
   done: Boolean;
+  mdxSource?: any; // serialized MDX from server (next-mdx-remote)
 }
 
 export default function MdxSection({
@@ -18,31 +19,9 @@ export default function MdxSection({
   fetchDone,
   isLast,
   done,
+  mdxSource,
 }: MdxSectionProps) {
-  const [mdxSource, setMdxSource] = useState<any>(null);
   const router = useRouter();
-
-  useEffect(() => {
-    if (id && trailId) {
-      const fetchMdx = async () => {
-        try {
-          const response = await fetch(
-            `/api/mdx/content?trailId=${trailId}&Id=${id}`,
-            {
-              method: "GET",
-            }
-          );
-          const data = await response.json();
-          console.log(data);
-          setMdxSource(data.mdxSource);
-        } catch (error) {
-          console.error("Error fetching MDX file:", error);
-          setMdxSource(null);
-        }
-      };
-      fetchMdx();
-    }
-  }, [id, trailId]);
 
   return (
     <div className="flex flex-col gap-6">
